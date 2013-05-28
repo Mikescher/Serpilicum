@@ -14,6 +14,7 @@ private:
 	virtual void init();
 
 	virtual void writeToConsole(char c, int x, int y);
+	virtual void showConsoleCursor(bool bShow);
 public:
 	DBConsole(void);
 	~DBConsole(void);
@@ -23,6 +24,7 @@ public:
 	virtual void write(char c, int x, int y);
 	virtual void write(std::string s, int x, int y);
 
+	virtual void clearBuffer();
 	virtual void swap();
 };
 

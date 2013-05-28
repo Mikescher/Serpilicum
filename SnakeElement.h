@@ -10,7 +10,7 @@ public:
 
 	virtual bool hasNextElement();
 	virtual SnakeElement* getNextElement();
-	virtual void setNextElement(SnakeElement* element);	
+	virtual void setNextElement(SnakeElement* pnext);	
 	virtual void setX(int x);
 	virtual void setY(int y);
 	virtual int getX();
@@ -19,6 +19,8 @@ public:
 	virtual int moveY(int y);
 	virtual void set(int x, int y);
 	virtual void move(int x, int y);
+	virtual void moveRecursively(int tox, int toy);
+	virtual void extendRecursively(int tox, int toy);
 };
 
 

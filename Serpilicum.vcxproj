@@ -66,15 +66,21 @@
   <ItemGroup>
     <ClCompile Include="DBConsole.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HealthPowerUp.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="PowerUpList.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DBConsole.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HealthPowerUp.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="PowerUpList.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeElement.h" />
   </ItemGroup>

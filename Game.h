@@ -9,6 +9,9 @@ private:
 	bool running;
 	Level *level;
 
+	virtual void render();
+	virtual void renderSnake();
+	virtual void renderPowerups();
 public:
 	Game(DBConsole *pconsole);
 	~Game(void);
@@ -17,6 +20,5 @@ public:
 	virtual void stop();
 	virtual bool isRunning();
 	virtual void run();
-	
 };
 

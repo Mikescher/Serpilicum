@@ -11,6 +11,10 @@ SnakeElement::SnakeElement(int px, int py)
 
 SnakeElement::~SnakeElement(void)
 {
+	if (hasNextElement()) {
+		delete next;
+	}
+	next = 0;
 }
 
 bool SnakeElement::hasNextElement(){
@@ -20,32 +24,68 @@ bool SnakeElement::hasNextElement(){
 SnakeElement* SnakeElement::getNextElement(){
 	if(hasNextElement()){
 		return next;
+	} else {
+		return 0;
 	}
-	
 }
 
-void SnakeElement::setNextElement(SnakeElement* element){
-	next = element;
+void SnakeElement::setNextElement(SnakeElement* pnext){
+	next = pnext;
 }
 
-bool hasNextElement(){
+void SnakeElement::setX(int px){
+	x = px;
 }
-void setNextElement(SnakeElement* element){
+void SnakeElement::setY(int py){
+	y = py;
 }
 
-void setX(int x){
+int SnakeElement::getX(){
+	return x;
 }
-void setY(int y){
+
+int SnakeElement::getY(){
+	return y;
 }
-int getX(){
+
+int SnakeElement::moveX(int dx){
+	return x += dx;
 }
-int getY(){
+
+int SnakeElement::moveY(int dy){
+	return y += dy;
 }
-int moveX(int x){
+
+void SnakeElement::set(int px, int py){
+	setX(px);
+	setY(py);
 }
-int moveY(int y){
+
+void SnakeElement::move(int dx, int dy){
+	moveX(dx);
+	moveY(dy);
 }
-void set(int x, int y){
+
+void SnakeElement::moveRecursively(int tox, int toy) {
+	int oldx = x;
+	int oldy = y;
+
+	set(tox, toy);
+
+	if(hasNextElement()) {
+		getNextElement()->moveRecursively(oldx, oldy);
+	}
 }
-void move(int x, int y){
+
+void SnakeElement::extendRecursively(int tox, int toy) {
+	int oldx = x;
+	int oldy = y;
+
+	set(tox, toy);
+
+	if(hasNextElement()) {
+		getNextElement()->extendRecursively(oldx, oldy);
+	} else {
+		setNextElement(new SnakeElement(oldx, oldy));
+	}
 }
