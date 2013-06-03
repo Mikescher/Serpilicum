@@ -64,21 +64,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="DBConsole.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HealthPowerUp.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuDisplay.cpp" />
+    <ClCompile Include="MenuElement.cpp" />
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="PowerUpList.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeElement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="DBConsole.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="HealthPowerUp.h" />
+    <ClInclude Include="Label.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuDisplay.h" />
+    <ClInclude Include="MenuElement.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="PowerUpList.h" />
     <ClInclude Include="Snake.h" />

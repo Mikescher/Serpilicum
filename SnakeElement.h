@@ -22,5 +22,3 @@ public:
 	virtual void moveRecursively(int tox, int toy);
 	virtual void extendRecursively(int tox, int toy);
 };
-
-
