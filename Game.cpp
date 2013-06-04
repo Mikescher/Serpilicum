@@ -1,13 +1,20 @@
 #include "Game.h"
 #include "DBConsole.h"
 #include "Level.h"
-
+#include "IntroMenu.h"
+#include "Keycodes.h"
+#include "ActionListener.h"
 
 Game::Game(DBConsole *pconsole)
 {
+	active = true;
+
 	console = pconsole;
-	running = false;
-	level = new Level();
+	
+	level = 0;
+	menu = new MenuDisplay();
+
+	menu->setMenu(new IntroMenu(this));
 }
 
 
@@ -16,20 +23,12 @@ Game::~Game(void)
 	delete level;
 }
 
-void Game::start(){
-	running = true;
-}
-
-void Game::stop(){
-	running = false;
-}
-
-bool Game::isRunning(){
-	return running;
-}
-
-void Game::run(){
-	level->run();
+void Game::run(DBConsole * pConsole){
+	if (! menu->isMenuset()) {
+		level->run(pConsole);
+	} else {
+		// run menu;
+	}
 
 	render();
 }
@@ -37,28 +36,30 @@ void Game::run(){
 void Game::render() {
 	console->clearBuffer();
 
-	renderSnake();
-	renderPowerups();
+	if (menu->isMenuset()) {
+		menu->render(console);
+	} else {
+		level->render(console);
+	}
 
 	console->swap();
 }
 
-void Game::renderSnake() {
-	SnakeElement * snakeelement = level->getSnake()->getHead();
+bool Game::isActive() {
+	return active;
+}
 
-	while(snakeelement != 0) {
-		console->write('#', snakeelement->getX(), snakeelement->getY());
-
-		snakeelement = snakeelement->getNextElement();
+void Game::onKeyDown (int keycode) {
+	if (keycode == KC_ESCAPE) {
+		active = false;
+	} else if (menu->isMenuset()) {
+		menu->onKeyDown(console, keycode);;
+	} else {
+		level->onKeyDown(keycode);
 	}
 }
 
-void Game::renderPowerups() {
-	PowerUp * pelem = level->getPowerUpList()->getFirst();
-
-	while(pelem != 0) {
-		console->write(pelem->getSymbol(), pelem->getX(), pelem->getY());
-
-		pelem = pelem->getNextElement();
-	}
+void Game::actionPerformed(int id) {
+	menu->removeMenu();
+	level = new Level();
 }

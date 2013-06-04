@@ -1,10 +1,28 @@
 #pragma once
 #include "MenuElement.h"
-
-class Button:public MenuElement
+#include "ActionListener.h"
+class Button:
+	public MenuElement
 {
+private:
+	std::string text;
+	ActionListener * listener;
+	int id;
+	
+	virtual void throwEvent();
 public:
 	Button(void);
+	Button(int id);
+	Button(int id, std::string initval, int nx, int ny);
 	~Button(void);
+
+	virtual void render(DBConsole* pConsole);
+	virtual void onKeyDown(int keycode);
+
+	virtual void setText(std::string pText);
+	virtual std::string getText();
+
+	virtual void setListener(ActionListener * lst);
+	virtual ActionListener *removeListener();
 };
 

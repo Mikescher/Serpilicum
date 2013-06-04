@@ -26,5 +26,11 @@ public:
 
 	virtual void clearBuffer();
 	virtual void swap();
+
+	virtual int getKeyState();
+	virtual int getFullKeyEvent();
+	virtual int getBlockingFullKeyEvent();
+
+	virtual long getCurrentTimeMillis();
 };
 

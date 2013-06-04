@@ -1,7 +1,8 @@
 #include "DBConsole.h"
 #include <Windows.h>
 #include <iostream>
-
+#include "Keycodes.h"
+#include <chrono>
 
 DBConsole::DBConsole(void) {
     init();
@@ -97,4 +98,48 @@ void DBConsole::clearBuffer() {
             buffer[x][y] = ' ';
         }
     }
+}
+
+int DBConsole::getKeyState() {
+    if (GetAsyncKeyState(VK_UP)) {
+		return KC_UP;
+    } else if (GetAsyncKeyState(VK_DOWN)) {
+		return KC_DOWN;
+    } else if (GetAsyncKeyState(VK_LEFT)) {
+		return KC_LEFT;
+    } else if (GetAsyncKeyState(VK_RIGHT)) {
+		return KC_RIGHT;
+	} else if (GetAsyncKeyState(VK_SPACE)) {
+		return KC_SPACE;
+    } else if (GetAsyncKeyState(VK_ESCAPE)) {
+		return KC_ESCAPE;
+    }
+	return 0;
+}
+
+
+int DBConsole::getFullKeyEvent() {
+	int kc = getKeyState();
+
+	if (kc != 0) while (getKeyState() == kc); // Wait
+
+	return kc;
+}
+
+int DBConsole::getBlockingFullKeyEvent() {
+	int kc = 0;
+
+	while ((kc = getFullKeyEvent()) == 0);
+
+	return kc;
+}
+
+long DBConsole::getCurrentTimeMillis() {
+	auto time = std::chrono::system_clock::now();
+
+	auto since_epoch = time.time_since_epoch(); 
+
+	auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(since_epoch);
+
+	return millis.count(); 
 }

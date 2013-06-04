@@ -1,6 +1,5 @@
 #include "Snake.h"
 
-
 Snake::Snake(void)
 {
 	direction = NORTH;
@@ -78,4 +77,12 @@ void Snake::extendForward() {
 	}
 
 	head->extendRecursively(cx, cy);
+}
+
+Direction Snake::getDirection() {
+	return direction;
+}
+
+void Snake::setDirection(Direction dir) {
+	direction = dir;
 }

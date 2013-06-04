@@ -64,10 +64,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActionListener.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="DBConsole.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HealthPowerUp.cpp" />
+    <ClCompile Include="IntroMenu.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -80,10 +82,13 @@
     <ClCompile Include="SnakeElement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActionListener.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="DBConsole.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Keycodes.h" />
     <ClInclude Include="HealthPowerUp.h" />
+    <ClInclude Include="IntroMenu.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Menu.h" />
@@ -93,6 +98,9 @@
     <ClInclude Include="PowerUpList.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeElement.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

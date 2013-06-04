@@ -1,24 +1,28 @@
 #pragma once
 #include "DBConsole.h"
 #include "Level.h"
+#include "MenuDisplay.h"
+#include "ActionListener.h"
 
-class Game
+class Game : public ActionListener
 {
 private:
 	DBConsole *console;
-	bool running;
+
 	Level *level;
+	MenuDisplay *menu;
+
+	bool active;
 
 	virtual void render();
-	virtual void renderSnake();
-	virtual void renderPowerups();
 public:
 	Game(DBConsole *pconsole);
 	~Game(void);
 
-	virtual void start();
-	virtual void stop();
-	virtual bool isRunning();
-	virtual void run();
+	virtual bool isActive();
+	virtual void onKeyDown (int keycode);
+	virtual void actionPerformed(int id);
+
+	virtual void run(DBConsole *pConsole);
 };
 

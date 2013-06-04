@@ -1,9 +1,10 @@
 #include "Menu.h"
-
+#include "Keycodes.h"
 
 
 Menu::Menu(void)
 {
+	focusIndex = -1;
 }
 
 
@@ -33,9 +34,86 @@ MenuElement* Menu::removeElement(MenuElement* pElement)
 		{
 			MenuElement* tmp = *it;
 			elements.erase(it);
+			updateFocus();
 			return tmp;
 		}
 	}
 
 	return 0;
+}
+
+MenuElement* Menu::getFocusedElement() {
+	if (isElementFocused()) {
+		return elements.at(focusIndex);
+	} else {
+		return 0;
+	}
+}
+
+bool Menu::isElementFocused() {
+	if (focusIndex >= 0 && focusIndex < elements.size()) {
+		return true;
+	} else {
+		focusIndex = -1;
+		return false;
+	}
+}
+
+MenuElement* Menu::focusNextElement() {
+	focusIndex = (focusIndex + 1) % elements.size();
+
+	updateFocus();
+
+	return getFocusedElement();
+}
+
+MenuElement* Menu::focusPrevElement() {
+	focusIndex = (focusIndex + elements.size() - 1) % elements.size();
+
+	updateFocus();
+
+	return getFocusedElement();
+}
+
+bool Menu::focusElement(int idx) {
+	if (idx >= 0 && idx < elements.size()) {
+		focusIndex = idx;
+		updateFocus();
+
+		return true;
+	} else {
+		return false;
+	}
+}
+
+void Menu::removeFocus() {
+	focusIndex = -1;
+
+	updateFocus();
+}
+
+void Menu::onKeyDown(int keycode) {
+	if (isElementFocused()) {
+		if (keycode == KC_UP) {
+			focusPrevElement();
+		} else if (keycode == KC_DOWN) {
+			focusNextElement();
+		} else {
+			getFocusedElement()->onKeyDown(keycode);
+		}
+	} else {
+		if (keycode == KC_UP) {
+			focusElement(0);
+		} else if (keycode == KC_DOWN) {
+			focusElement(0);
+		} else {
+			// Event remains unconsumed
+		}
+	}
+}
+
+void Menu::updateFocus() {
+	for(unsigned int z = 0; z < elements.size(); z++){
+		elements[z]->setFocused(z == focusIndex);	
+	}
 }

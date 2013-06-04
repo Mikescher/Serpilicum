@@ -2,10 +2,13 @@
 #include <vector>
 #include "MenuElement.h"
 #include "DBConsole.h"
-class Menu
-{
+
+class Menu {
 private:
 	std::vector<MenuElement*> elements;
+	int focusIndex;
+
+	virtual void updateFocus();
 public:
 	Menu(void);
 	~Menu(void);
@@ -13,5 +16,12 @@ public:
 	virtual void render(DBConsole* pConsole);
 	virtual void addElement(MenuElement* pElement);
 	virtual MenuElement* removeElement(MenuElement* pElement);
-};
 
+	virtual MenuElement* getFocusedElement();
+	virtual bool isElementFocused();
+	virtual MenuElement* focusNextElement();
+	virtual MenuElement* focusPrevElement();
+	virtual bool focusElement(int el);
+	virtual void removeFocus();
+	virtual void onKeyDown(int keycode);
+};

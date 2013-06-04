@@ -16,5 +16,5 @@ public:
 	virtual bool isMenuset();
 	virtual void removeMenu();
 
+	virtual void onKeyDown (DBConsole *pConsole, int keycode);
 };
-

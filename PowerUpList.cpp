@@ -1,8 +1,11 @@
 #include "PowerUpList.h"
-
+#include "HealthPowerUp.h"
+#include <stdlib.h>
+#include "DBConsole.h"
 
 PowerUpList::PowerUpList(void)
 {
+	lastAdd = 0;
 }
 
 
@@ -73,5 +76,29 @@ bool PowerUpList::remove(PowerUp * p) {
 		return true;
 	} else {
 		return false;
+	}
+}
+
+void PowerUpList::addMissingHealthPowerUps(DBConsole * pConsole) {
+	long curr = pConsole->getCurrentTimeMillis();
+
+	if ((curr - lastAdd) > 500) {
+
+		if (getLength() < 16) {
+			addHealthPowerUps(1);
+		}
+
+		lastAdd = curr;
+	}
+
+
+	
+}
+
+void PowerUpList::addHealthPowerUps(int count) {
+	for(int i = 0; i < count; i++) {
+		int x = rand() % BUFFER_W;
+		int y = rand() % BUFFER_H;
+		add(new HealthPowerUp(x, y));
 	}
 }

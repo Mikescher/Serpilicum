@@ -46,3 +46,10 @@ void MenuDisplay::removeMenu()
 	}
 	menu = 0;
 }
+
+void MenuDisplay::onKeyDown(DBConsole *pConsole, int keycode) {
+	if (isMenuset()) {
+		pConsole->getFullKeyEvent(); // Wait for Key Up
+		menu->onKeyDown(keycode);
+	}
+}
