@@ -18,7 +18,7 @@ private:
 	virtual void renderSnake(DBConsole *console);
 public:
 	Level(void);
-	~Level(void);
+	virtual ~Level(void);
 
 	virtual void render(DBConsole* pConsole);
 	virtual void onKeyDown(int keycode);

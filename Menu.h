@@ -11,7 +11,7 @@ private:
 	virtual void updateFocus();
 public:
 	Menu(void);
-	~Menu(void);
+	virtual ~Menu(void);
 
 	virtual void render(DBConsole* pConsole);
 	virtual void addElement(MenuElement* pElement);

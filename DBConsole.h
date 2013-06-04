@@ -17,7 +17,7 @@ private:
 	virtual void showConsoleCursor(bool bShow);
 public:
 	DBConsole(void);
-	~DBConsole(void);
+	virtual ~DBConsole(void);
 
 	virtual void redraw();
 

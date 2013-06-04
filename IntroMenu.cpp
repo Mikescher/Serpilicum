@@ -15,7 +15,7 @@ IntroMenu::~IntroMenu(void)
 
 void IntroMenu::createMenu(ActionListener * startGamelistener) {
 	addElement(new Label("Welcome to da game", 8, 2));
-	addElement(new Label("Move ya thingz wid da keyZ", 8, 2));
+	addElement(new Label("Move ya thingz wid da keyZ", 8, 3));
 
 	Button *startBtn = new Button(1, "Start den Game", 8, 6);
 	addElement(startBtn);
@@ -28,4 +28,6 @@ void IntroMenu::createMenu(ActionListener * startGamelistener) {
 	addElement(new Button(2, "Do Nix", 8, 26));
 	addElement(new Button(2, "Do Nix", 8, 30));
 	addElement(new Button(2, "Do Nix", 8, 34));
+
+	focusElement(2);
 }

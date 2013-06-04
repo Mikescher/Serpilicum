@@ -11,7 +11,7 @@ private:
 public:
 	MenuElement(void);
 	MenuElement(int nx, int ny, int nw, int nh);
-	~MenuElement(void);
+	virtual ~MenuElement(void);
 
 	virtual int getX();
 	virtual int getY();

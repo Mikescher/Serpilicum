@@ -102,44 +102,44 @@ void DBConsole::clearBuffer() {
 
 int DBConsole::getKeyState() {
     if (GetAsyncKeyState(VK_UP)) {
-		return KC_UP;
+        return KC_UP;
     } else if (GetAsyncKeyState(VK_DOWN)) {
-		return KC_DOWN;
+        return KC_DOWN;
     } else if (GetAsyncKeyState(VK_LEFT)) {
-		return KC_LEFT;
+        return KC_LEFT;
     } else if (GetAsyncKeyState(VK_RIGHT)) {
-		return KC_RIGHT;
-	} else if (GetAsyncKeyState(VK_SPACE)) {
-		return KC_SPACE;
+        return KC_RIGHT;
+    } else if (GetAsyncKeyState(VK_SPACE)) {
+        return KC_SPACE;
     } else if (GetAsyncKeyState(VK_ESCAPE)) {
-		return KC_ESCAPE;
+        return KC_ESCAPE;
     }
-	return 0;
+    return 0;
 }
 
 
 int DBConsole::getFullKeyEvent() {
-	int kc = getKeyState();
+    int kc = getKeyState();
 
-	if (kc != 0) while (getKeyState() == kc); // Wait
+    if (kc != 0) while (getKeyState() == kc); // Wait
 
-	return kc;
+    return kc;
 }
 
 int DBConsole::getBlockingFullKeyEvent() {
-	int kc = 0;
+    int kc = 0;
 
-	while ((kc = getFullKeyEvent()) == 0);
+    while ((kc = getFullKeyEvent()) == 0);
 
-	return kc;
+    return kc;
 }
 
 long DBConsole::getCurrentTimeMillis() {
-	auto time = std::chrono::system_clock::now();
+    auto time = std::chrono::system_clock::now();
 
-	auto since_epoch = time.time_since_epoch(); 
+    auto since_epoch = time.time_since_epoch(); 
 
-	auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(since_epoch);
+    auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(since_epoch);
 
-	return millis.count(); 
+    return millis.count(); 
 }

@@ -14,7 +14,7 @@ public:
 	Button(void);
 	Button(int id);
 	Button(int id, std::string initval, int nx, int ny);
-	~Button(void);
+	virtual ~Button(void);
 
 	virtual void render(DBConsole* pConsole);
 	virtual void onKeyDown(int keycode);

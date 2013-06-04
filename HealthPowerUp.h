@@ -5,7 +5,7 @@ class HealthPowerUp :
 {
 public:
 	HealthPowerUp(int px, int py);
-	~HealthPowerUp(void);
+	virtual ~HealthPowerUp(void);
 
 	virtual char getSymbol();
 };

@@ -84,7 +84,7 @@ void PowerUpList::addMissingHealthPowerUps(DBConsole * pConsole) {
 
 	if ((curr - lastAdd) > 500) {
 
-		if (getLength() < 16) {
+		if (getLength() < 32) {
 			addHealthPowerUps(1);
 		}
 

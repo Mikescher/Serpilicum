@@ -8,7 +8,7 @@ private:
 public:
 	Label(void);
 	Label(std::string initval, int nx, int ny);
-	~Label(void);
+	virtual ~Label(void);
 
 	virtual void render(DBConsole* pConsole);
 	virtual void onKeyDown(int keycode);

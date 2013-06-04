@@ -8,7 +8,7 @@ private:
 	Menu *menu;
 public:
 	MenuDisplay(void);
-	~MenuDisplay(void);
+	virtual ~MenuDisplay(void);
 
 	virtual Menu* getMenu();
 	virtual Menu* setMenu(Menu* pMenu); 

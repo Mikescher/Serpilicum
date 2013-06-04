@@ -8,6 +8,6 @@ private:
 	virtual void createMenu(ActionListener * startGamelistener);
 public:
 	IntroMenu(ActionListener * startGamelistener);
-	~IntroMenu(void);
+	virtual ~IntroMenu(void);
 };
 

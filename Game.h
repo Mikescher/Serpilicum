@@ -17,7 +17,7 @@ private:
 	virtual void render();
 public:
 	Game(DBConsole *pconsole);
-	~Game(void);
+	virtual ~Game(void);
 
 	virtual bool isActive();
 	virtual void onKeyDown (int keycode);
