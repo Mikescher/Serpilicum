@@ -5,6 +5,7 @@
 #include <vector>
 #include "LevelEffect.h"
 #include "HPSpawnEffect.h"
+#include "Gamerules.h"
 
 const int FIELD_W = 76;
 const int FIELD_H = 36;

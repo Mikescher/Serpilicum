@@ -2,6 +2,7 @@
 #include <iostream>
 #include "HealthPowerUp.h"
 #include "Keycodes.h"
+#include "AutoSnake.h"
 
 Level::Level(void)
 {
@@ -13,13 +14,11 @@ Level::Level(void)
 	lastRenderTime = 0;
 	lastPowerupAdd = 0;
 
-	snake = new Snake(FIELD_W / 2, FIELD_H / 2, EAST);
+	//snake = new Snake(FIELD_W / 2, FIELD_H / 2, EAST);
+	snake = new AutoSnake(this, FIELD_W / 2, FIELD_H / 2, EAST);
 	powerupList = new PowerUpList();
 
-	snake->extendForward();
-	snake->extendForward();
-	snake->extendForward();
-	snake->extendForward();
+	snake->extendForward(4);
 }
 
 
@@ -204,13 +203,20 @@ void Level::testForDeath() {
 	
 	SnakeElement * snakeelement = getSnake()->getHead();
 	while(snakeelement != 0) {
+		SnakeElement * prevelem = 0;
+
 		SnakeElement * snakeelement2 = getSnake()->getHead();
 		while(snakeelement2 != 0) {
 			if (snakeelement->getX() == snakeelement2->getX() && snakeelement->getY() == snakeelement2->getY() && snakeelement != snakeelement2) {
-				onDie();
+				if (GAMERULE_DieOnSelfContact) {
+					onDie();
+				} else if (prevelem != 0){
+					prevelem->removeNextElement();
+				}
 				return;
 			}
 
+			prevelem = snakeelement2;
 			snakeelement2 = snakeelement2->getNextElement();
 		}
 		snakeelement = snakeelement->getNextElement();

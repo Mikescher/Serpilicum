@@ -70,8 +70,10 @@ void SnakeElement::moveRecursively(int tox, int toy) {
 	int oldx = x;
 	int oldy = y;
 
-	tox = (BUFFER_W + tox) % BUFFER_W;
-	toy = (BUFFER_H + toy) % BUFFER_H;
+	if (GAMERULE_InfiniteField) {
+		tox = (BUFFER_W + tox) % BUFFER_W;
+		toy = (BUFFER_H + toy) % BUFFER_H;
+	}
 
 	set(tox, toy);
 
@@ -84,8 +86,10 @@ void SnakeElement::extendRecursively(int tox, int toy) {
 	int oldx = x;
 	int oldy = y;
 
-	tox = (BUFFER_W + tox) % BUFFER_W;
-	toy = (BUFFER_H + toy) % BUFFER_H;
+	if (GAMERULE_InfiniteField) {
+		tox = (BUFFER_W + tox) % BUFFER_W;
+		toy = (BUFFER_H + toy) % BUFFER_H;
+	}
 
 	set(tox, toy);
 
@@ -93,5 +97,12 @@ void SnakeElement::extendRecursively(int tox, int toy) {
 		getNextElement()->extendRecursively(oldx, oldy);
 	} else {
 		setNextElement(new SnakeElement(oldx, oldy));
+	}
+}
+
+void SnakeElement::removeNextElement() {
+	if (hasNextElement()) {
+		delete getNextElement();
+		setNextElement(0);
 	}
 }

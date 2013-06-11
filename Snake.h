@@ -18,6 +18,7 @@ public:
 	virtual int getLength();
 	virtual SnakeElement * getHead();
 	virtual void moveForward();
+	virtual void extendForward(int c);
 	virtual void extendForward();
 	virtual Direction getDirection();
 	virtual void setDirection(Direction dir);

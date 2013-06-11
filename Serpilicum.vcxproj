@@ -65,6 +65,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActionListener.cpp" />
+    <ClCompile Include="AutoSnake.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="DBConsole.cpp" />
     <ClCompile Include="DeathMenu.cpp" />
@@ -86,10 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionListener.h" />
+    <ClInclude Include="AutoSnake.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="DBConsole.h" />
     <ClInclude Include="DeathMenu.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gamerules.h" />
     <ClInclude Include="HPSpawnEffect.h" />
     <ClInclude Include="Keycodes.h" />
     <ClInclude Include="HealthPowerUp.h" />

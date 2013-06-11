@@ -57,6 +57,12 @@ void Snake::moveForward() {
 	head->moveRecursively(cx, cy);
 }
 
+void Snake::extendForward(int c) {
+	for (int i = 0; i < c; i++) {
+		extendForward();
+	}
+}
+
 void Snake::extendForward() {
 	int cx = head->getX();
 	int cy = head->getY();

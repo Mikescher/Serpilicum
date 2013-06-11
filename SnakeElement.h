@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DBConsole.h"
+#include "Gamerules.h"
 
 class SnakeElement
 {
@@ -24,4 +25,5 @@ public:
 	virtual void move(int x, int y);
 	virtual void moveRecursively(int tox, int toy);
 	virtual void extendRecursively(int tox, int toy);
+	virtual void removeNextElement();
 };
