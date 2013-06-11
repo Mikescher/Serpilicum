@@ -1,7 +1,7 @@
 #pragma once
 
 #include "PowerUp.h"
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 
 class PowerUpList
 {

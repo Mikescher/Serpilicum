@@ -1,13 +1,13 @@
 #include "Game.h"
 
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 #include "Level.h"
 #include "IntroMenu.h"
 #include "DeathMenu.h"
 #include "Keycodes.h"
 #include "ActionListener.h"
 
-Game::Game(DBConsole *pconsole)
+Game::Game(AbstractConsole *pconsole)
 {
 	active = true;
 
@@ -25,7 +25,7 @@ Game::~Game(void)
 	delete level;
 }
 
-void Game::run(DBConsole * pConsole){
+void Game::run(AbstractConsole* pConsole){
 	if (! menu->isMenuset()) {
 		if (level->isRunning()) {
 			level->run(pConsole);

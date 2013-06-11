@@ -1,6 +1,6 @@
 #include "AutoSnake.h"
 #include "Level.h"
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 
 AutoSnake::AutoSnake(void)
 {
@@ -45,7 +45,7 @@ void AutoSnake::calcDirection() {
 	if (getDirection() != EAST)
 		w = getDistanceToNearestPowerUp(getHead()->getX() - 1, getHead()->getY());
 
-	double min = min(min(n, e), min(s, w));
+	double min = std::min(std::min(n, e), std::min(s, w));
 
 	if (n == min) {
 		setDirection(NORTH);

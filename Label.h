@@ -1,6 +1,6 @@
 #pragma once
 #include "MenuElement.h"
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 class Label:public MenuElement
 {
 private:
@@ -10,7 +10,7 @@ public:
 	Label(std::string initval, int nx, int ny);
 	virtual ~Label(void);
 
-	virtual void render(DBConsole* pConsole);
+	virtual void render(AbstractConsole* pConsole);
 	virtual void onKeyDown(int keycode);
 	virtual bool isFocusable();
 

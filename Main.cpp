@@ -1,5 +1,6 @@
 #include <iostream>
-#include "DBConsole.h"
+#include "WindowsConsole.h"
+#include "AbstractConsole.h"
 #include "Game.h"
 #include <windows.h>
 #include "Keycodes.h"
@@ -8,15 +9,15 @@
 int main() {
 	srand (time(NULL));
 
-	DBConsole *dbc = new DBConsole();
+	AbstractConsole *dbc = new WindowsConsole();
 	Game *game = new Game(dbc);
 
-	dbc->setDimensions(BUFFER_W, BUFFER_H);
+	dbc->init();
 
 	while(game->isActive()){
 		game->run(dbc);
 
-		int keycode = dbc->getKeyState();
+		int keycode = dbc->getCurrentKeyState();
 		if (keycode != 0) {
 			game->onKeyDown(keycode);
 		}

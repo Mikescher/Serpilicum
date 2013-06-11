@@ -17,7 +17,7 @@ Label::~Label(void)
 {
 }
 
-void Label::render(DBConsole* pConsole)
+void Label::render(AbstractConsole* pConsole)
 {
 	pConsole->write(getText(), getX(), getY());
 }

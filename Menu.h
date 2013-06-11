@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "MenuElement.h"
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 
 class Menu {
 private:
@@ -13,7 +13,7 @@ public:
 	Menu(void);
 	virtual ~Menu(void);
 
-	virtual void render(DBConsole* pConsole);
+	virtual void render(AbstractConsole* pConsole);
 	virtual void addElement(MenuElement* pElement);
 	virtual MenuElement* removeElement(MenuElement* pElement);
 

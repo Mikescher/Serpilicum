@@ -75,6 +75,9 @@
     <ClCompile Include="AutoSnake.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="WindowsConsole.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DBConsole.h">
@@ -138,6 +141,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="AutoSnake.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractConsole.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsConsole.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

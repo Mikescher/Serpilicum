@@ -35,7 +35,7 @@ void Level::stop(){
 	running = false;
 }
 
-void Level::run(DBConsole* pConsole) {
+void Level::run(AbstractConsole* pConsole) {
 	long curr = pConsole->getCurrentTimeMillis();
 
 	if ((curr - lastRenderTime) > snake_speed) {
@@ -53,7 +53,7 @@ void Level::run(DBConsole* pConsole) {
 	runEffects(pConsole);
 }
 
-void Level::runEffects(DBConsole *console) {
+void Level::runEffects(AbstractConsole *console) {
 	for(int i = effects.size()-1; i >= 0; i--) {
 		effects.at(i)->run(console);
 
@@ -75,14 +75,14 @@ bool Level::isRunning(){
 	return running;
 }
 
-void Level::render(DBConsole* pConsole)
+void Level::render(AbstractConsole* pConsole)
 {
 	renderSnake(pConsole);
 	renderPowerups(pConsole);
 	renderEffects(pConsole);
 }
 
-void Level::renderSnake(DBConsole *console) {
+void Level::renderSnake(AbstractConsole *console) {
 	SnakeElement * snakeelement = getSnake()->getHead();
 
 	while(snakeelement != 0) {
@@ -92,7 +92,7 @@ void Level::renderSnake(DBConsole *console) {
 	}
 }
 
-void Level::renderPowerups(DBConsole *console) {
+void Level::renderPowerups(AbstractConsole *console) {
 	PowerUp * pelem = getPowerUpList()->getFirst();
 
 	while(pelem != 0) {
@@ -102,7 +102,7 @@ void Level::renderPowerups(DBConsole *console) {
 	}
 }
 
-void Level::renderEffects(DBConsole *console) {
+void Level::renderEffects(AbstractConsole *console) {
 	for(int i = 0; i < effects.size(); i++) {
 		effects.at(i)->render(console);
 	}
@@ -136,7 +136,7 @@ bool Level::testForHPCollision() {
 	return false;
 }
 
-void Level::addMissingHealthPowerUps(DBConsole * pConsole) {
+void Level::addMissingHealthPowerUps(AbstractConsole * pConsole) {
 	long curr = pConsole->getCurrentTimeMillis();
 
 	if ((curr - lastPowerupAdd) > 500) {
@@ -149,7 +149,7 @@ void Level::addMissingHealthPowerUps(DBConsole * pConsole) {
 	}
 }
 
-void Level::addHealthPowerUps(DBConsole *pconsole, int count) {
+void Level::addHealthPowerUps(AbstractConsole *pconsole, int count) {
 	for(int i = 0; i < count; i++) {
 		int x = rand() % BUFFER_W;
 		int y = rand() % BUFFER_H;
@@ -159,7 +159,7 @@ void Level::addHealthPowerUps(DBConsole *pconsole, int count) {
 	}
 }
 
-void Level::addHealthPowerUps(DBConsole *pConsole, int hpux, int hpuy) {
+void Level::addHealthPowerUps(AbstractConsole *pConsole, int hpux, int hpuy) {
 	getPowerUpList()->add(new HealthPowerUp(hpux, hpuy));
 	addEffect(pConsole, new HPSpawnEffect(hpux, hpuy));
 }
@@ -245,7 +245,7 @@ bool Level::isDead() {
 	return is_dead;
 }
 
-void Level::addEffect(DBConsole *console, LevelEffect * effect) {
+void Level::addEffect(AbstractConsole *console, LevelEffect * effect) {
 	effects.push_back(effect);
 	effect->start(console);
 }

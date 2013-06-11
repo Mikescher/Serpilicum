@@ -1,7 +1,7 @@
 #pragma once
 #include "Snake.h";
 #include "PowerUpList.h"
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 #include <vector>
 #include "LevelEffect.h"
 #include "HPSpawnEffect.h"
@@ -24,25 +24,25 @@ private:
 	long lastRenderTime;
 	long lastPowerupAdd;
 
-	virtual void renderPowerups(DBConsole *console);
-	virtual void renderSnake(DBConsole *console);
-	virtual void renderEffects(DBConsole *console);
+	virtual void renderPowerups(AbstractConsole *console);
+	virtual void renderSnake(AbstractConsole *console);
+	virtual void renderEffects(AbstractConsole *console);
 
-	virtual void runEffects(DBConsole *console);
+	virtual void runEffects(AbstractConsole *console);
 public:
 	Level(void);
 	virtual ~Level(void);
 
-	virtual void render(DBConsole* pConsole);
+	virtual void render(AbstractConsole* pConsole);
 	virtual void onKeyDown(int keycode);
 
-	virtual void run(DBConsole* pConsole);
+	virtual void run(AbstractConsole* pConsole);
 
 	
-	virtual void addMissingHealthPowerUps(DBConsole * pConsole);
-	virtual void addHealthPowerUps(DBConsole *pconsole, int count);
-	virtual void addHealthPowerUps(DBConsole *pconsole, int hpux, int hpuy);
-	virtual void addEffect(DBConsole *console, LevelEffect * effect);
+	virtual void addMissingHealthPowerUps(AbstractConsole * pConsole);
+	virtual void addHealthPowerUps(AbstractConsole *pconsole, int count);
+	virtual void addHealthPowerUps(AbstractConsole *pconsole, int hpux, int hpuy);
+	virtual void addEffect(AbstractConsole *console, LevelEffect * effect);
 
 	virtual bool testForHPCollision();
 	virtual void testForDeath();

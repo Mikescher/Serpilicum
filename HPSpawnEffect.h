@@ -10,15 +10,15 @@ private:
 	long startTime;
 	int mode;
 
-	virtual void renderMode0(DBConsole *console);
-	virtual void renderMode1(DBConsole *console);
-	virtual void renderMode2(DBConsole *console);
+	virtual void renderMode0(AbstractConsole *console);
+	virtual void renderMode1(AbstractConsole *console);
+	virtual void renderMode2(AbstractConsole *console);
 public:
 	HPSpawnEffect(int px, int py);
 	~HPSpawnEffect(void);
 
-	virtual void start(DBConsole *console);
-	virtual void run(DBConsole *console);
-	virtual void render(DBConsole *console);
+	virtual void start(AbstractConsole *console);
+	virtual void run(AbstractConsole *console);
+	virtual void render(AbstractConsole *console);
 };
 

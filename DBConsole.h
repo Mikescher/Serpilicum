@@ -1,25 +1,27 @@
 #pragma once
-#include <Windows.h>
 #include <string>
+#include "AbstractConsole.h"
 
-const int BUFFER_W = 80;
-const int BUFFER_H = 40;
-
-class DBConsole
+class DBConsole : 
+	public AbstractConsole
 {
 private:
 	char display[BUFFER_W][BUFFER_H];
 	char buffer[BUFFER_W][BUFFER_H];
 
-	HANDLE hConsole;
+	
 
-	virtual void init();
-
-	virtual void writeToConsole(char c, int x, int y);
-	virtual void showConsoleCursor(bool bShow);
+protected:
+	virtual void writeToConsole(char c, int x, int y) = 0;
+	virtual void showConsoleCursor(bool bShow) = 0;
+	virtual int getKeyState() = 0;
+	virtual long getSystemCurrTimeMillis() = 0;
+	virtual void setDimensions(short w, short h) = 0;
 public:
 	DBConsole(void);
 	virtual ~DBConsole(void);
+
+	virtual void init();
 
 	virtual void redraw();
 
@@ -29,11 +31,9 @@ public:
 	virtual void clearBuffer();
 	virtual void swap();
 
-	virtual int getKeyState();
+	virtual int getCurrentKeyState();
 	virtual int getFullKeyEvent();
 	virtual int getBlockingFullKeyEvent();
-	virtual void setDimensions(short w, short h);
-
 	virtual long getCurrentTimeMillis();
 };
 

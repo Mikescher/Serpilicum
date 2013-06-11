@@ -26,7 +26,7 @@ Button::~Button(void)
 {
 }
 
-void Button::render(DBConsole* pConsole)
+void Button::render(AbstractConsole* pConsole)
 {
 	int width = getText().length();
 	int right = getX() + width;

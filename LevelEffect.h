@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 
 class LevelEffect
 {
@@ -13,9 +13,9 @@ public:
 	LevelEffect(int px, int py);
 	virtual ~LevelEffect(void);
 
-	virtual void start(DBConsole *console) = 0;
-	virtual void run(DBConsole *console) = 0;
-	virtual void render(DBConsole *console) = 0;
+	virtual void start(AbstractConsole *console) = 0;
+	virtual void run(AbstractConsole *console) = 0;
+	virtual void render(AbstractConsole *console) = 0;
 
 	virtual void stop();
 	virtual void start();

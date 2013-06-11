@@ -9,12 +9,12 @@ HPSpawnEffect::~HPSpawnEffect(void)
 {
 }
 
-void HPSpawnEffect::start(DBConsole *console) {
+void HPSpawnEffect::start(AbstractConsole *console) {
 	startTime = console->getCurrentTimeMillis();
 	mode = 3;
 }
 
-void HPSpawnEffect::run(DBConsole *console) {
+void HPSpawnEffect::run(AbstractConsole *console) {
 	long delta = console->getCurrentTimeMillis() - startTime;
 
 	mode = delta / HPSE_EFFECT_DELAY;
@@ -25,7 +25,7 @@ void HPSpawnEffect::run(DBConsole *console) {
 	}
 }
 
-void HPSpawnEffect::render(DBConsole *console) {
+void HPSpawnEffect::render(AbstractConsole *console) {
 	if (mode == 0){
 		renderMode0(console);
 	} else if (mode == 1){
@@ -36,7 +36,7 @@ void HPSpawnEffect::render(DBConsole *console) {
 
 }
 
-void HPSpawnEffect::renderMode0(DBConsole *console) {
+void HPSpawnEffect::renderMode0(AbstractConsole *console) {
 	console->write('/', x-1, y-3);
 	console->write('^', x, y-3);
 	console->write('\\', x+1, y-3);
@@ -61,7 +61,7 @@ void HPSpawnEffect::renderMode0(DBConsole *console) {
 	console->write('/', x+1, y+3);
 }
 
-void HPSpawnEffect::renderMode1(DBConsole *console) {
+void HPSpawnEffect::renderMode1(AbstractConsole *console) {
 	console->write('-', x-1, y-2);
 	console->write('^', x, y-2);
 	console->write('-', x+1, y-2);
@@ -84,7 +84,7 @@ void HPSpawnEffect::renderMode1(DBConsole *console) {
 	console->write('-', x+1, y+2);
 }
 
-void HPSpawnEffect::renderMode2(DBConsole *console) {
+void HPSpawnEffect::renderMode2(AbstractConsole *console) {
 	console->write('/', x-1, y-1);
 	console->write('-', x, y-1);
 	console->write('\\', x+1, y-1);

@@ -25,7 +25,7 @@ Menu* MenuDisplay::getMenu()
 	return menu;
 }
 
-void MenuDisplay::render(DBConsole* pConsole)
+void MenuDisplay::render(AbstractConsole* pConsole)
 {
 	pConsole->clearBuffer();
 	if(isMenuset()){
@@ -47,7 +47,7 @@ void MenuDisplay::removeMenu()
 	menu = 0;
 }
 
-void MenuDisplay::onKeyDown(DBConsole *pConsole, int keycode) {
+void MenuDisplay::onKeyDown(AbstractConsole *pConsole, int keycode) {
 	if (isMenuset()) {
 		pConsole->getFullKeyEvent(); // Wait for Key Up
 		menu->onKeyDown(keycode);

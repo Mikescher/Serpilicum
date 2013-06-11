@@ -16,7 +16,7 @@ public:
 	Button(int id, std::string initval, int nx, int ny);
 	virtual ~Button(void);
 
-	virtual void render(DBConsole* pConsole);
+	virtual void render(AbstractConsole* pConsole);
 	virtual void onKeyDown(int keycode);
 	virtual bool isFocusable();
 

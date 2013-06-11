@@ -15,7 +15,7 @@ Menu::~Menu(void)
 	}
 }
 
-void Menu::render(DBConsole* pConsole)
+void Menu::render(AbstractConsole* pConsole)
 {
 	for(unsigned int z = 0; z < elements.size(); z++){
 		elements[z]->render(pConsole);		

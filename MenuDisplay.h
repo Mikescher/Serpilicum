@@ -1,6 +1,6 @@
 #pragma once
 #include "Menu.h"
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 
 class MenuDisplay
 {
@@ -12,9 +12,9 @@ public:
 
 	virtual Menu* getMenu();
 	virtual Menu* setMenu(Menu* pMenu); 
-	virtual void render(DBConsole* pConsole);
+	virtual void render(AbstractConsole* pConsole);
 	virtual bool isMenuset();
 	virtual void removeMenu();
 
-	virtual void onKeyDown (DBConsole *pConsole, int keycode);
+	virtual void onKeyDown (AbstractConsole *pConsole, int keycode);
 };

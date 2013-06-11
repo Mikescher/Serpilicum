@@ -1,5 +1,5 @@
 #pragma once
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 class MenuElement {
 private:
 	int x;
@@ -21,7 +21,7 @@ public:
 	virtual int getHeight();
 	virtual void setWidth(int width);
 	virtual void setHeight(int heigt);
-	virtual void render(DBConsole* pConsole) = 0;
+	virtual void render(AbstractConsole* pConsole) = 0;
 	virtual void onKeyDown(int keycode) = 0;
 	virtual bool isFocused();
 	virtual void setFocused(bool foc);

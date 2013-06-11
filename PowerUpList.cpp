@@ -1,7 +1,7 @@
 #include "PowerUpList.h"
 #include "HealthPowerUp.h"
 #include <stdlib.h>
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 
 PowerUpList::PowerUpList(void)
 {

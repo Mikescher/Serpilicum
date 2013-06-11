@@ -84,8 +84,10 @@
     <ClCompile Include="PowerUpList.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeElement.cpp" />
+    <ClCompile Include="WindowsConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractConsole.h" />
     <ClInclude Include="ActionListener.h" />
     <ClInclude Include="AutoSnake.h" />
     <ClInclude Include="Button.h" />
@@ -107,6 +109,7 @@
     <ClInclude Include="PowerUpList.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeElement.h" />
+    <ClInclude Include="WindowsConsole.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

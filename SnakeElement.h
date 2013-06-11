@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DBConsole.h"
+#include "AbstractConsole.h"
 #include "Gamerules.h"
 
 class SnakeElement
