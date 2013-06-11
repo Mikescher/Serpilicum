@@ -25,4 +25,5 @@ public:
 	virtual void onKeyDown(int keycode) = 0;
 	virtual bool isFocused();
 	virtual void setFocused(bool foc);
+	virtual bool isFocusable() = 0;
 };

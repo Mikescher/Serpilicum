@@ -63,6 +63,15 @@
     <ClCompile Include="ActionListener.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="DeathMenu.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelEffect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="HPSpawnEffect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DBConsole.h">
@@ -111,6 +120,15 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="ActionListener.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="DeathMenu.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelEffect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="HPSpawnEffect.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

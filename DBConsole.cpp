@@ -5,6 +5,8 @@
 #include <chrono>
 
 DBConsole::DBConsole(void) {
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE); 
+
     init();
 }
 
@@ -45,8 +47,6 @@ void DBConsole::write(std::string s, int x, int y) {
 }
 
 void DBConsole::writeToConsole(char c, int x, int y) {
-    HANDLE hConsole = GetStdHandle ( STD_OUTPUT_HANDLE );
-
     if ( INVALID_HANDLE_VALUE != hConsole )
     {
         COORD pos = {x, y};
@@ -142,4 +142,21 @@ long DBConsole::getCurrentTimeMillis() {
     auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(since_epoch);
 
     return millis.count(); 
+}
+
+void DBConsole::setDimensions(short w, short h)
+{
+    HANDLE hCon = GetStdHandle( STD_OUTPUT_HANDLE );
+    SMALL_RECT size;
+    COORD b_size;
+
+    size.Left = 0;
+    size.Top = 0;
+    size.Right = w - 1;
+    size.Bottom = h - 1;
+    b_size.X = w;
+    b_size.Y = h;
+
+    SetConsoleWindowInfo( hCon , true , & size );
+    SetConsoleScreenBufferSize( hCon , b_size );
 }

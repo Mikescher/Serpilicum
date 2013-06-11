@@ -1,4 +1,7 @@
 #pragma once
+
+#include "DBConsole.h"
+
 class SnakeElement
 {
 private:

@@ -1,5 +1,5 @@
 #pragma once
-
+#include <Windows.h>
 #include <string>
 
 const int BUFFER_W = 80;
@@ -10,6 +10,8 @@ class DBConsole
 private:
 	char display[BUFFER_W][BUFFER_H];
 	char buffer[BUFFER_W][BUFFER_H];
+
+	HANDLE hConsole;
 
 	virtual void init();
 
@@ -30,6 +32,7 @@ public:
 	virtual int getKeyState();
 	virtual int getFullKeyEvent();
 	virtual int getBlockingFullKeyEvent();
+	virtual void setDimensions(short w, short h);
 
 	virtual long getCurrentTimeMillis();
 };

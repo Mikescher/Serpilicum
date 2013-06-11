@@ -12,6 +12,7 @@ public:
 
 	virtual void render(DBConsole* pConsole);
 	virtual void onKeyDown(int keycode);
+	virtual bool isFocusable();
 
 	virtual void setText(std::string pText);
 	virtual std::string getText();

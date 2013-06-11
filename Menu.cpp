@@ -60,7 +60,17 @@ bool Menu::isElementFocused() {
 }
 
 MenuElement* Menu::focusNextElement() {
+	int max = elements.size();
+
 	focusIndex = (focusIndex + 1) % elements.size();
+
+	while(! getFocusedElement()->isFocusable() && max-- > 0) {
+		focusIndex = (focusIndex + 1) % elements.size();
+	}
+
+	if (max == 0) {
+		removeFocus();
+	}
 
 	updateFocus();
 
@@ -68,7 +78,17 @@ MenuElement* Menu::focusNextElement() {
 }
 
 MenuElement* Menu::focusPrevElement() {
+	int max = elements.size();
+
 	focusIndex = (focusIndex + elements.size() - 1) % elements.size();
+
+	while(! getFocusedElement()->isFocusable() && max-- > 0) {
+		focusIndex = (focusIndex + elements.size() - 1) % elements.size();
+	}
+
+	if (max == 0) {
+		removeFocus();
+	}
 
 	updateFocus();
 

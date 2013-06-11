@@ -84,5 +84,6 @@ Direction Snake::getDirection() {
 }
 
 void Snake::setDirection(Direction dir) {
+	if (std::abs(direction - dir) != 2)
 	direction = dir;
 }

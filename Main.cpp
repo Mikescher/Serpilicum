@@ -11,6 +11,8 @@ int main() {
 	DBConsole *dbc = new DBConsole();
 	Game *game = new Game(dbc);
 
+	dbc->setDimensions(BUFFER_W, BUFFER_H);
+
 	while(game->isActive()){
 		game->run(dbc);
 

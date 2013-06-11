@@ -76,6 +76,10 @@ ActionListener *Button::removeListener() {
 
 void Button::throwEvent() {
 	if (listener != 0) {
-		listener->actionPerformed(0);
+		listener->actionPerformed(id);
 	}
+}
+
+bool Button::isFocusable() {
+	return true;
 }

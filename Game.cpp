@@ -1,7 +1,9 @@
 #include "Game.h"
+
 #include "DBConsole.h"
 #include "Level.h"
 #include "IntroMenu.h"
+#include "DeathMenu.h"
 #include "Keycodes.h"
 #include "ActionListener.h"
 
@@ -25,7 +27,11 @@ Game::~Game(void)
 
 void Game::run(DBConsole * pConsole){
 	if (! menu->isMenuset()) {
-		level->run(pConsole);
+		if (level->isRunning()) {
+			level->run(pConsole);
+		} else if (level->isDead()) {
+			menu->setMenu(new DeathMenu(this));
+		}
 	} else {
 		// run menu;
 	}
@@ -60,6 +66,13 @@ void Game::onKeyDown (int keycode) {
 }
 
 void Game::actionPerformed(int id) {
-	menu->removeMenu();
-	level = new Level();
+	if (id == 101) { // MAINEMNU -> START LEVEL
+		menu->removeMenu();
+		level = new Level();
+		level->start();
+	} else if (id == 201) { // DEATHMENU -> RESTART
+		menu->removeMenu();
+		level = new Level();
+		level->start();
+	}
 }

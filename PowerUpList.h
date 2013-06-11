@@ -7,7 +7,6 @@ class PowerUpList
 {
 private:
 	PowerUp * first;
-	long lastAdd;
 public:
 	PowerUpList(void);
 	~PowerUpList(void);
@@ -18,8 +17,5 @@ public:
 	virtual bool isEmpty();
 	virtual void add(PowerUp * p);
 	virtual bool remove(PowerUp * p);
-
-	virtual void addMissingHealthPowerUps(DBConsole * pConsole);
-	virtual void addHealthPowerUps(int count);
 };
 

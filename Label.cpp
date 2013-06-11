@@ -35,3 +35,7 @@ std::string Label::getText()
 void Label::onKeyDown(int keycode) {
 // nothing to do here
 }
+
+bool Label::isFocusable() {
+	return false;
+}
