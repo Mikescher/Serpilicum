@@ -64,56 +64,56 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActionListener.cpp" />
-    <ClCompile Include="AutoSnake.cpp" />
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="DBConsole.cpp" />
-    <ClCompile Include="DeathMenu.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="HealthPowerUp.cpp" />
-    <ClCompile Include="HPSpawnEffect.cpp" />
-    <ClCompile Include="IntroMenu.cpp" />
-    <ClCompile Include="Label.cpp" />
-    <ClCompile Include="Level.cpp" />
-    <ClCompile Include="LevelEffect.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuDisplay.cpp" />
-    <ClCompile Include="MenuElement.cpp" />
-    <ClCompile Include="PowerUp.cpp" />
-    <ClCompile Include="PowerUpList.cpp" />
-    <ClCompile Include="Snake.cpp" />
-    <ClCompile Include="SnakeElement.cpp" />
-    <ClCompile Include="WindowsConsole.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AbstractConsole.h" />
-    <ClInclude Include="ActionListener.h" />
-    <ClInclude Include="AutoSnake.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="DBConsole.h" />
-    <ClInclude Include="DeathMenu.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Gamerules.h" />
-    <ClInclude Include="HPSpawnEffect.h" />
-    <ClInclude Include="Keycodes.h" />
-    <ClInclude Include="HealthPowerUp.h" />
-    <ClInclude Include="IntroMenu.h" />
-    <ClInclude Include="Label.h" />
-    <ClInclude Include="Level.h" />
-    <ClInclude Include="LevelEffect.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="MenuDisplay.h" />
-    <ClInclude Include="MenuElement.h" />
-    <ClInclude Include="PowerUp.h" />
-    <ClInclude Include="PowerUpList.h" />
-    <ClInclude Include="Snake.h" />
-    <ClInclude Include="SnakeElement.h" />
-    <ClInclude Include="WindowsConsole.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AbstractConsole.h" />
+    <ClInclude Include="src\ActionListener.h" />
+    <ClInclude Include="src\AutoSnake.h" />
+    <ClInclude Include="src\Button.h" />
+    <ClInclude Include="src\DBConsole.h" />
+    <ClInclude Include="src\DeathMenu.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Gamerules.h" />
+    <ClInclude Include="src\HealthPowerUp.h" />
+    <ClInclude Include="src\HPSpawnEffect.h" />
+    <ClInclude Include="src\IntroMenu.h" />
+    <ClInclude Include="src\Keycodes.h" />
+    <ClInclude Include="src\Label.h" />
+    <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\LevelEffect.h" />
+    <ClInclude Include="src\Menu.h" />
+    <ClInclude Include="src\MenuDisplay.h" />
+    <ClInclude Include="src\MenuElement.h" />
+    <ClInclude Include="src\PowerUp.h" />
+    <ClInclude Include="src\PowerUpList.h" />
+    <ClInclude Include="src\Snake.h" />
+    <ClInclude Include="src\SnakeElement.h" />
+    <ClInclude Include="src\WindowsConsole.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ActionListener.cpp" />
+    <ClCompile Include="src\AutoSnake.cpp" />
+    <ClCompile Include="src\Button.cpp" />
+    <ClCompile Include="src\DBConsole.cpp" />
+    <ClCompile Include="src\DeathMenu.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\HealthPowerUp.cpp" />
+    <ClCompile Include="src\HPSpawnEffect.cpp" />
+    <ClCompile Include="src\IntroMenu.cpp" />
+    <ClCompile Include="src\Label.cpp" />
+    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\LevelEffect.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
+    <ClCompile Include="src\MenuDisplay.cpp" />
+    <ClCompile Include="src\MenuElement.cpp" />
+    <ClCompile Include="src\PowerUp.cpp" />
+    <ClCompile Include="src\PowerUpList.cpp" />
+    <ClCompile Include="src\Snake.cpp" />
+    <ClCompile Include="src\SnakeElement.cpp" />
+    <ClCompile Include="src\WindowsConsole.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
