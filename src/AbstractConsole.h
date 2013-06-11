@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "ActionListener.h"
 
 const int BUFFER_W = 80;
 const int BUFFER_H = 40;
@@ -23,5 +24,7 @@ public:
 	virtual int getBlockingFullKeyEvent() = 0;
 	virtual void setDimensions(short w, short h) = 0;
 	virtual long getCurrentTimeMillis() = 0;
+
+	virtual void startLoop(ActionListener *looplistener) = 0;
 };
 

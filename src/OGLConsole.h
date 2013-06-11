@@ -6,20 +6,26 @@
 #include "Keycodes.h"
 #include "ActionListener.h"
 
-class WindowsConsole :
+#include <GL/glew.h>
+#include <GL/glut.h>
+
+class OGLConsole :
 	public DBConsole
 {
-private:
-	HANDLE hConsole;
 protected:
 	virtual void writeToConsole(char c, int x, int y);
 	virtual void showConsoleCursor(bool bShow);
 	virtual int getKeyState();
 	virtual long getSystemCurrTimeMillis();
-	virtual void setDimensions(short buffW, short buffH);
+	virtual void setDimensions(short w, short h);
+
+	virtual void renderOGL();
 public:
-	WindowsConsole(void);
-	~WindowsConsole(void);
+	OGLConsole(void);
+	~OGLConsole(void);
+
+	virtual void clearBuffer();
+	virtual void swap();
 
 	virtual void startLoop(ActionListener *looplistener);
 };

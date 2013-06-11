@@ -5,12 +5,9 @@
 class DBConsole : 
 	public AbstractConsole
 {
-private:
+protected:
 	char display[BUFFER_W][BUFFER_H];
 	char buffer[BUFFER_W][BUFFER_H];
-
-	
-
 protected:
 	virtual void writeToConsole(char c, int x, int y) = 0;
 	virtual void showConsoleCursor(bool bShow) = 0;
@@ -35,5 +32,7 @@ public:
 	virtual int getFullKeyEvent();
 	virtual int getBlockingFullKeyEvent();
 	virtual long getCurrentTimeMillis();
+
+	virtual void startLoop(ActionListener *looplistener) = 0;
 };
 
