@@ -3,6 +3,8 @@
 
 OGLConsole::OGLConsole(void)
 {
+	srand(time(NULL));
+
 	int argc = 0;
 	char *pc = 0;
 

@@ -25,8 +25,6 @@ int main() {
 }
 
 void Main::start() {
-	srand (time(NULL));
-
 	dbc = new WindowsConsole();
 	game = new Game(dbc);
 

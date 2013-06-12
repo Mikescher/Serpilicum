@@ -3,6 +3,7 @@
 
 WindowsConsole::WindowsConsole(void) : DBConsole()
 {
+	srand(time(NULL));
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE); 
 }
 
