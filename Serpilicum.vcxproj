@@ -71,6 +71,7 @@
     <ClCompile Include="DeathMenu.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HealthPowerUp.cpp" />
+    <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="HPSpawnEffect.cpp" />
     <ClCompile Include="IntroMenu.cpp" />
     <ClCompile Include="Label.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="DeathMenu.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gamerules.h" />
+    <ClInclude Include="Highscore.h" />
     <ClInclude Include="HPSpawnEffect.h" />
     <ClInclude Include="Keycodes.h" />
     <ClInclude Include="HealthPowerUp.h" />

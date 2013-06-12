@@ -78,6 +78,9 @@
     <ClCompile Include="WindowsConsole.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Highscore.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DBConsole.h">
@@ -147,6 +150,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="WindowsConsole.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Highscore.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
