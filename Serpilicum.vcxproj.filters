@@ -72,10 +72,11 @@
     <ClCompile Include="HPSpawnEffect.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="AutoSnake.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowsConsole.cpp">
+=======
+    <ClCompile Include="Highscore.cpp">
+>>>>>>> add Highscore
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,16 +138,14 @@
     <ClInclude Include="HPSpawnEffect.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Gamerules.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="AutoSnake.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="AbstractConsole.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsConsole.h">
+=======
+    <ClInclude Include="Highscore.h">
+>>>>>>> add Highscore
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

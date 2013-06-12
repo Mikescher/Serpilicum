@@ -1,13 +1,14 @@
 #include "Game.h"
 
-#include "AbstractConsole.h"
+#include "DBConsole.h"
 #include "Level.h"
 #include "IntroMenu.h"
 #include "DeathMenu.h"
 #include "Keycodes.h"
 #include "ActionListener.h"
 
-Game::Game(AbstractConsole *pconsole)
+
+Game::Game(DBConsole *pconsole)
 {
 	active = true;
 
@@ -17,6 +18,8 @@ Game::Game(AbstractConsole *pconsole)
 	menu = new MenuDisplay();
 
 	menu->setMenu(new IntroMenu(this));
+
+	highscore = new Highscore();
 }
 
 
@@ -25,12 +28,13 @@ Game::~Game(void)
 	delete level;
 }
 
-void Game::run(AbstractConsole* pConsole){
+void Game::run(DBConsole * pConsole){
 	if (! menu->isMenuset()) {
 		if (level->isRunning()) {
 			level->run(pConsole);
 		} else if (level->isDead()) {
 			menu->setMenu(new DeathMenu(this));
+			level->getSnake()->getLength();
 		}
 	} else {
 		// run menu;
