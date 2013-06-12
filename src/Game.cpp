@@ -5,7 +5,7 @@
 #include "IntroMenu.h"
 #include "DeathMenu.h"
 #include "Keycodes.h"
-#include "ActionListener.h"
+#include "ListenerCollection.h"
 
 Game::Game(AbstractConsole *pconsole)
 {

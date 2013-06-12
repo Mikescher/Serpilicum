@@ -3,7 +3,7 @@
 #include "menu.h"
 #include "Label.h"
 #include "Button.h"
-#include "ActionListener.h"
+#include "ListenerCollection.h"
 
 class DeathMenu :
 	public Menu

@@ -2,7 +2,7 @@
 #include "AbstractConsole.h"
 #include "Level.h"
 #include "MenuDisplay.h"
-#include "ActionListener.h"
+#include "ListenerCollection.h"
 
 class Game : public ActionListener
 {

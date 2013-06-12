@@ -72,7 +72,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\AbstractConsole.h" />
-    <ClInclude Include="src\ActionListener.h" />
+    <ClInclude Include="src\ListenerCollection.h" />
     <ClInclude Include="src\AutoSnake.h" />
     <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\DBConsole.h" />
@@ -98,7 +98,6 @@
     <ClInclude Include="src\WindowsConsole.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ActionListener.cpp" />
     <ClCompile Include="src\AutoSnake.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\DBConsole.cpp" />

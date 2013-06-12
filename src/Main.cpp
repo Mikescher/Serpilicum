@@ -7,7 +7,9 @@
 #include "Keycodes.h"
 #include <time.h>
 
-class Main : public ActionListener 
+class Main : 
+	public ActionListener,
+	public KeyEventListener
 {
 private:
 	AbstractConsole *dbc;
@@ -15,6 +17,7 @@ private:
 public:
 	virtual void start();
 	virtual void actionPerformed(int id);
+	virtual void keyEventPerformed(int key);
 };
 
 int main() {
@@ -30,7 +33,7 @@ void Main::start() {
 
 	dbc->init();
 
-	dbc->startLoop(this);
+	dbc->startLoop(this, this);
 
 	delete game;
 	delete dbc;
@@ -38,9 +41,8 @@ void Main::start() {
 
 void Main::actionPerformed(int id) {
 	game->run(dbc);
+}
 
-	int keycode = dbc->getCurrentKeyState();
-	if (keycode != 0) {
-		game->onKeyDown(keycode);
-	}
+void Main::keyEventPerformed(int keycode) {
+	game->onKeyDown(keycode);
 }

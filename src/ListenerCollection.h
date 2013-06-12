@@ -1,8 +1,10 @@
 #pragma once
 class ActionListener {
 public:
-	virtual ~ActionListener();
-
 	virtual void actionPerformed(int id) = 0;
 };
 
+class KeyEventListener {
+public:
+	virtual void keyEventPerformed(int key) = 0;
+};

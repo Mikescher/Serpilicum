@@ -82,8 +82,13 @@ void WindowsConsole::setDimensions(short w, short h) {
 	SetConsoleScreenBufferSize( hCon , b_size );
 }
 
-void WindowsConsole::startLoop(ActionListener *looplistener) {
+void WindowsConsole::startLoop(ActionListener *looplistener, KeyEventListener *keyListener) {
 	while(true){
 		looplistener->actionPerformed(0);
+
+		int keycode = getCurrentKeyState();
+		if (keycode != 0) {
+			keyListener->keyEventPerformed(keycode);
+		}
 	}
 }

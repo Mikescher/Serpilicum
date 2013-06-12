@@ -90,6 +90,27 @@ Direction Snake::getDirection() {
 }
 
 void Snake::setDirection(Direction dir) {
-	if (std::abs(direction - dir) != 2)
+	//Test for direct collision
+
+	int cx = head->getX();
+	int cy = head->getY();
+	switch(dir) {
+	case NORTH:
+		cy--;
+		break;
+	case EAST:
+		cx++;
+		break;
+	case SOUTH:
+		cy++;
+		break;
+	case WEST:
+		cx--;
+		break;
+	}
+	if (getHead()->hasNextElement() && getHead()->getNextElement()->getX() == cx && getHead()->getNextElement()->getY() == cy) {
+		return;
+	}
+
 	direction = dir;
 }

@@ -31,9 +31,6 @@ public:
 	virtual void swap();
 
 	virtual unsigned char getCurrentKeyState();
-	virtual unsigned char getFullKeyEvent();
 	virtual long getCurrentTimeMillis();
-
-	virtual void startLoop(ActionListener *looplistener) = 0;
 };
 

@@ -18,9 +18,6 @@
     <ClInclude Include="src\AbstractConsole.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\ActionListener.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\AutoSnake.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -90,11 +87,11 @@
     <ClInclude Include="src\WindowsConsole.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\ListenerCollection.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ActionListener.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="src\AutoSnake.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>

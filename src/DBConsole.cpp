@@ -97,12 +97,6 @@ unsigned char DBConsole::getCurrentKeyState() {
 	return result;
 }
 
-unsigned char DBConsole::getFullKeyEvent() {
-	int result = 0;
-	while ((result = getCurrentKeyState()) == 0);
-	return result;
-}
-
 long DBConsole::getCurrentTimeMillis() {
 	return getSystemCurrTimeMillis();
 }

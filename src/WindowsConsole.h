@@ -4,7 +4,7 @@
 #include "Keycodes.h"
 #include <Windows.h>
 #include <chrono>
-#include "ActionListener.h"
+#include "ListenerCollection.h"
 
 class WindowsConsole :
 	public DBConsole
@@ -21,6 +21,6 @@ public:
 	WindowsConsole(void);
 	~WindowsConsole(void);
 
-	virtual void startLoop(ActionListener *looplistener);
+	virtual void startLoop(ActionListener *looplistener, KeyEventListener *keyListener);
 };
 

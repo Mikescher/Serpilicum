@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <chrono>
 #include "Keycodes.h"
-#include "ActionListener.h"
+#include "ListenerCollection.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -36,6 +36,6 @@ public:
 	virtual void clearBuffer();
 	virtual void swap();
 
-	virtual void startLoop(ActionListener *looplistener);
+	virtual void startLoop(ActionListener *looplistener, KeyEventListener *keyListener);
 };
 

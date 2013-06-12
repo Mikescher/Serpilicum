@@ -38,19 +38,7 @@ void OGLConsole::showConsoleCursor(bool bShow)
 
 unsigned char OGLConsole::getKeyState()
 {
-	if (GetAsyncKeyState(VK_UP)) {
-		return KC_UP;
-	} else if (GetAsyncKeyState(VK_DOWN)) {
-		return KC_DOWN;
-	} else if (GetAsyncKeyState(VK_LEFT)) {
-		return KC_LEFT;
-	} else if (GetAsyncKeyState(VK_RIGHT)) {
-		return KC_RIGHT;
-	} else if (GetAsyncKeyState(VK_SPACE)) {
-		return KC_SPACE;
-	} else if (GetAsyncKeyState(VK_ESCAPE)) {
-		return KC_ESCAPE;
-	}
+	// Do nothing
 	return 0;
 }
 
@@ -183,20 +171,50 @@ void OGLConsole::loadTextures() {
 }
 
 ActionListener *ogl_global_looplistener;
+KeyEventListener *ogl_global_keylistener;
 
-void onMainLoopCallback() {
+void onMainLoopLoopCallback() {
 	ogl_global_looplistener->actionPerformed(0);
 }
 
-void OGLConsole::startLoop(ActionListener *looplistener) {
-	ogl_global_looplistener = looplistener;
+void onMainLoopKeyCallback(int key, int x, int y) {
+	printf("Key %d Event\n", key);
 
-	while (true) { //TODO Remove me - recomment things under me
-		onMainLoopCallback();
+	if (key == (GLUT_KEY_UP)) {
+		ogl_global_keylistener->keyEventPerformed(KC_UP);
+		return;
+	} else if (key == (GLUT_KEY_DOWN)) {
+		ogl_global_keylistener->keyEventPerformed(KC_DOWN);
+		return;
+	} else if (key == (GLUT_KEY_LEFT)) {
+		ogl_global_keylistener->keyEventPerformed(KC_LEFT);
+		return;
+	} else if (key == (GLUT_KEY_RIGHT)) {
+		ogl_global_keylistener->keyEventPerformed(KC_RIGHT);
+		return;
 	}
+}
 
-	//glutDisplayFunc(onMainLoopCallback);
-	//glutMainLoop();
+void onMainLoopKeyCallbackASCII(unsigned char key, int x, int y) {
+	printf("ASCII-Key %d Event\n", key);
+
+	if (key == ' ') {
+		ogl_global_keylistener->keyEventPerformed(KC_SPACE);
+		return;
+	} else if (key == 27) {
+		ogl_global_keylistener->keyEventPerformed(KC_ESCAPE);
+		return;
+	}
+}
+
+void OGLConsole::startLoop(ActionListener *looplistener, KeyEventListener *keyListener) {
+	ogl_global_looplistener = looplistener;
+	ogl_global_keylistener = keyListener;
+
+	glutSpecialFunc(onMainLoopKeyCallback);
+	glutKeyboardFunc(onMainLoopKeyCallbackASCII);
+	glutIdleFunc(onMainLoopLoopCallback);
+	glutMainLoop();
 }
 
 
