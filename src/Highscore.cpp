@@ -15,4 +15,5 @@ void Highscore::writeScore(int pscoreValue)
 
 int Highscore::readScore(void)
 {
+	return 0;
 }

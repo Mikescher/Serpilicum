@@ -15,149 +15,151 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="DBConsole.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Snake.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="SnakeElement.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="PowerUpList.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="PowerUp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthPowerUp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuDisplay.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuElement.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Label.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="IntroMenu.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionListener.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="DeathMenu.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelEffect.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="HPSpawnEffect.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="AutoSnake.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowsConsole.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Highscore.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DBConsole.h">
+    <ClInclude Include="src\AbstractConsole.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="src\ActionListener.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
+    <ClInclude Include="src\AutoSnake.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Snake.h">
+    <ClInclude Include="src\Button.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="SnakeElement.h">
+    <ClInclude Include="src\DBConsole.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="PowerUpList.h">
+    <ClInclude Include="src\DeathMenu.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="PowerUp.h">
+    <ClInclude Include="src\Game.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="HealthPowerUp.h">
+    <ClInclude Include="src\Gamerules.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="MenuDisplay.h">
+    <ClInclude Include="src\HealthPowerUp.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
+    <ClInclude Include="src\Highscore.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="MenuElement.h">
+    <ClInclude Include="src\HPSpawnEffect.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="src\IntroMenu.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Label.h">
+    <ClInclude Include="src\Keycodes.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="IntroMenu.h">
+    <ClInclude Include="src\Label.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Keycodes.h">
+    <ClInclude Include="src\Level.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="ActionListener.h">
+    <ClInclude Include="src\LevelEffect.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="DeathMenu.h">
+    <ClInclude Include="src\Menu.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="LevelEffect.h">
+    <ClInclude Include="src\MenuDisplay.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="HPSpawnEffect.h">
+    <ClInclude Include="src\MenuElement.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Gamerules.h">
+    <ClInclude Include="src\OGLConsole.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="AutoSnake.h">
+    <ClInclude Include="src\PowerUp.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractConsole.h">
+    <ClInclude Include="src\PowerUpList.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsConsole.h">
+    <ClInclude Include="src\Snake.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Highscore.h">
+    <ClInclude Include="src\SnakeElement.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowsConsole.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
+    <ClCompile Include="src\ActionListener.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AutoSnake.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DBConsole.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeathMenu.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HealthPowerUp.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Highscore.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HPSpawnEffect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IntroMenu.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Label.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Level.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelEffect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Menu.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuDisplay.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuElement.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGLConsole.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerUp.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerUpList.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Snake.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SnakeElement.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowsConsole.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
