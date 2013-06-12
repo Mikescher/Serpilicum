@@ -2,7 +2,7 @@
 #include <iostream>
 #include "HealthPowerUp.h"
 #include "Keycodes.h"
-#include "AutoSnake.h"
+#include "Snake.h"
 
 Level::Level(void)
 {
@@ -15,7 +15,7 @@ Level::Level(void)
 	lastPowerupAdd = 0;
 
 	//snake = new Snake(FIELD_W / 2, FIELD_H / 2, EAST);
-	snake = new AutoSnake(this, FIELD_W / 2, FIELD_H / 2, EAST);
+	snake = new Snake(FIELD_W / 2, FIELD_H / 2, EAST);
 	powerupList = new PowerUpList();
 
 	snake->extendForward(4);
