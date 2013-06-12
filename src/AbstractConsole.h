@@ -19,9 +19,8 @@ public:
 	virtual void clearBuffer() = 0;
 	virtual void swap() = 0;
 
-	virtual int getCurrentKeyState() = 0;
-	virtual int getFullKeyEvent() = 0;
-	virtual int getBlockingFullKeyEvent() = 0;
+	virtual unsigned char getCurrentKeyState() = 0;
+	virtual unsigned char getFullKeyEvent() = 0;
 	virtual void setDimensions(short w, short h) = 0;
 	virtual long getCurrentTimeMillis() = 0;
 

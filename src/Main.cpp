@@ -27,7 +27,7 @@ int main() {
 void Main::start() {
 	srand (time(NULL));
 
-	dbc = new OGLConsole();
+	dbc = new WindowsConsole();
 	game = new Game(dbc);
 
 	dbc->init();

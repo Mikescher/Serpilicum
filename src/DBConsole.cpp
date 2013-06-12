@@ -9,6 +9,11 @@ DBConsole::~DBConsole(void) {
 }
 
 void DBConsole::init() {
+	//Init KeyStates
+	for(int p = 0; p < (sizeof(currKeyStates)/sizeof(bool)); p++) {
+		currKeyStates[p] = false;
+	}
+
 	// Init Arrays
 	for (int x = 0; x < BUFFER_W; x++) {
 		for (int y = 0; y < BUFFER_H; y++) {
@@ -70,24 +75,32 @@ void DBConsole::clearBuffer() {
 	}
 }
 
-int DBConsole::getCurrentKeyState() {
-	return getKeyState();
+unsigned char DBConsole::getCurrentKeyState() {
+	unsigned char ks = getKeyState();
+	bool curr = currKeyStates[ks];
+
+	unsigned char result;
+	if (ks == 0 || curr) {
+		result = 0;
+	} else {
+		result = ks;
+	}
+
+	//RESET
+	for(int p = 0; p < (sizeof(currKeyStates)/sizeof(bool)); p++) {
+		currKeyStates[p] = false;
+	}
+	if (ks != 0) {
+		currKeyStates[ks] = true;
+	}
+
+	return result;
 }
 
-int DBConsole::getFullKeyEvent() {
-	int kc = getKeyState();
-
-	if (kc != 0) while (getKeyState() == kc); // Wait
-
-	return kc;
-}
-
-int DBConsole::getBlockingFullKeyEvent() {
-	int kc = 0;
-
-	while ((kc = getFullKeyEvent()) == 0);
-
-	return kc;
+unsigned char DBConsole::getFullKeyEvent() {
+	int result = 0;
+	while ((result = getCurrentKeyState()) == 0);
+	return result;
 }
 
 long DBConsole::getCurrentTimeMillis() {

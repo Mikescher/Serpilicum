@@ -30,7 +30,7 @@ void OGLConsole::showConsoleCursor(bool bShow)
 	// Do nothing
 }
 
-int OGLConsole::getKeyState()
+unsigned char OGLConsole::getKeyState()
 {
 	if (GetAsyncKeyState(VK_UP)) {
 		return KC_UP;

@@ -38,7 +38,7 @@ void WindowsConsole::showConsoleCursor(bool bShow)
 	SetConsoleCursorInfo( hOut, &cursorInfo );
 }
 
-int WindowsConsole::getKeyState() {
+unsigned char WindowsConsole::getKeyState() {
 	if (GetAsyncKeyState(VK_UP)) {
 		return KC_UP;
 	} else if (GetAsyncKeyState(VK_DOWN)) {

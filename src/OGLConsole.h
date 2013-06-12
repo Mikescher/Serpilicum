@@ -15,7 +15,7 @@ class OGLConsole :
 protected:
 	virtual void writeToConsole(char c, int x, int y);
 	virtual void showConsoleCursor(bool bShow);
-	virtual int getKeyState();
+	virtual unsigned char getKeyState();
 	virtual long getSystemCurrTimeMillis();
 	virtual void setDimensions(short w, short h);
 

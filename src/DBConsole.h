@@ -8,10 +8,12 @@ class DBConsole :
 protected:
 	char display[BUFFER_W][BUFFER_H];
 	char buffer[BUFFER_W][BUFFER_H];
+
+	bool currKeyStates[256];
 protected:
 	virtual void writeToConsole(char c, int x, int y) = 0;
 	virtual void showConsoleCursor(bool bShow) = 0;
-	virtual int getKeyState() = 0;
+	virtual unsigned char getKeyState() = 0;
 	virtual long getSystemCurrTimeMillis() = 0;
 	virtual void setDimensions(short w, short h) = 0;
 public:
@@ -28,9 +30,8 @@ public:
 	virtual void clearBuffer();
 	virtual void swap();
 
-	virtual int getCurrentKeyState();
-	virtual int getFullKeyEvent();
-	virtual int getBlockingFullKeyEvent();
+	virtual unsigned char getCurrentKeyState();
+	virtual unsigned char getFullKeyEvent();
 	virtual long getCurrentTimeMillis();
 
 	virtual void startLoop(ActionListener *looplistener) = 0;

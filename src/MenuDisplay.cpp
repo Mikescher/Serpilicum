@@ -49,7 +49,6 @@ void MenuDisplay::removeMenu()
 
 void MenuDisplay::onKeyDown(AbstractConsole *pConsole, int keycode) {
 	if (isMenuset()) {
-		pConsole->getFullKeyEvent(); // Wait for Key Up
 		menu->onKeyDown(keycode);
 	}
 }
