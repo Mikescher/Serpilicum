@@ -25,7 +25,7 @@ int main() {
 }
 
 void Main::start() {
-	dbc = new WindowsConsole();
+	dbc = new OGLConsole();
 	game = new Game(dbc);
 
 	dbc->init();

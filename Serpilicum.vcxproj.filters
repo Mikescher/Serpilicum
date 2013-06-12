@@ -162,4 +162,20 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Font.png">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\Font.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="Font_1.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

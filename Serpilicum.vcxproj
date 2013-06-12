@@ -45,6 +45,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -120,6 +121,14 @@
     <ClCompile Include="src\Snake.cpp" />
     <ClCompile Include="src\SnakeElement.cpp" />
     <ClCompile Include="src\WindowsConsole.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Font_1.bmp" />
+    <Image Include="res\Font.bmp" />
+    <Image Include="res\Font.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
