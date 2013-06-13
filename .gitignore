@@ -23,4 +23,4 @@ Debug/
 *.Cache
 *.Resources
 *.opensdf
-*Highscore.txt
+/Highscore.txt
