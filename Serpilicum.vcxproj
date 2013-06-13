@@ -92,6 +92,7 @@
     <ClInclude Include="src\MenuDisplay.h" />
     <ClInclude Include="src\MenuElement.h" />
     <ClInclude Include="src\OGLConsole.h" />
+    <ClInclude Include="src\PathFindingAlgorithm.h" />
     <ClInclude Include="src\PowerUp.h" />
     <ClInclude Include="src\PowerUpList.h" />
     <ClInclude Include="src\Snake.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="src\MenuDisplay.cpp" />
     <ClCompile Include="src\MenuElement.cpp" />
     <ClCompile Include="src\OGLConsole.cpp" />
+    <ClCompile Include="src\PathFindingAlgorithm.cpp" />
     <ClCompile Include="src\PowerUp.cpp" />
     <ClCompile Include="src\PowerUpList.cpp" />
     <ClCompile Include="src\Snake.cpp" />

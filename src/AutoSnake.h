@@ -3,6 +3,8 @@
 #include "snake.h"
 #include <math.h>
 #include <algorithm>
+#include <limits>
+#include "PathFindingAlgorithm.h"
 
 class Level;
 
@@ -11,6 +13,7 @@ class AutoSnake :
 {
 private:
 	Level *level;
+	PathFindingAlgorithm algo;
 public:
 	AutoSnake(void);
 	AutoSnake(Level *lvl, int sx, int sy, Direction dir);
@@ -19,7 +22,9 @@ public:
 	void moveForward();
 	void extendForward();
 
-	void calcDirection();
-	double getDistanceToNearestPowerUp(int x, int y);
+	Direction calcDirection();
+	int getDistance(Direction& direction, int depth, int px, int py);
+	int getFieldIdent(int px, int py);
+	void getNearestPowerUp(int& px, int& py);
 };
 

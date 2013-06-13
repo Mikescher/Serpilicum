@@ -22,6 +22,7 @@ void Main::start() {
 }
 
 void Main::actionPerformed(int id) {
+
 	game->run(dbc);
 }
 

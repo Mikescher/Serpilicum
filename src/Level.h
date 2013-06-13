@@ -1,5 +1,6 @@
 #pragma once
-#include "Snake.h";
+
+#include "AutoSnake.h"
 #include "PowerUpList.h"
 #include "AbstractConsole.h"
 #include <vector>
