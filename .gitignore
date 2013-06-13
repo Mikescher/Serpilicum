@@ -13,6 +13,14 @@
 *.a
 
 # My Zeugs
-
+Release/
 Debug/
 /.project
+*.log
+*.tlog
+*.pdb
+*.obj
+*.Cache
+*.Resources
+*.opensdf
+*Highscore.txt

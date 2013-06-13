@@ -122,7 +122,8 @@ unsigned char* OGLConsole::loadBMPRaw(const char * imagepath, unsigned int& outW
 	unsigned int dataPos;
 	unsigned int imageSize;
 	unsigned char * data;
-	FILE * file = fopen(imagepath,"rb");
+	FILE * file;
+	fopen_s(&file, imagepath, "rb");
 	if (!file)	{printf("Image could not be opened\n"); return NULL;}
 	if ( fread(header, 1, 54, file)!=54 ){
 		printf("Not a correct BMP file\n");
