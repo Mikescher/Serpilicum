@@ -10,7 +10,7 @@ class DeathMenu :
 	public Menu
 {
 private:
-	virtual void createMenu(ActionListener * restartListener);
+	virtual void createMenu(ActionListener * restartListener,Highscore* pHighscore);
 public:
 	DeathMenu(ActionListener * restartListener, int pscore);
 	virtual ~DeathMenu(void);

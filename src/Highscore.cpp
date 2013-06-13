@@ -27,6 +27,7 @@ std::string Highscore::readScoreFile()
 	datei.open(FILENAME, std::ios::in);
 	std::string line;
 	while (getline(datei,line,'\0'));
+	datei.close();
 
 
 	return line;
@@ -39,7 +40,7 @@ std::vector<HighscoreElement> Highscore::readScore()
 	elements = explode(line, ';');
 	std::vector<HighscoreElement> result;
 
-	for(int z = 0; elements.size() < z; z++){
+	for(int z = 0; z < elements.size(); z++){
 		std::string name;
 		int score;
 		std::vector<std::string> elements2;
@@ -77,15 +78,14 @@ void Highscore::sortHighscoreList(std::vector<HighscoreElement>& elements)
 {
 	int n; 
 	int i; 
-	int temp2 = 0;
 
-	for (n = elements.size(); n>1; n=n-1) 
+	for (n = elements.size(); n>1; n--) 
 	{ 
-		for(i=0; i<n-1; i=i+1) 
+		for(i=0; i<n-1; i++) 
 		{ 
-			if (elements.at(i).point > elements.at(i+1).point) 
+			if (elements.at(i).point < elements.at(i+1).point) 
 			{ 
-				std::swap(elements.begin() + i, elements.begin() + i + 1);
+				std::swap(elements[i], elements[i + 1]);
 			} 
 		} 
 	} 

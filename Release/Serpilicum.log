@@ -1,0 +1,46 @@
+﻿Der Buildvorgang wurde am 13.06.2013 20:21:33 gestartet.
+     1>Projekt "C:\Users\cYa\Dropbox\C++\Serpilicum\Serpilicum.vcxproj" auf Knoten "2", Build Ziel(e).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\Users\cYa\Dropbox\C++\Serpilicum\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\AutoSnake.cpp src\Button.cpp src\DBConsole.cpp src\DeathMenu.cpp src\Game.cpp src\HealthPowerUp.cpp src\Highscore.cpp src\HPSpawnEffect.cpp src\IntroMenu.cpp src\Label.cpp src\Level.cpp src\LevelEffect.cpp src\Main.cpp src\Menu.cpp src\MenuDisplay.cpp src\MenuElement.cpp src\OGLConsole.cpp src\PowerUp.cpp src\PowerUpList.cpp src\Snake.cpp src\SnakeElement.cpp src\WindowsConsole.cpp
+         AutoSnake.cpp
+     1>c:\users\cya\dropbox\c++\serpilicum\src\Level.h(2): warning C4067: Unerwartete Token nach Präprozessordirektive - Zeilenvorschub erwartet.
+         Button.cpp
+         DBConsole.cpp
+     1>src\DBConsole.cpp(83): warning C4309: '=': Verkürzung eines konstanten Wertes
+         DeathMenu.cpp
+     1>src\DeathMenu.cpp(27): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+         Game.cpp
+     1>c:\users\cya\dropbox\c++\serpilicum\src\Level.h(2): warning C4067: Unerwartete Token nach Präprozessordirektive - Zeilenvorschub erwartet.
+         HealthPowerUp.cpp
+         Highscore.cpp
+     1>src\Highscore.cpp(43): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+         HPSpawnEffect.cpp
+         IntroMenu.cpp
+         Label.cpp
+         Level.cpp
+     1>c:\users\cya\dropbox\c++\serpilicum\src\Level.h(2): warning C4067: Unerwartete Token nach Präprozessordirektive - Zeilenvorschub erwartet.
+     1>src\Level.cpp(106): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+         LevelEffect.cpp
+         Main.cpp
+     1>c:\users\cya\dropbox\c++\serpilicum\src\Level.h(2): warning C4067: Unerwartete Token nach Präprozessordirektive - Zeilenvorschub erwartet.
+         Menu.cpp
+     1>src\Menu.cpp(54): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+     1>src\Menu.cpp(99): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+         MenuDisplay.cpp
+         MenuElement.cpp
+         OGLConsole.cpp
+     1>src\OGLConsole.cpp(125): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218): Siehe Deklaration von 'fopen'
+         PowerUp.cpp
+         PowerUpList.cpp
+         Snake.cpp
+         Kompilieren...
+         SnakeElement.cpp
+         WindowsConsole.cpp
+     1>src\WindowsConsole.cpp(6): warning C4244: 'Argument': Konvertierung von 'time_t' in 'unsigned int', möglicher Datenverlust
+     1>src\WindowsConsole.cpp(66): warning C4244: 'return': Konvertierung von '__int64' in 'long', möglicher Datenverlust
+     1>Die Erstellung des Projekts "C:\Users\cYa\Dropbox\C++\Serpilicum\Serpilicum.vcxproj" ist abgeschlossen, Build Ziel(e) -- FEHLER.
+
+Fehler beim Buildvorgang.
+
+Verstrichene Zeit 00:00:12.66
