@@ -15,22 +15,78 @@ void Highscore::writeScore(std::string pname, int pscoreValue)
 {
 	std::fstream datei;
 	datei.open(FILENAME, std::ios::out | std::ios::app);
-    datei << pname << "," << pscoreValue <<";";
-    datei.close();
+	datei << pname << "," << pscoreValue <<";";
+	datei.close();
+
+	std::cout << readScoreFile() << std::endl;
 }
 
 std::string Highscore::readScoreFile()
 {
 	std::fstream datei;
 	datei.open(FILENAME, std::ios::in);
-	std::string zeile;
-	while (getline(datei,zeile,'\0'));
+	std::string line;
+	while (getline(datei,line,'\0'));
 
-	std::cout << zeile << std::endl;
-	return zeile;
+
+	return line;
 }
-/* std::vector<HighscoreElement> Highscore::readScore()
+std::vector<HighscoreElement> Highscore::readScore()
 {
-	return 0;
+	std::string line;
+	line = readScoreFile();
+	std::vector<std::string> elements;
+	elements = explode(line, ';');
+	std::vector<HighscoreElement> result;
+
+	for(int z = 0; elements.size() < z; z++){
+		std::string name;
+		int score;
+		std::vector<std::string> elements2;
+		elements2 = explode(elements.at(z), ',');
+
+		name = elements2.at(0);
+		std::stringstream sstr(elements2.at(1));
+		sstr >> score;
+
+		HighscoreElement hse;
+		hse.name = name;
+		hse.point = score;
+
+		result.push_back(hse);
+	}
+
+	sortHighscoreList(result);
+
+	return result;
 }
-*/
+
+std::vector<std::string> Highscore::explode(const std::string& str, char delimiter) 
+{
+	std::vector<std::string> tokens;
+	std::stringstream tokenStream(str);
+	std::string tempStr;
+
+	while(std::getline(tokenStream, tempStr, delimiter))
+		tokens.push_back(tempStr);
+
+	return tokens;
+}
+
+void Highscore::sortHighscoreList(std::vector<HighscoreElement>& elements)
+{
+	int n; 
+	int i; 
+	int temp2 = 0;
+
+	for (n = elements.size(); n>1; n=n-1) 
+	{ 
+		for(i=0; i<n-1; i=i+1) 
+		{ 
+			if (elements.at(i).point > elements.at(i+1).point) 
+			{ 
+				std::swap(elements.begin() + i, elements.begin() + i + 1);
+			} 
+		} 
+	} 
+}
