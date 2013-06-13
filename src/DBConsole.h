@@ -1,10 +1,17 @@
 #pragma once
 #include <string>
+#include <algorithm>
 #include "AbstractConsole.h"
 
 class DBConsole : 
 	public AbstractConsole
 {
+private:
+	long lastRenderTime;
+	int fpsCount;
+	long fpsSum;
+	double fps;
+	bool showFPS;
 protected:
 	char display[BUFFER_W][BUFFER_H];
 	char buffer[BUFFER_W][BUFFER_H];
@@ -32,5 +39,6 @@ public:
 
 	virtual unsigned char getCurrentKeyState();
 	virtual long getCurrentTimeMillis();
+	virtual double getFPS();
 };
 

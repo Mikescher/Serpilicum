@@ -22,6 +22,7 @@ public:
 	virtual unsigned char getCurrentKeyState() = 0;
 	virtual void setDimensions(short w, short h) = 0;
 	virtual long getCurrentTimeMillis() = 0;
+	virtual double getFPS() = 0;
 
 	virtual void startLoop(ActionListener *looplistener, KeyEventListener *keyListener) = 0;
 };

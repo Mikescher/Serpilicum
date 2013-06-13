@@ -1,7 +1,14 @@
 #include "DBConsole.h"
 #include <iostream>
 
-DBConsole::DBConsole(void) {
+DBConsole::DBConsole(void) : AbstractConsole()
+{
+	showFPS = true;
+
+	lastRenderTime = 0;
+	fpsCount = 0;
+	fpsSum = 0;
+	fps = 1;
 }
 
 
@@ -49,6 +56,17 @@ void DBConsole::write(std::string s, int x, int y) {
 }
 
 void DBConsole::swap() {
+	//## FPS #####
+
+	fpsSum += getCurrentTimeMillis() - lastRenderTime;
+	lastRenderTime = getCurrentTimeMillis();
+	fpsCount++;
+	if (fpsSum > 1000) {
+		fps = 1 / (fpsSum / (fpsCount * 1000.0));
+		fpsSum = fpsCount = 0;
+	}
+
+	//## SWAPPING #####
 	for (int x = 0; x < BUFFER_W; x++) {
 		for (int y = 0; y < BUFFER_H; y++) {
 			if (buffer[x][y] != display[x][y]) {
@@ -68,11 +86,15 @@ void DBConsole::redraw() {
 }
 
 void DBConsole::clearBuffer() {
+	// Clear Buffer
 	for (int x = 0; x < BUFFER_W; x++) {
 		for (int y = 0; y < BUFFER_H; y++) {
 			buffer[x][y] = ' ';
 		}
 	}
+
+	//SHOW FPS
+	write("FPS: " + std::to_string((int)getFPS()), 0, 0);
 }
 
 unsigned char DBConsole::getCurrentKeyState() {
@@ -99,4 +121,8 @@ unsigned char DBConsole::getCurrentKeyState() {
 
 long DBConsole::getCurrentTimeMillis() {
 	return getSystemCurrTimeMillis();
+}
+
+double DBConsole::getFPS() {
+	return fps;
 }

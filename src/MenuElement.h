@@ -1,5 +1,7 @@
 #pragma once
+
 #include "AbstractConsole.h"
+
 class MenuElement {
 private:
 	int x;
