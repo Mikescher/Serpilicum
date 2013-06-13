@@ -1,6 +1,8 @@
 #pragma once
+
 #include "MenuElement.h"
 #include "ListenerCollection.h"
+
 class Button:
 	public MenuElement
 {

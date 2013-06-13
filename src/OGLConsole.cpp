@@ -1,9 +1,13 @@
 #include "OGLConsole.h"
 
 
-OGLConsole::OGLConsole(void)
+OGLConsole::OGLConsole(void) : DBConsole()
 {
+	//########## WINDOWS #######################
+
 	srand((int) time(NULL));
+
+	//##########  OPENGL  ######################
 
 	int argc = 0;
 	char *pc = 0;
@@ -68,9 +72,9 @@ void OGLConsole::swap() {
 	glClearColor(0, 0, 0, 1);
 	glClear (GL_COLOR_BUFFER_BIT);
 
-	//TODO RENDER OGL
+	//<RENDER OGL>
 	renderOGL();
-	//TODO RENDER OGL
+	//</RENDER OGL>
 
 	glutSwapBuffers();
 }
@@ -79,8 +83,10 @@ void OGLConsole::renderOGL() {
 	for (int x = 0; x < BUFFER_W; x++) {
 		for (int y = 0; y < BUFFER_H; y++) {
 			if (display[x][y] != ' ') {
-				GLdouble tx = display[x][y] % 80;
-				GLdouble ty = display[x][y] / 80;
+				int dchar = display[x][y] % 255;
+
+				GLdouble tx = dchar % 80;
+				GLdouble ty = dchar / 80;
 
 				GLdouble x1 = (x+0) * 8;
 				GLdouble x2 = (x+1) * 8;

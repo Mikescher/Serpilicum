@@ -9,7 +9,7 @@ Level::Level(void)
 	running = false;
 	is_dead = false;
 
-	snake_speed = 250;
+	snake_speed = 0;
 
 	lastRenderTime = 0;
 	lastPowerupAdd = 0;
