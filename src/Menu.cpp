@@ -95,7 +95,7 @@ MenuElement* Menu::focusPrevElement() {
 	return getFocusedElement();
 }
 
-bool Menu::focusElement(int idx) {
+bool Menu::focusElement(unsigned int idx) {
 	if (idx >= 0 && idx < elements.size()) {
 		focusIndex = idx;
 		updateFocus();

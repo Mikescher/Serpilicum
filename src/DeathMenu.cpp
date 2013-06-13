@@ -24,7 +24,7 @@ void DeathMenu::createMenu(ActionListener * restartListener, Highscore* phighsco
 
 	std::vector<HighscoreElement> highscore = phighscore->readScore();
 	int position = 1;
-	for (int z = 0; z < highscore.size() && z < 20; z++)
+	for (unsigned int z = 0; z < highscore.size() && z < 20; z++)
 	{
 		if (z > 0 && (highscore.at(z-1).point > highscore.at(z).point)) position++;
 

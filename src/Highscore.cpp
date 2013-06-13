@@ -40,7 +40,7 @@ std::vector<HighscoreElement> Highscore::readScore()
 	elements = explode(line, ';');
 	std::vector<HighscoreElement> result;
 
-	for(int z = 0; z < elements.size(); z++){
+	for(unsigned int z = 0; z < elements.size(); z++){
 		std::string name;
 		int score;
 		std::vector<std::string> elements2;

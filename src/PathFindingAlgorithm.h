@@ -33,6 +33,7 @@ private:
 public:
 	PathFindingAlgorithm();
 
+	bool hasToRecalc(const int & xFinish, const int & yFinish);
 	int getNextDirection(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish);
 };
 

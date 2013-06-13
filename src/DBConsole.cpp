@@ -80,7 +80,7 @@ void DBConsole::swap() {
 void DBConsole::redraw() {
 	for (int x = 0; x < BUFFER_W; x++) {
 		for (int y = 0; y < BUFFER_H; y++) {
-			display[x][y] = 255;
+			display[x][y] = (char)255;
 		}
 	}
 }

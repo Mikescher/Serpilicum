@@ -2,7 +2,6 @@
 #include <iostream>
 #include "HealthPowerUp.h"
 #include "Keycodes.h"
-#include "Snake.h"
 
 Level::Level(void)
 {
@@ -14,11 +13,10 @@ Level::Level(void)
 	lastRenderTime = 0;
 	lastPowerupAdd = 0;
 
-	//snake = new Snake(FIELD_W / 2, FIELD_H / 2, EAST);
-	snake = new Snake(FIELD_W / 2, FIELD_H / 2, EAST);
+	snake = new AutoSnake(this, FIELD_W / 2, FIELD_H / 2, EAST);
 	powerupList = new PowerUpList();
-
-	snake->extendForward(4);
+	
+	snake->extendForward(5);
 }
 
 
@@ -41,7 +39,10 @@ void Level::run(AbstractConsole* pConsole) {
 	if ((curr - lastRenderTime) > snake_speed) {
 		if (! testForHPCollision()) {
 			snake->moveForward();
+		} else {
+			snake->extendForward();
 		}
+		std::cout << "Duration: " << std::to_string(curr - lastRenderTime) << " ms" << std::endl;
 
 		addMissingHealthPowerUps(pConsole);
 
@@ -77,9 +78,9 @@ bool Level::isRunning(){
 
 void Level::render(AbstractConsole* pConsole)
 {
-	renderSnake(pConsole);
-	renderPowerups(pConsole);
 	renderEffects(pConsole);
+	renderPowerups(pConsole);
+	renderSnake(pConsole);
 }
 
 void Level::renderSnake(AbstractConsole *console) {
@@ -103,7 +104,7 @@ void Level::renderPowerups(AbstractConsole *console) {
 }
 
 void Level::renderEffects(AbstractConsole *console) {
-	for(int i = 0; i < effects.size(); i++) {
+	for(unsigned int i = 0; i < effects.size(); i++) {
 		effects.at(i)->render(console);
 	}
 }
@@ -126,13 +127,11 @@ bool Level::testForHPCollision() {
 	while(pelem != 0) {
 		if (pelem->getX() == snake->getHead()->getX() && pelem->getY() == snake->getHead()->getY()) {
 			getPowerUpList()->remove(pelem);
-			snake->extendForward();
 			return true;
 		}
 
 		pelem = pelem->getNextElement();
 	}
-
 	return false;
 }
 
@@ -210,7 +209,7 @@ void Level::testForDeath() {
 			if (snakeelement->getX() == snakeelement2->getX() && snakeelement->getY() == snakeelement2->getY() && snakeelement != snakeelement2) {
 				if (GAMERULE_DieOnSelfContact) {
 					onDie();
-				} else if (prevelem != 0){
+				} else if (GAMERULE_BiteOnSelfContact && prevelem != 0){
 					prevelem->removeNextElement();
 				}
 				return;

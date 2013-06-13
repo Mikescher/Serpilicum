@@ -6,7 +6,7 @@
 class Menu {
 private:
 	std::vector<MenuElement*> elements;
-	int focusIndex;
+	unsigned int focusIndex;
 
 	virtual void updateFocus();
 public:
@@ -21,7 +21,7 @@ public:
 	virtual bool isElementFocused();
 	virtual MenuElement* focusNextElement();
 	virtual MenuElement* focusPrevElement();
-	virtual bool focusElement(int el);
+	virtual bool focusElement(unsigned int el);
 	virtual void removeFocus();
 	virtual void onKeyDown(int keycode);
 };

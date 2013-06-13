@@ -3,7 +3,7 @@
 
 WindowsConsole::WindowsConsole(void) : DBConsole()
 {
-	srand(time(NULL));
+	srand((unsigned int) time(NULL));
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE); 
 }
 
@@ -63,7 +63,7 @@ long WindowsConsole::getSystemCurrTimeMillis() {
 
 	auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(since_epoch);
 
-	return millis.count(); 
+	return (long) millis.count(); 
 }
 
 void WindowsConsole::setDimensions(short w, short h) {

@@ -123,19 +123,23 @@ string PathFindingAlgorithm::pathFind(const int & xStart, const int & yStart, co
 	return "";
 }
 
-int PathFindingAlgorithm::getNextDirection(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish) {
-	if (lastResult.empty() || lastResultTargetX != xFinish || lastResultTargetY != yFinish) {
+bool PathFindingAlgorithm::hasToRecalc(const int & xFinish, const int & yFinish) {
+	return lastResult.empty() || lastResultTargetX != xFinish || lastResultTargetY != yFinish;
+}
 
-		clock_t start = clock();
+int PathFindingAlgorithm::getNextDirection(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish) {
+	if (hasToRecalc(xFinish, yFinish)) {
+		/**/ clock_t start = clock();
+
 		lastResult = pathFind(xStart, yStart, xFinish, yFinish);
-		if(lastResult == "") cout<<"An empty route generated!"<<endl;
-		clock_t end = clock();
-		double time_elapsed = double(end - start);
-		cout<<"Route recalculated: Time to calculate the route (ms): " << time_elapsed << endl;
+
+		/**/ if(lastResult == "") cout<<"An empty route generated!"<<endl;
+		/**/ clock_t end = clock();
+		/**/ double time_elapsed = double(end - start);
+		/**/ cout<<"Calculate A* Path (ms): " << time_elapsed << endl;
 
 		lastResultTargetX = xFinish;
 		lastResultTargetY = yFinish;
-		cout << "Calculate A* Path" << endl;
 	}
 
 	if (lastResult.empty()) {

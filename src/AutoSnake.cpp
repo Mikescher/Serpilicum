@@ -30,20 +30,22 @@ void AutoSnake::extendForward() {
 }
 
 Direction AutoSnake::calcDirection() {
-	for (int x = 0; x < BUFFER_W; x++)
-	{
-		for (int y = 0; y < BUFFER_H; y++)
-		{
-			algo.map[x][y] = getFieldIdent(x, y);
-		}
-	}
-
 	int tx;
 	int ty;
 	getNearestPowerUp(tx, ty);
 
 	if (ty == -1 || tx == -1) {
 		return getDirection();
+	}
+
+	if (algo.hasToRecalc(tx, ty)) {
+		for (int x = 0; x < BUFFER_W; x++)
+		{
+			for (int y = 0; y < BUFFER_H; y++)
+			{
+				algo.map[x][y] = getFieldIdent(x, y);
+			}
+		}
 	}
 
 	int result = algo.getNextDirection(getHead()->getX(), getHead()->getY(), tx, ty);
