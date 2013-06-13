@@ -1,9 +1,11 @@
 #include "DeathMenu.h"
 
 
-DeathMenu::DeathMenu(ActionListener * restartListener)
+DeathMenu::DeathMenu(ActionListener * restartListener, int pscore)
 {
+	Highscore* highscore = new Highscore();
 	createMenu(restartListener);
+	highscore->writeScore("pname", pscore);
 }
 
 

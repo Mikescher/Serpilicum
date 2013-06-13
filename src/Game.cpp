@@ -30,7 +30,8 @@ void Game::run(AbstractConsole* pConsole){
 		if (level->isRunning()) {
 			level->run(pConsole);
 		} else if (level->isDead()) {
-			menu->setMenu(new DeathMenu(this));
+			menu->setMenu(new DeathMenu(this, level->getSnake()->getLength()));
+						
 		}
 	} else {
 		// run menu;
