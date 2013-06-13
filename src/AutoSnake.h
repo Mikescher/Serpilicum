@@ -4,7 +4,9 @@
 #include <math.h>
 #include <algorithm>
 #include <limits>
+#include <stdlib.h>
 #include "PathFindingAlgorithm.h"
+#include "Gamerules.h"
 
 class Level;
 
@@ -13,7 +15,15 @@ class AutoSnake :
 {
 private:
 	Level *level;
-	PathFindingAlgorithm algo;
+	PathFindingAlgorithm* algo;
+	bool lastSearchFailed;
+
+private:
+	Direction calcDirection();
+	int getFieldIdent(int px, int py);
+	void getNearestPowerUp(int& px, int& py);
+	void getRandomPowerUp(int& px, int& py);
+	bool isDirectionFree(Direction d);
 public:
 	AutoSnake(void);
 	AutoSnake(Level *lvl, int sx, int sy, Direction dir);
@@ -21,10 +31,5 @@ public:
 
 	void moveForward();
 	void extendForward();
-
-	Direction calcDirection();
-	int getDistance(Direction& direction, int depth, int px, int py);
-	int getFieldIdent(int px, int py);
-	void getNearestPowerUp(int& px, int& py);
 };
 

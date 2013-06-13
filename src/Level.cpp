@@ -17,6 +17,26 @@ Level::Level(void)
 	powerupList = new PowerUpList();
 	
 	snake->extendForward(5);
+
+	//snake->extendForward(BUFFER_W - 2 - 5);
+	//snake->setDirection(NORTH);
+	//snake->extendForward(1);
+	//snake->setDirection(EAST);
+
+	//snake->extendForward(BUFFER_W - 2);
+	//snake->setDirection(NORTH);
+	//snake->extendForward(1);
+	//snake->setDirection(EAST);
+
+	//snake->extendForward(BUFFER_W - 2);
+	//snake->setDirection(NORTH);
+	//snake->extendForward(1);
+	//snake->setDirection(EAST);
+
+	//snake->extendForward(BUFFER_W - 2);
+	//snake->setDirection(NORTH);
+	//snake->extendForward(1);
+	//snake->setDirection(EAST);
 }
 
 
@@ -42,7 +62,6 @@ void Level::run(AbstractConsole* pConsole) {
 		} else {
 			snake->extendForward();
 		}
-		std::cout << "Duration: " << std::to_string(curr - lastRenderTime) << " ms" << std::endl;
 
 		addMissingHealthPowerUps(pConsole);
 
@@ -210,6 +229,7 @@ void Level::testForDeath() {
 				if (GAMERULE_DieOnSelfContact) {
 					onDie();
 				} else if (GAMERULE_BiteOnSelfContact && prevelem != 0){
+					std::cout << "BITE DA SNAKE" << std::endl;
 					prevelem->removeNextElement();
 				}
 				return;

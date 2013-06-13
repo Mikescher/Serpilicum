@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\AbstractConsole.h" />
+    <ClInclude Include="src\Dynamic2DArray.h" />
     <ClInclude Include="src\ListenerCollection.h" />
     <ClInclude Include="src\AutoSnake.h" />
     <ClInclude Include="src\Button.h" />

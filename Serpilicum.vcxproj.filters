@@ -96,6 +96,9 @@
     <ClInclude Include="src\PathFindingAlgorithm.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\Dynamic2DArray.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AutoSnake.cpp">

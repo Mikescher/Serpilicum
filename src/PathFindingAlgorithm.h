@@ -6,24 +6,26 @@
 #include <math.h>
 #include <ctime>
 #include "AbstractConsole.h"
+#include "Dynamic2DArray.h"
 
 using namespace std;
 
 const int dir=4;
-const int n = BUFFER_W;
-const int m = BUFFER_H;
 
 class PathFindingAlgorithm
 {
 private:
-	int dx[dir];
-	int dy[dir];
+	int m_w;
+	int m_h;
+
+	int *dx;
+	int *dy;
 public:
-	int map[n][m];
+	int **map;
 private:
-	int closed_nodes_map[n][m];
-	int open_nodes_map[n][m];
-	int dir_map[n][m];
+	int **closed_nodes_map;
+	int **open_nodes_map;
+	int **dir_map;
 private:
 	string lastResult;
 	int lastResultTargetX;
@@ -31,10 +33,14 @@ private:
 private:
 	string pathFind(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish);
 public:
-	PathFindingAlgorithm();
+	PathFindingAlgorithm(int map_w, int map_h);
+	virtual ~PathFindingAlgorithm();
 
-	bool hasToRecalc(const int & xFinish, const int & yFinish);
-	int getNextDirection(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish);
+	bool hasToRecalc(const int & xFinish, const int & yFinish, bool ignoreTargetChange);
+	int getWidth();
+	int getHeight();
+
+	int getNextDirection(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish, bool ignoreTargetChange);
 };
 
 class node {

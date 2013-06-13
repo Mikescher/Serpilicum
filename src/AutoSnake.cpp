@@ -4,16 +4,33 @@
 
 AutoSnake::AutoSnake(void)
 {
+	lastSearchFailed = false;
+
+	if (GAMERULE_InfiniteField) {
+		algo = new PathFindingAlgorithm(BUFFER_W * 3, BUFFER_H * 3);
+	} else {
+		algo = new PathFindingAlgorithm(BUFFER_W, BUFFER_H);
+	}
+	
 	level = 0;
 }
 
 AutoSnake::AutoSnake(Level *lvl, int sx, int sy, Direction dir) : Snake(sx, sy, dir)
 {
+	lastSearchFailed = false;
+
+	if (GAMERULE_InfiniteField) {
+		algo = new PathFindingAlgorithm(BUFFER_W * 3, BUFFER_H * 3);
+	} else {
+		algo = new PathFindingAlgorithm(BUFFER_W, BUFFER_H);
+	}
+
 	level = lvl;
 }
 
 AutoSnake::~AutoSnake(void)
 {
+	delete algo;
 }
 
 void AutoSnake::moveForward() {
@@ -30,29 +47,117 @@ void AutoSnake::extendForward() {
 }
 
 Direction AutoSnake::calcDirection() {
+	
+
 	int tx;
 	int ty;
-	getNearestPowerUp(tx, ty);
+	
+	if (lastSearchFailed) {
+		getRandomPowerUp(tx, ty);
+	} else {
+		getNearestPowerUp(tx, ty);
+	}
 
 	if (ty == -1 || tx == -1) {
+		lastSearchFailed = false;
 		return getDirection();
 	}
 
-	if (algo.hasToRecalc(tx, ty)) {
-		for (int x = 0; x < BUFFER_W; x++)
+	int head_x = getHead()->getX();
+	int head_y = getHead()->getY();
+
+	int prevhead_x;
+	int prevhead_y;
+
+	if (getHead()->hasNextElement()) {
+		prevhead_x = getHead()->getNextElement()->getX();
+		prevhead_y = getHead()->getNextElement()->getY();
+	} else {
+		prevhead_x = head_x;
+		prevhead_y = head_y;
+	}
+
+	if (GAMERULE_InfiniteField) {
+		head_x += BUFFER_W;
+		head_y += BUFFER_H;
+		prevhead_x += BUFFER_W;
+		prevhead_y += BUFFER_H;
+		tx += BUFFER_W;
+		ty += BUFFER_H;
+	}
+
+	if (algo->hasToRecalc(tx, ty, lastSearchFailed)) {
+		for (int x = 0; x < algo->getWidth(); x++)
 		{
-			for (int y = 0; y < BUFFER_H; y++)
+			for (int y = 0; y < algo->getHeight(); y++)
 			{
-				algo.map[x][y] = getFieldIdent(x, y);
+				algo->map[x][y] = 0;
 			}
 		}
+
+		SnakeElement * snakeelement = getHead();
+
+		while(snakeelement != 0) {
+			algo->map[snakeelement->getX()][snakeelement->getY()] = (GAMERULE_DieOnSelfContact || GAMERULE_BiteOnSelfContact) ? 1 : 0;
+
+			snakeelement = snakeelement->getNextElement();
+		}
+
+
+		if (GAMERULE_InfiniteField) {
+			for (int x = 0; x < BUFFER_W; x++)
+			{
+				for (int y = 0; y < BUFFER_H; y++)
+				{
+					algo->map[x + BUFFER_W * 0][y + BUFFER_H * 1] = algo->map[x][y];
+					algo->map[x + BUFFER_W * 0][y + BUFFER_H * 2] = algo->map[x][y];
+					algo->map[x + BUFFER_W * 1][y + BUFFER_H * 0] = algo->map[x][y];
+					algo->map[x + BUFFER_W * 1][y + BUFFER_H * 1] = algo->map[x][y];
+					algo->map[x + BUFFER_W * 1][y + BUFFER_H * 2] = algo->map[x][y];
+					algo->map[x + BUFFER_W * 2][y + BUFFER_H * 0] = algo->map[x][y];
+					algo->map[x + BUFFER_W * 2][y + BUFFER_H * 1] = algo->map[x][y];
+					algo->map[x + BUFFER_W * 2][y + BUFFER_H * 2] = algo->map[x][y];
+				}
+			}
+		}
+		
+		algo->map[prevhead_x][prevhead_y] = 1; // Do not turn 180°
 	}
 
-	int result = algo.getNextDirection(getHead()->getX(), getHead()->getY(), tx, ty);
+	//for(int mmy = 0; mmy < algo->getHeight(); mmy++) {
+	//	for(int mmx = 0; mmx < algo->getWidth(); mmx++) {
+	//		if (mmx == tx && mmy == ty) {
+	//			std::cout << "X";
+	//		} else {
+	//			std::cout << algo->map[mmx][mmy];
+	//		}
+	//		
+	//	}
+	//	std::cout << std::endl;
+	//}
+	//getchar();
+
+	int result = algo->getNextDirection(head_x, head_y, tx, ty, lastSearchFailed);
 
 	if (result == -1) {
-		return getDirection();
+		lastSearchFailed = true;
+
+		if (isDirectionFree(getDirection())) {
+			return getDirection();
+		} else if (isDirectionFree(NORTH)) {
+			return NORTH;
+		} else if (isDirectionFree(EAST)) {
+			return EAST;
+		} else if (isDirectionFree(SOUTH)) {
+			return SOUTH;
+		} else if (isDirectionFree(WEST)) {
+			return WEST;
+		} else {
+			return getDirection();
+		}
 	} else {
+		lastSearchFailed = false;
+
 		switch(result) {
 		case 0:
 			return NORTH;
@@ -63,97 +168,17 @@ Direction AutoSnake::calcDirection() {
 		case 3:
 			return WEST;
 		default:
-			std::cout << "Undefinied Algorith return value" << std::endl;
+			std::cout << "Undefinied Algorithm return value" << std::endl;
 			return getDirection();
 		}
 	}
 }
 
-int AutoSnake::getDistance(Direction& direction, int depth, int px, int py) {
-	if (depth <= 0) {
-		return INT_MAX;
-	}
-
-	double n;
-	double e;
-	double s;
-	double w;
-
-	int nx = px;
-	int ny = (py - 1) % BUFFER_H;
-
-	int ex = (px + 1) % BUFFER_W;
-	int ey = py;
-
-	int sx = px;
-	int sy = (py + 1) % BUFFER_H;
-
-	int wx = (px - 1) % BUFFER_W;
-	int wy = py;
-
-	n = getFieldIdent(nx, ny);
-	e = getFieldIdent(ex, ey);
-	s = getFieldIdent(sx, sy);
-	w = getFieldIdent(wx, wy);
-
-	if (n == 1) {
-		direction = NORTH;
-		return 0;
-	} else if (e == 1) {
-		direction = EAST;
-		return 0;
-	} else if (s == 1) {
-		direction = SOUTH;
-		return 0;
-	} else if (w == 1) {
-		direction = WEST;
-		return 0;
-	}
-
-	int dn = INT_MAX;
-	int de = INT_MAX;
-	int ds = INT_MAX;
-	int dw = INT_MAX;
-
-	Direction dir = NORTH;
-
-	if (n == 0) {
-		dn = getDistance(dir, depth - 1, nx, ny);
-	}
-	if (e == 0) {
-		de = getDistance(dir, depth - 1, ex, ey);
-	}
-	if (s == 0) {
-		ds = getDistance(dir, depth - 1, sx, sy);
-	}
-	if (w == 0) {
-		dw = getDistance(dir, depth - 1, wx, wy);
-	}
-
-	int min_d = std::min(std::min(dn, de), std::min(ds, dw));
-
-	if (dn == min_d) {
-		direction = NORTH;
-		return dn+1;
-	} else if (de == min_d) {
-		direction = EAST;
-		return de+1;
-	} else if (ds == min_d) {
-		direction = SOUTH;
-		return ds+1;
-	} else if (dw == min_d) {
-		direction = WEST;
-		return dw+1;
-	}
-
-	return INT_MAX;
-}
-
-int AutoSnake::getFieldIdent(int px, int py) { // TODO Proper PathFinding | Walk over Edge
+int AutoSnake::getFieldIdent(int px, int py) {
 	if (level->isPositionPowerUp(px, py)) {
 		return 0;
 	} else if (level->isPositionSnake(px, py)) {
-		return 1;
+		return (GAMERULE_DieOnSelfContact || GAMERULE_BiteOnSelfContact) ? 1 : 0;
 	} else {
 		return 0;
 	}
@@ -164,15 +189,39 @@ void AutoSnake::getNearestPowerUp(int& px, int& py) {
 
 	PowerUp * pelem = level->getPowerUpList()->getFirst();
 
-	while(pelem != 0) {
-		int dx = pelem->getX() - getHead()->getX();
-		int dy = pelem->getY() - getHead()->getY();
+	int min_ax = 1;
+	int min_ay = 1;
+	int max_ax = 2;
+	int max_ay = 2;
 
-		double d = std::sqrt(dx*dx + dy*dy);
-		if (d < minDis) {
-			minDis = d;
-			px = pelem->getX();
-			py = pelem->getY();
+	if (GAMERULE_InfiniteField) {
+		min_ax = 0;
+		min_ay = 0;
+		max_ax = 3;
+		max_ay = 3;
+	}
+
+	while(pelem != 0) {
+		int normx = pelem->getX();
+		int normy = pelem->getY();
+
+		for (int ax= min_ax; ax < max_ax; ax++)
+		{
+			for (int ay= min_ay; ay < max_ay; ay++)
+			{
+				int testx = normx + BUFFER_W * ax;
+				int testy = normy + BUFFER_H * ay;
+
+				int dx = testx - (getHead()->getX() + BUFFER_W);
+				int dy = testy - (getHead()->getY() + BUFFER_H);
+
+				double d = std::sqrt(dx*dx + dy*dy);
+				if (d < minDis) {
+					minDis = d;
+					px = testx - BUFFER_W;
+					py = testy - BUFFER_H;
+				}
+			}
 		}
 
 		pelem = pelem->getNextElement();
@@ -181,5 +230,61 @@ void AutoSnake::getNearestPowerUp(int& px, int& py) {
 	if (minDis == INT_MAX) {
 		px = -1;
 		py = -1;
+
+		return;
 	}
+}
+
+void AutoSnake::getRandomPowerUp(int& px, int& py) {
+	PowerUp * pelem = level->getPowerUpList()->getFirst();
+
+	std::vector<int> posx;
+	std::vector<int> posy;
+
+	while(pelem != 0) {
+		int normx = pelem->getX();
+		int normy = pelem->getY();
+		if (GAMERULE_InfiniteField) {
+			for (int ax= -1; ax < 2; ax++)
+			{
+				for (int ay= -1; ay < 2; ay++)
+				{
+					posx.push_back(normx + BUFFER_W * ax);
+					posy.push_back(normy + BUFFER_H * ay);
+				}
+			}
+		} else {
+			posx.push_back(normx);
+			posy.push_back(normy);
+		}
+
+		pelem = pelem->getNextElement();
+	}
+
+	int rand = std::rand() % posx.size();
+	px = posx.at(rand);
+	py = posy.at(rand);
+	std::cout << "Random val:" << px << "," << py << std::endl;
+}
+
+bool AutoSnake::isDirectionFree(Direction d) {
+	int cx = getHead()->getX();
+	int cy = getHead()->getY();
+
+	switch(d) {
+	case NORTH:
+		cy--;
+		break;
+	case EAST:
+		cx++;
+		break;
+	case SOUTH:
+		cy++;
+		break;
+	case WEST:
+		cx--;
+		break;
+	}
+
+	return (!GAMERULE_BiteOnSelfContact && !GAMERULE_DieOnSelfContact && std::abs(getDirection() - d) != 2) || !level->isPositionSnake(cx, cy);
 }

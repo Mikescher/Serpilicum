@@ -1,6 +1,17 @@
 #include "PathFindingAlgorithm.h"
 
-PathFindingAlgorithm::PathFindingAlgorithm() {
+PathFindingAlgorithm::PathFindingAlgorithm(int map_w, int map_h) {
+	m_w = map_w;
+	m_h = map_h;
+
+	dx = new int[dir];
+	dy = new int[dir];
+
+	map = allocateDynamicArray<int>(m_w, m_h);
+	closed_nodes_map = allocateDynamicArray<int>(m_w, m_h);
+	open_nodes_map = allocateDynamicArray<int>(m_w, m_h);
+	dir_map = allocateDynamicArray<int>(m_w, m_h);
+
 	dx[0] = 0;
 	dy[0] = -1;
 
@@ -14,6 +25,16 @@ PathFindingAlgorithm::PathFindingAlgorithm() {
 	dy[3] = 0;
 
 	lastResult = "";
+}
+
+PathFindingAlgorithm::~PathFindingAlgorithm() {
+	freeDynamicArray(map);
+	freeDynamicArray(closed_nodes_map);
+	freeDynamicArray(open_nodes_map);
+	freeDynamicArray(dir_map);
+	
+	delete[] dx;
+	delete[] dy;
 }
 
 bool operator<(const node & a, const node & b)
@@ -31,9 +52,9 @@ string PathFindingAlgorithm::pathFind(const int & xStart, const int & yStart, co
 	static char c;
 	pqi=0;
 
-	for(y=0;y<m;y++)
+	for(y=0;y<m_h;y++)
 	{
-		for(x=0;x<n;x++)
+		for(x=0;x<m_w;x++)
 		{
 			closed_nodes_map[x][y]=0;
 			open_nodes_map[x][y]=0;
@@ -43,7 +64,7 @@ string PathFindingAlgorithm::pathFind(const int & xStart, const int & yStart, co
 	n0=new node(xStart, yStart, 0, 0);
 	n0->updatePriority(xFinish, yFinish);
 	pq[pqi].push(*n0);
-	open_nodes_map[x][y]=n0->getPriority();
+	//open_nodes_map[x][y]=n0->getPriority();
 
 	while(!pq[pqi].empty())
 	{
@@ -79,7 +100,7 @@ string PathFindingAlgorithm::pathFind(const int & xStart, const int & yStart, co
 		{
 			xdx=x+dx[i]; ydy=y+dy[i];
 
-			if(!(xdx<0 || xdx>n-1 || ydy<0 || ydy>m-1 || map[xdx][ydy]==1 
+			if(!(xdx<0 || xdx>m_w-1 || ydy<0 || ydy>m_h-1 || map[xdx][ydy]==1 
 				|| closed_nodes_map[xdx][ydy]==1))
 			{
 				m0=new node( xdx, ydy, n0->getLevel(), 
@@ -123,20 +144,21 @@ string PathFindingAlgorithm::pathFind(const int & xStart, const int & yStart, co
 	return "";
 }
 
-bool PathFindingAlgorithm::hasToRecalc(const int & xFinish, const int & yFinish) {
-	return lastResult.empty() || lastResultTargetX != xFinish || lastResultTargetY != yFinish;
+bool PathFindingAlgorithm::hasToRecalc(const int & xFinish, const int & yFinish, bool ignoreTargetChange) {
+	return lastResult.empty() || ((lastResultTargetX != xFinish || lastResultTargetY != yFinish) && !ignoreTargetChange);
 }
 
-int PathFindingAlgorithm::getNextDirection(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish) {
-	if (hasToRecalc(xFinish, yFinish)) {
+int PathFindingAlgorithm::getNextDirection(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish, bool ignoreTargetChange) {
+	if (hasToRecalc(xFinish, yFinish, ignoreTargetChange)) {
 		/**/ clock_t start = clock();
 
 		lastResult = pathFind(xStart, yStart, xFinish, yFinish);
 
-		/**/ if(lastResult == "") cout<<"An empty route generated!"<<endl;
 		/**/ clock_t end = clock();
 		/**/ double time_elapsed = double(end - start);
-		/**/ cout<<"Calculate A* Path (ms): " << time_elapsed << endl;
+		/**/ cout << "Calculate A* Path (ms): " << time_elapsed;
+		/**/ if(lastResult == "") cout << " >> (empty)";
+		/**/ cout << endl;
 
 		lastResultTargetX = xFinish;
 		lastResultTargetY = yFinish;
@@ -149,4 +171,12 @@ int PathFindingAlgorithm::getNextDirection(const int & xStart, const int & yStar
 		lastResult = lastResult.substr(1);
 		return result;
 	}
+}
+
+int PathFindingAlgorithm::getWidth() {
+	return m_w;
+}
+
+int PathFindingAlgorithm::getHeight() {
+	return m_h;
 }
