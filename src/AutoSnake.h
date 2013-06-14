@@ -17,7 +17,7 @@ private:
 	Level *level;
 	PathFindingAlgorithm* algo;
 	bool lastSearchFailed;
-
+	bool doNotRecalc;
 private:
 	Direction calcDirection();
 	int getFieldIdent(int px, int py);

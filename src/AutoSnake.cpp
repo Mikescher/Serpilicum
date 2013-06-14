@@ -5,6 +5,7 @@
 AutoSnake::AutoSnake(void)
 {
 	lastSearchFailed = false;
+	doNotRecalc = false;
 
 	if (GAMERULE_InfiniteField) {
 		algo = new PathFindingAlgorithm(BUFFER_W * 3, BUFFER_H * 3);
@@ -18,6 +19,7 @@ AutoSnake::AutoSnake(void)
 AutoSnake::AutoSnake(Level *lvl, int sx, int sy, Direction dir) : Snake(sx, sy, dir)
 {
 	lastSearchFailed = false;
+	doNotRecalc = false;
 
 	if (GAMERULE_InfiniteField) {
 		algo = new PathFindingAlgorithm(BUFFER_W * 3, BUFFER_H * 3);
@@ -47,19 +49,18 @@ void AutoSnake::extendForward() {
 }
 
 Direction AutoSnake::calcDirection() {
-	
-
 	int tx;
 	int ty;
-	
+
 	if (lastSearchFailed) {
 		getRandomPowerUp(tx, ty);
 	} else {
 		getNearestPowerUp(tx, ty);
 	}
 
-	if (ty == -1 || tx == -1) {
+	if (ty == INT_MIN || tx == INT_MIN) {
 		lastSearchFailed = false;
+		doNotRecalc = false;
 		return getDirection();
 	}
 
@@ -86,7 +87,7 @@ Direction AutoSnake::calcDirection() {
 		ty += BUFFER_H;
 	}
 
-	if (algo->hasToRecalc(tx, ty, lastSearchFailed)) {
+	if (algo->hasToRecalc(tx, ty, doNotRecalc)) {
 		for (int x = 0; x < algo->getWidth(); x++)
 		{
 			for (int y = 0; y < algo->getHeight(); y++)
@@ -137,10 +138,13 @@ Direction AutoSnake::calcDirection() {
 	//}
 	//getchar();
 
-	int result = algo->getNextDirection(head_x, head_y, tx, ty, lastSearchFailed);
+	bool willrecalc = algo->hasToRecalc(tx, ty, true);
+
+	int result = algo->getNextDirection(head_x, head_y, tx, ty, doNotRecalc);
 
 	if (result == -1) {
-		lastSearchFailed = true;
+		lastSearchFailed = ! doNotRecalc;
+		doNotRecalc = false;
 
 		if (isDirectionFree(getDirection())) {
 			return getDirection();
@@ -156,6 +160,7 @@ Direction AutoSnake::calcDirection() {
 			return getDirection();
 		}
 	} else {
+		doNotRecalc = (lastSearchFailed || doNotRecalc) && ! (willrecalc && doNotRecalc);
 		lastSearchFailed = false;
 
 		switch(result) {
@@ -228,8 +233,8 @@ void AutoSnake::getNearestPowerUp(int& px, int& py) {
 	}
 
 	if (minDis == INT_MAX) {
-		px = -1;
-		py = -1;
+		px = INT_MIN;
+		py = INT_MIN;
 
 		return;
 	}
@@ -261,10 +266,16 @@ void AutoSnake::getRandomPowerUp(int& px, int& py) {
 		pelem = pelem->getNextElement();
 	}
 
+	if (posx.size() <= 0) {
+		px = INT_MIN;
+		py = INT_MIN;
+		return;
+	}
+
 	int rand = std::rand() % posx.size();
 	px = posx.at(rand);
 	py = posy.at(rand);
-	std::cout << "Random val:" << px << "," << py << std::endl;
+	// std::cout << "Random val:" << px << "," << py << std::endl;
 }
 
 bool AutoSnake::isDirectionFree(Direction d) {

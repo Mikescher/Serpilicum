@@ -149,16 +149,26 @@ bool PathFindingAlgorithm::hasToRecalc(const int & xFinish, const int & yFinish,
 }
 
 int PathFindingAlgorithm::getNextDirection(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish, bool ignoreTargetChange) {
+	//if (ignoreTargetChange && !lastResult.empty()) {
+	//	if (lastResult.empty()) {
+	//		std::cout << "ignoreTargetChanged->recalc" << std::endl;
+	//	} else {
+	//		std::cout << "ignoreTargetChanged" << std::endl;
+	//	}
+	//} else {
+	//	std::cout << "not ignoreTargetChanged" << std::endl;
+	//}
+
 	if (hasToRecalc(xFinish, yFinish, ignoreTargetChange)) {
-		/**/ clock_t start = clock();
+		// clock_t start = clock();
 
 		lastResult = pathFind(xStart, yStart, xFinish, yFinish);
 
-		/**/ clock_t end = clock();
-		/**/ double time_elapsed = double(end - start);
-		/**/ cout << "Calculate A* Path (ms): " << time_elapsed;
-		/**/ if(lastResult == "") cout << " >> (empty)";
-		/**/ cout << endl;
+		// clock_t end = clock();
+		// double time_elapsed = double(end - start);
+		// cout << "Calculate A* Path (ms): " << time_elapsed;
+		// if(lastResult == "") cout << " >> (empty)";
+		// cout << endl;
 
 		lastResultTargetX = xFinish;
 		lastResultTargetY = yFinish;

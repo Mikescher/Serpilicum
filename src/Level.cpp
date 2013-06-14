@@ -18,25 +18,25 @@ Level::Level(void)
 	
 	snake->extendForward(5);
 
-	//snake->extendForward(BUFFER_W - 2 - 5);
-	//snake->setDirection(NORTH);
-	//snake->extendForward(1);
-	//snake->setDirection(EAST);
+	snake->extendForward(BUFFER_W - 2 - 5);
+	snake->setDirection(NORTH);
+	snake->extendForward(1);
+	snake->setDirection(EAST);
 
-	//snake->extendForward(BUFFER_W - 2);
-	//snake->setDirection(NORTH);
-	//snake->extendForward(1);
-	//snake->setDirection(EAST);
+	snake->extendForward(BUFFER_W - 2);
+	snake->setDirection(NORTH);
+	snake->extendForward(1);
+	snake->setDirection(EAST);
 
-	//snake->extendForward(BUFFER_W - 2);
-	//snake->setDirection(NORTH);
-	//snake->extendForward(1);
-	//snake->setDirection(EAST);
+	snake->extendForward(BUFFER_W - 2);
+	snake->setDirection(NORTH);
+	snake->extendForward(1);
+	snake->setDirection(EAST);
 
-	//snake->extendForward(BUFFER_W - 2);
-	//snake->setDirection(NORTH);
-	//snake->extendForward(1);
-	//snake->setDirection(EAST);
+	snake->extendForward(BUFFER_W - 2);
+	snake->setDirection(NORTH);
+	snake->extendForward(1);
+	snake->setDirection(EAST);
 }
 
 
