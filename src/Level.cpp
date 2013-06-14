@@ -8,7 +8,7 @@ Level::Level(void)
 	running = false;
 	is_dead = false;
 
-	snake_speed = 50;
+	snake_speed = 30;
 
 	lastRenderTime = 0;
 	lastPowerupAdd = 0;
@@ -18,25 +18,25 @@ Level::Level(void)
 	
 	snake->extendForward(5);
 
-	snake->extendForward(BUFFER_W - 2 - 5);
-	snake->setDirection(NORTH);
-	snake->extendForward(1);
-	snake->setDirection(EAST);
+	//snake->extendForward(BUFFER_W - 2 - 5);
+	//snake->setDirection(NORTH);
+	//snake->extendForward(1);
+	//snake->setDirection(EAST);
 
-	snake->extendForward(BUFFER_W - 2);
-	snake->setDirection(NORTH);
-	snake->extendForward(1);
-	snake->setDirection(EAST);
+	//snake->extendForward(BUFFER_W - 2);
+	//snake->setDirection(NORTH);
+	//snake->extendForward(1);
+	//snake->setDirection(EAST);
 
-	snake->extendForward(BUFFER_W - 2);
-	snake->setDirection(NORTH);
-	snake->extendForward(1);
-	snake->setDirection(EAST);
+	//snake->extendForward(BUFFER_W - 2);
+	//snake->setDirection(NORTH);
+	//snake->extendForward(1);
+	//snake->setDirection(EAST);
 
-	snake->extendForward(BUFFER_W - 2);
-	snake->setDirection(NORTH);
-	snake->extendForward(1);
-	snake->setDirection(EAST);
+	//snake->extendForward(BUFFER_W - 2);
+	//snake->setDirection(NORTH);
+	//snake->extendForward(1);
+	//snake->setDirection(EAST);
 }
 
 

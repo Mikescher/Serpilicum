@@ -297,5 +297,9 @@ bool AutoSnake::isDirectionFree(Direction d) {
 		break;
 	}
 
+	if (! GAMERULE_InfiniteField) {
+		if (cx < 0 || cy < 0 || cx >= BUFFER_W ||cy >= BUFFER_H) return false;
+	}
+
 	return (!GAMERULE_BiteOnSelfContact && !GAMERULE_DieOnSelfContact && std::abs(getDirection() - d) != 2) || !level->isPositionSnake(cx, cy);
 }

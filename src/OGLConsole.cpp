@@ -16,6 +16,7 @@ OGLConsole::OGLConsole(void) : DBConsole()
 
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowSize(8 * BUFFER_W, 12 * BUFFER_H);
+	glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - 8 * BUFFER_W) / 2, (glutGet(GLUT_SCREEN_HEIGHT) - 12 * BUFFER_H) / 2);
 	glutCreateWindow("Fight da Snake");
 
 	glewInit();
