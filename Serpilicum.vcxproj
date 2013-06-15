@@ -77,6 +77,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\AbstractConsole.h" />
     <ClInclude Include="src\Dynamic2DArray.h" />
     <ClInclude Include="src\ListenerCollection.h" />
@@ -132,12 +133,10 @@
     <ClCompile Include="src\WindowsConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Font_1.bmp" />
-    <Image Include="res\Font.bmp" />
-    <Image Include="res\Font.png" />
+    <ResourceCompile Include="Serpilicum.rc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resource.resx" />
+    <Image Include="res\Font_raster.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -115,58 +115,39 @@ void OGLConsole::renderOGL() {
 	}
 }
 
-unsigned char* OGLConsole::loadBMPRaw(const char * imagepath, unsigned int& outWidth, unsigned int& outHeight, bool flipY){
-	printf("Reading image %s\n", imagepath);
-	outWidth = -1;
-	outHeight = -1;
+unsigned char* OGLConsole::loadBMPRaw(const unsigned char * rawdata, unsigned int outWidth, unsigned int outHeight, bool flipY){
 	unsigned char header[54];
-	unsigned int dataPos;
-	unsigned int imageSize;
+
+	unsigned int imageSize = outWidth*outHeight*3;
 	unsigned char * data;
-	FILE * file;
-	fopen_s(&file, imagepath, "rb");
-	if (!file)	{printf("Image could not be opened\n"); return NULL;}
-	if ( fread(header, 1, 54, file)!=54 ){
-		printf("Not a correct BMP file\n");
-		return NULL;
-	}
-	if ( header[0]!='B' || header[1]!='M' ){
-		printf("Not a correct BMP file\n");
-		return NULL;
-	}
+	const unsigned char *datastart = rawdata + 54;
+	data = new byte[outWidth*outHeight*3];
+	memcpy(header, rawdata, 54);
+	memcpy(data, datastart, imageSize);
+
+	if ( header[0]!='B' || header[1]!='M' ){ printf("Not a correct BMP file\n"); return NULL;}
 	if ( *(int*)&(header[0x1E])!=0 ) {printf("Not a correct BMP file\n"); return NULL;}
 	if ( *(int*)&(header[0x1C])!=24 ) {printf("Not a correct BMP file\n"); return NULL;}
-	dataPos = *(int*)&(header[0x0A]);
-	imageSize = *(int*)&(header[0x22]);
-	outWidth = *(int*)&(header[0x12]);
-	outHeight = *(int*)&(header[0x16]);
-	if (imageSize==0) imageSize=outWidth*outHeight*3;
-	if (dataPos==0) dataPos=54;
-	data = new unsigned char [imageSize];
-	fread(data,1,imageSize,file);
-	fclose (file);
-	if (flipY){
-		unsigned char * tmpBuffer = new unsigned char[outWidth*3];
-		int size = outWidth*3;
-		for (unsigned int i=0; i <outHeight/2; i++){
-			memcpy_s(tmpBuffer,size,data+outWidth*3*i,size);
-			memcpy_s(data+outWidth*3*i, size, data+outWidth*3*(outHeight-i-1), size);
-			memcpy_s(data+outWidth*3*(outHeight-i-1), size,tmpBuffer, size);
-		}
-		delete [] tmpBuffer;
-	}
+
 	return data;
 }
 
-GLuint OGLConsole::LoadTextureRAW(const char* filename, int wrap)
-{
+GLuint OGLConsole::LoadTextureRAW(int id, int w, int h) {
+	HMODULE hModule = GetModuleHandle(NULL);
+	HRSRC hResource = FindResource(hModule, MAKEINTRESOURCE(id), RT_RCDATA);
+	HGLOBAL hMemory = LoadResource(hModule, hResource);
+	DWORD dwSize = SizeofResource(hModule, hResource);
+	LPVOID lpAddress = LockResource(hMemory);
+
+	unsigned char *bytes = new unsigned char[dwSize];
+	memcpy(bytes, lpAddress, dwSize);
+
+
 	GLuint texture;
 	glGenTextures( 1, &texture );
 
 	glBindTexture(GL_TEXTURE_2D, texture);
-	unsigned int w = 1024;
-	unsigned int h = 64;
-	glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, 1024, 64, 0, GL_BGR, GL_UNSIGNED_BYTE, loadBMPRaw(filename, w, h, false));
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_BGR, GL_UNSIGNED_BYTE, loadBMPRaw(bytes, w, h, false));
  
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -175,7 +156,7 @@ GLuint OGLConsole::LoadTextureRAW(const char* filename, int wrap)
 }
 
 void OGLConsole::loadTextures() {
-	chartextures = LoadTextureRAW("res/Font.bmp", 1);
+	chartextures = LoadTextureRAW(101, 1024, 64);
 }
 
 ActionListener *ogl_global_looplistener;
