@@ -38,9 +38,6 @@
     <ClInclude Include="src\Highscore.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\HPSpawnEffect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\IntroMenu.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -107,6 +104,12 @@
     <ClInclude Include="src\SnakeAutoModifier.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\AutoModifierStartEffect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PowerUpSpawnEffect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AutoSnake.cpp">
@@ -128,9 +131,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Highscore.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\HPSpawnEffect.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\IntroMenu.cpp">
@@ -184,11 +184,20 @@
     <ClCompile Include="src\SnakeAutoModifier.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\AutoModifierStartEffect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerUpSpawnEffect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Serpilicum.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Font_raster.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

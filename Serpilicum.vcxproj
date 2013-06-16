@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\AbstractConsole.h" />
+    <ClInclude Include="src\AutoModifierStartEffect.h" />
     <ClInclude Include="src\AutoPowerUp.h" />
     <ClInclude Include="src\Dynamic2DArray.h" />
     <ClInclude Include="src\SnakeAutoModifier.h" />
@@ -92,7 +93,7 @@
     <ClInclude Include="src\Gamerules.h" />
     <ClInclude Include="src\HealthPowerUp.h" />
     <ClInclude Include="src\Highscore.h" />
-    <ClInclude Include="src\HPSpawnEffect.h" />
+    <ClInclude Include="src\PowerUpSpawnEffect.h" />
     <ClInclude Include="src\IntroMenu.h" />
     <ClInclude Include="src\Keycodes.h" />
     <ClInclude Include="src\Label.h" />
@@ -111,6 +112,7 @@
     <ClInclude Include="src\WindowsConsole.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AutoModifierStartEffect.cpp" />
     <ClCompile Include="src\AutoPowerUp.cpp" />
     <ClCompile Include="src\AutoSnake.cpp" />
     <ClCompile Include="src\Button.cpp" />
@@ -119,7 +121,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HealthPowerUp.cpp" />
     <ClCompile Include="src\Highscore.cpp" />
-    <ClCompile Include="src\HPSpawnEffect.cpp" />
+    <ClCompile Include="src\PowerUpSpawnEffect.cpp" />
     <ClCompile Include="src\IntroMenu.cpp" />
     <ClCompile Include="src\Label.cpp" />
     <ClCompile Include="src\Level.cpp" />
@@ -142,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Font_raster.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,6 +4,7 @@
 #include "AutoPowerUp.h"
 #include "Keycodes.h"
 #include "SnakeAutoModifier.h"
+#include "AutoModifierStartEffect.h"
 
 Level::Level(void)
 {
@@ -16,8 +17,9 @@ Level::Level(void)
 	lastRenderTime = 0;
 	lastHPPowerupAdd = 0;
 	lastSpecPowerupAdd = 0;
+	lastSpecPowerupAddTest = 0;
 
-	snake = new Snake(this, FIELD_W / 2, FIELD_H / 2, EAST);
+	snake = new Snake(this, BUFFER_W / 2, BUFFER_H / 2, EAST);
 	powerupList = new PowerUpList();
 	
 	snake->extendForward(INITIAL_SNAKE_LENGTH);
@@ -63,11 +65,11 @@ void Level::run(AbstractConsole* pConsole) {
 	int l_s_speed = snake_speed;
 	if (getModifierType() == SNAKEMODTYPE_AUTO) {
 		l_s_speed /= 4;
+	} else if (getModifierType() == SNAKEMODTYPE_PREAUTO) {
+		l_s_speed = INT_MAX;
 	}
 
 	if ((curr - lastRenderTime) > l_s_speed) {
-		runModifier(pConsole);
-
 		PowerUpType collectedPowerUp = testForPowerUpCollision();
 
 		snake->onBeforeMove(this, pConsole);
@@ -88,6 +90,7 @@ void Level::run(AbstractConsole* pConsole) {
 
 		if (collectedPowerUp == POWERUP_AUTO) {
 			setModifier(new SnakeAutoModifier(this, pConsole));
+			addEffect(pConsole, new AutoModifierStartEffect(getSnake()->getHead()->getX(), getSnake()->getHead()->getY()));
 		}
 
 		if (getModifierType() != SNAKEMODTYPE_AUTO) {
@@ -100,6 +103,7 @@ void Level::run(AbstractConsole* pConsole) {
 		lastRenderTime = curr;
 	}
 
+	runModifier(pConsole);
 	runEffects(pConsole);
 }
 
@@ -211,17 +215,19 @@ void Level::addMissingHealthPowerUps(AbstractConsole * pConsole) {
 void Level::addMissingSpecialPowerUps(AbstractConsole * pConsole) {
 	long curr = pConsole->getCurrentTimeMillis();
 
-	if ((curr - lastSpecPowerupAdd) > 2000) {
-
-		if (rand() % 10 == 0) { // 1:10
+	if ((curr - lastSpecPowerupAddTest) > 2000 && (curr - lastSpecPowerupAdd) > 15000) {
+		if (rand() % 5 == 0) { // 1:5
 			int pux = rand() % BUFFER_W;
 			int puy = rand() % BUFFER_H;
-			if (! isPositionUsed(pux, puy)) {
+			if (! (isPositionUsed(pux, puy) || isSpecialPowerUpOnField())) {
 				getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy));
+				addEffect(pConsole, new PowerUpSpawnEffect(pux, puy));
+
+				lastSpecPowerupAdd = curr;
 			}
 		}
 
-		lastSpecPowerupAdd = curr;
+		lastSpecPowerupAddTest = curr;
 	}
 }
 
@@ -237,7 +243,7 @@ void Level::addHealthPowerUps(AbstractConsole *pconsole, int count) {
 
 void Level::addHealthPowerUps(AbstractConsole *pConsole, int hpux, int hpuy) {
 	getPowerUpList()->add(new HealthPowerUp(hpux, hpuy));
-	addEffect(pConsole, new HPSpawnEffect(hpux, hpuy));
+	addEffect(pConsole, new PowerUpSpawnEffect(hpux, hpuy));
 }
 
 bool Level::isPositionPowerUp(int xx, int yy) {
@@ -341,4 +347,18 @@ SnakeModifierType Level::getModifierType() {
 	} else {
 		return getModifier()->getType();
 	}
+}
+
+bool Level::isSpecialPowerUpOnField() {
+	PowerUp * pelem = getPowerUpList()->getFirst();
+
+	while(pelem != 0) {
+		if (pelem->getType() != POWERUP_HEALTH) {
+			return true;
+		}
+
+		pelem = pelem->getNextElement();
+	}
+
+	return false;
 }

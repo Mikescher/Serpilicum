@@ -3,7 +3,7 @@
 
 const int HPSE_EFFECT_DELAY = 125;
 
-class HPSpawnEffect :
+class PowerUpSpawnEffect :
 	public LevelEffect
 {
 private:
@@ -14,8 +14,8 @@ private:
 	virtual void renderMode1(AbstractConsole *console);
 	virtual void renderMode2(AbstractConsole *console);
 public:
-	HPSpawnEffect(int px, int py);
-	~HPSpawnEffect(void);
+	PowerUpSpawnEffect(int px, int py);
+	~PowerUpSpawnEffect(void);
 
 	virtual void start(AbstractConsole *console);
 	virtual void run(AbstractConsole *console);

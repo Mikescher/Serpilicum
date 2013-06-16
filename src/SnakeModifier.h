@@ -2,7 +2,7 @@
 
 #include "AbstractConsole.h"
 
-enum SnakeModifierType {SNAKEMODTYPE_NULL, SNAKEMODTYPE_AUTO};
+enum SnakeModifierType {SNAKEMODTYPE_NULL, SNAKEMODTYPE_PREAUTO, SNAKEMODTYPE_AUTO};
 
 class Level;
 

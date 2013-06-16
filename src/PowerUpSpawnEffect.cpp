@@ -1,20 +1,20 @@
-#include "HPSpawnEffect.h"
+#include "PowerUpSpawnEffect.h"
 
 
-HPSpawnEffect::HPSpawnEffect(int px, int py) : LevelEffect(px, py)
+PowerUpSpawnEffect::PowerUpSpawnEffect(int px, int py) : LevelEffect(px, py)
 {
 }
 
-HPSpawnEffect::~HPSpawnEffect(void)
+PowerUpSpawnEffect::~PowerUpSpawnEffect(void)
 {
 }
 
-void HPSpawnEffect::start(AbstractConsole *console) {
+void PowerUpSpawnEffect::start(AbstractConsole *console) {
 	startTime = console->getCurrentTimeMillis();
 	mode = 3;
 }
 
-void HPSpawnEffect::run(AbstractConsole *console) {
+void PowerUpSpawnEffect::run(AbstractConsole *console) {
 	long delta = console->getCurrentTimeMillis() - startTime;
 
 	mode = delta / HPSE_EFFECT_DELAY;
@@ -25,7 +25,7 @@ void HPSpawnEffect::run(AbstractConsole *console) {
 	}
 }
 
-void HPSpawnEffect::render(AbstractConsole *console) {
+void PowerUpSpawnEffect::render(AbstractConsole *console) {
 	if (mode == 0){
 		renderMode0(console);
 	} else if (mode == 1){
@@ -36,7 +36,7 @@ void HPSpawnEffect::render(AbstractConsole *console) {
 
 }
 
-void HPSpawnEffect::renderMode0(AbstractConsole *console) {
+void PowerUpSpawnEffect::renderMode0(AbstractConsole *console) {
 	console->write('/', x-1, y-3);
 	console->write('^', x, y-3);
 	console->write('\\', x+1, y-3);
@@ -61,7 +61,7 @@ void HPSpawnEffect::renderMode0(AbstractConsole *console) {
 	console->write('/', x+1, y+3);
 }
 
-void HPSpawnEffect::renderMode1(AbstractConsole *console) {
+void PowerUpSpawnEffect::renderMode1(AbstractConsole *console) {
 	console->write('-', x-1, y-2);
 	console->write('^', x, y-2);
 	console->write('-', x+1, y-2);
@@ -84,7 +84,7 @@ void HPSpawnEffect::renderMode1(AbstractConsole *console) {
 	console->write('-', x+1, y+2);
 }
 
-void HPSpawnEffect::renderMode2(AbstractConsole *console) {
+void PowerUpSpawnEffect::renderMode2(AbstractConsole *console) {
 	console->write('/', x-1, y-1);
 	console->write('-', x, y-1);
 	console->write('\\', x+1, y-1);

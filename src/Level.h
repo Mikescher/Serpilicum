@@ -5,11 +5,9 @@
 #include "AbstractConsole.h"
 #include <vector>
 #include "LevelEffect.h"
-#include "HPSpawnEffect.h"
+#include "PowerUpSpawnEffect.h"
 #include "Gamerules.h"
-
-const int FIELD_W = 76;
-const int FIELD_H = 36;
+#include <limits>
 
 class Level
 {
@@ -26,6 +24,7 @@ private:
 	long lastRenderTime;
 	long lastHPPowerupAdd;
 	long lastSpecPowerupAdd;
+	long lastSpecPowerupAddTest;
 
 	virtual void renderPowerups(AbstractConsole *console);
 	virtual void renderSnake(AbstractConsole *console);
@@ -54,6 +53,7 @@ public:
 	virtual bool isPositionPowerUp(int xx, int yy);
 	virtual bool isPositionSnake(int xx, int yy);
 	virtual bool isPositionUsed(int xx, int yy);
+	virtual bool isSpecialPowerUpOnField();
 
 	virtual Snake * getSnake();
 	virtual PowerUpList * getPowerUpList();

@@ -167,8 +167,6 @@ void onMainLoopLoopCallback() {
 }
 
 void onMainLoopKeyCallback(int key, int x, int y) {
-	printf("Key %d Event\n", key);
-
 	if (key == (GLUT_KEY_UP)) {
 		ogl_global_keylistener->keyEventPerformed(KC_UP);
 		return;
@@ -185,8 +183,6 @@ void onMainLoopKeyCallback(int key, int x, int y) {
 }
 
 void onMainLoopKeyCallbackASCII(unsigned char key, int x, int y) {
-	printf("ASCII-Key %d Event\n", key);
-
 	if (key == ' ') {
 		ogl_global_keylistener->keyEventPerformed(KC_SPACE);
 		return;
