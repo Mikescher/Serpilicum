@@ -2,21 +2,7 @@
 #include "Level.h"
 #include "AbstractConsole.h"
 
-AutoSnake::AutoSnake(void)
-{
-	lastSearchFailed = false;
-	doNotRecalc = false;
-
-	if (GAMERULE_InfiniteField) {
-		algo = new PathFindingAlgorithm(BUFFER_W * 3, BUFFER_H * 3);
-	} else {
-		algo = new PathFindingAlgorithm(BUFFER_W, BUFFER_H);
-	}
-	
-	level = 0;
-}
-
-AutoSnake::AutoSnake(Level *lvl, int sx, int sy, Direction dir) : Snake(sx, sy, dir)
+AutoSnake::AutoSnake(Level *lvl, int sx, int sy, Direction dir) : Snake(lvl, sx, sy, dir)
 {
 	lastSearchFailed = false;
 	doNotRecalc = false;

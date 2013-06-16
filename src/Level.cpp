@@ -1,22 +1,26 @@
 #include "Level.h"
 #include <iostream>
 #include "HealthPowerUp.h"
+#include "AutoPowerUp.h"
 #include "Keycodes.h"
+#include "SnakeAutoModifier.h"
 
 Level::Level(void)
 {
 	running = false;
 	is_dead = false;
+	modifier = 0;
 
-	snake_speed = 30;
+	snake_speed = INITIAL_SPEED_SNAKE;
 
 	lastRenderTime = 0;
-	lastPowerupAdd = 0;
+	lastHPPowerupAdd = 0;
+	lastSpecPowerupAdd = 0;
 
-	snake = new AutoSnake(this, FIELD_W / 2, FIELD_H / 2, EAST);
+	snake = new Snake(this, FIELD_W / 2, FIELD_H / 2, EAST);
 	powerupList = new PowerUpList();
 	
-	snake->extendForward(5);
+	snake->extendForward(INITIAL_SNAKE_LENGTH);
 
 	//snake->extendForward(BUFFER_W - 2 - 5);
 	//snake->setDirection(NORTH);
@@ -56,21 +60,57 @@ void Level::stop(){
 void Level::run(AbstractConsole* pConsole) {
 	long curr = pConsole->getCurrentTimeMillis();
 
-	if ((curr - lastRenderTime) > snake_speed) {
-		if (! testForHPCollision()) {
-			snake->moveForward();
+	int l_s_speed = snake_speed;
+	if (getModifierType() == SNAKEMODTYPE_AUTO) {
+		l_s_speed /= 4;
+	}
+
+	if ((curr - lastRenderTime) > l_s_speed) {
+		runModifier(pConsole);
+
+		PowerUpType collectedPowerUp = testForPowerUpCollision();
+
+		snake->onBeforeMove(this, pConsole);
+		if (getModifierType() == SNAKEMODTYPE_AUTO) {
+			if (collectedPowerUp == POWERUP_HEALTH) {
+				snake->autoExtendForward();
+			} else {
+				snake->autoMoveForward();
+			}
 		} else {
-			snake->extendForward();
+			if (collectedPowerUp == POWERUP_HEALTH) {
+				snake->extendForward();
+			} else {
+				snake->moveForward();
+			}
+		}
+		snake->onAfterMove(this, pConsole);
+
+		if (collectedPowerUp == POWERUP_AUTO) {
+			setModifier(new SnakeAutoModifier(this, pConsole));
 		}
 
-		addMissingHealthPowerUps(pConsole);
-
-		lastRenderTime = curr;
+		if (getModifierType() != SNAKEMODTYPE_AUTO) {
+			addMissingHealthPowerUps(pConsole);
+			addMissingSpecialPowerUps(pConsole);
+		}
 
 		testForDeath();
+
+		lastRenderTime = curr;
 	}
 
 	runEffects(pConsole);
+}
+
+void Level::runModifier(AbstractConsole *console) {
+	if (getModifier() != 0) {
+		modifier->run(this, console);
+
+		if (! getModifier()->isRunning()) {
+			modifier = 0;
+		}
+	}
 }
 
 void Level::runEffects(AbstractConsole *console) {
@@ -97,9 +137,9 @@ bool Level::isRunning(){
 
 void Level::render(AbstractConsole* pConsole)
 {
-	renderEffects(pConsole);
 	renderPowerups(pConsole);
 	renderSnake(pConsole);
+	renderEffects(pConsole);
 }
 
 void Level::renderSnake(AbstractConsole *console) {
@@ -140,30 +180,48 @@ void Level::onKeyDown(int keycode) {
 	}
 }
 
-bool Level::testForHPCollision() {
+PowerUpType Level::testForPowerUpCollision() {
 	PowerUp * pelem = getPowerUpList()->getFirst();
 
 	while(pelem != 0) {
 		if (pelem->getX() == snake->getHead()->getX() && pelem->getY() == snake->getHead()->getY()) {
+			PowerUpType ptype = pelem->getType();
 			getPowerUpList()->remove(pelem);
-			return true;
+			return ptype;
 		}
 
 		pelem = pelem->getNextElement();
 	}
-	return false;
+	return POWERUP_NULL;
 }
 
 void Level::addMissingHealthPowerUps(AbstractConsole * pConsole) {
 	long curr = pConsole->getCurrentTimeMillis();
 
-	if ((curr - lastPowerupAdd) > 500) {
+	if ((curr - lastHPPowerupAdd) > 500) {
 
 		if (getPowerUpList()->getLength() < 32) {
 			addHealthPowerUps(pConsole, 1);
 		}
 
-		lastPowerupAdd = curr;
+		lastHPPowerupAdd = curr;
+	}
+}
+
+void Level::addMissingSpecialPowerUps(AbstractConsole * pConsole) {
+	long curr = pConsole->getCurrentTimeMillis();
+
+	if ((curr - lastSpecPowerupAdd) > 2000) {
+
+		if (rand() % 10 == 0) { // 1:10
+			int pux = rand() % BUFFER_W;
+			int puy = rand() % BUFFER_H;
+			if (! isPositionUsed(pux, puy)) {
+				getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy));
+			}
+		}
+
+		lastSpecPowerupAdd = curr;
 	}
 }
 
@@ -267,4 +325,20 @@ bool Level::isDead() {
 void Level::addEffect(AbstractConsole *console, LevelEffect * effect) {
 	effects.push_back(effect);
 	effect->start(console);
+}
+
+void Level::setModifier(SnakeModifier* mod) {
+	modifier = mod;
+}
+
+SnakeModifier* Level::getModifier() {
+	return modifier;
+}
+
+SnakeModifierType Level::getModifierType() {
+	if (getModifier() == 0) {
+		return SNAKEMODTYPE_NULL;
+	} else {
+		return getModifier()->getType();
+	}
 }

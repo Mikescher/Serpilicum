@@ -25,7 +25,6 @@ private:
 	void getRandomPowerUp(int& px, int& py);
 	bool isDirectionFree(Direction d);
 public:
-	AutoSnake(void);
 	AutoSnake(Level *lvl, int sx, int sy, Direction dir);
 	~AutoSnake(void);
 

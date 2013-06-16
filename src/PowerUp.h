@@ -1,4 +1,7 @@
 #pragma once
+
+enum PowerUpType {POWERUP_NULL, POWERUP_HEALTH, POWERUP_AUTO};
+
 class PowerUp
 {
 private:
@@ -19,5 +22,6 @@ public:
 	virtual int getY();
 
 	virtual char getSymbol() = 0;
+	virtual PowerUpType getType() = 0;
 };
 

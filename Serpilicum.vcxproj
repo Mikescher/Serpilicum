@@ -79,7 +79,10 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\AbstractConsole.h" />
+    <ClInclude Include="src\AutoPowerUp.h" />
     <ClInclude Include="src\Dynamic2DArray.h" />
+    <ClInclude Include="src\SnakeAutoModifier.h" />
+    <ClInclude Include="src\SnakeModifier.h" />
     <ClInclude Include="src\ListenerCollection.h" />
     <ClInclude Include="src\AutoSnake.h" />
     <ClInclude Include="src\Button.h" />
@@ -108,6 +111,7 @@
     <ClInclude Include="src\WindowsConsole.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AutoPowerUp.cpp" />
     <ClCompile Include="src\AutoSnake.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\DBConsole.cpp" />
@@ -129,6 +133,7 @@
     <ClCompile Include="src\PowerUp.cpp" />
     <ClCompile Include="src\PowerUpList.cpp" />
     <ClCompile Include="src\Snake.cpp" />
+    <ClCompile Include="src\SnakeAutoModifier.cpp" />
     <ClCompile Include="src\SnakeElement.cpp" />
     <ClCompile Include="src\WindowsConsole.cpp" />
   </ItemGroup>

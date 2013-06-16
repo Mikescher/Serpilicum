@@ -13,3 +13,7 @@ HealthPowerUp::~HealthPowerUp(void)
 char HealthPowerUp::getSymbol() {
 	return 'O';
 }
+
+PowerUpType HealthPowerUp::getType() {
+	return POWERUP_HEALTH;
+}

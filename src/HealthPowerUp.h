@@ -8,5 +8,6 @@ public:
 	virtual ~HealthPowerUp(void);
 
 	virtual char getSymbol();
+	virtual PowerUpType getType();
 };
 
