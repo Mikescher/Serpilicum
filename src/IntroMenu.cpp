@@ -1,11 +1,8 @@
 #include "IntroMenu.h"
-#include "Label.h"
-#include "Button.h"
 
-
-IntroMenu::IntroMenu(ActionListener * startGamelistener)
+IntroMenu::IntroMenu(ActionListener* mainMenuListener)
 {
-	createMenu(startGamelistener);
+	createMenu(mainMenuListener);
 }
 
 
@@ -13,17 +10,21 @@ IntroMenu::~IntroMenu(void)
 {
 }
 
-void IntroMenu::createMenu(ActionListener * startGamelistener) {
-	addElement(new Label("Welcome to da game", 8, 2));
-	addElement(new Label("Move ya thingz wid da keyZ", 8, 3));
+void IntroMenu::createMenu(ActionListener* mainMenuListener)
+{
+	addElement(new Label("Welcome to da game", 8,2));
+	addElement(new Label("Please enter your Name", 8, 4));
 
-	Button *startBtn = new Button(101, "Start den Game", 8, 6);
-	addElement(startBtn);
-	startBtn->setListener(startGamelistener);
+	Button* mainBtn = new Button(301, "Enter Main Menu", 8, 20);
+	addElement(mainBtn);
+	mainBtn->setListener(mainMenuListener);
 
-	addElement(new Button(102, "Multiplayer", 8, 10));
-	addElement(new Button(103, "Highscore", 8, 14));
-	addElement(new Button(104, "Exit", 8, 18));
+	nameEdt = new Edit(302, "", 8, 6);
+	addElement(nameEdt);
+	focusElement(3);
+}
 
-	focusElement(2);
+std::string IntroMenu::getEditText(void)
+{
+	return nameEdt->getText();
 }

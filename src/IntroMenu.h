@@ -1,13 +1,20 @@
 #pragma once
-#include "Menu.h"
+#include "menu.h"
 #include "ListenerCollection.h"
+#include "Label.h"
+#include "Button.h"
+#include "Edit.h"
+
 class IntroMenu :
 	public Menu
 {
 private:
-	virtual void createMenu(ActionListener * startGamelistener);
+	Edit* nameEdt;
+	virtual void createMenu(ActionListener* mainMenuListener);
 public:
-	IntroMenu(ActionListener * startGamelistener);
-	virtual ~IntroMenu(void);
+	IntroMenu(ActionListener* mainMenuListener);
+	~IntroMenu(void);
+
+	virtual std::string getEditText(void);
 };
 

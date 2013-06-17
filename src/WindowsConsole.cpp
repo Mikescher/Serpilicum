@@ -42,17 +42,29 @@ void WindowsConsole::showConsoleCursor(bool bShow)
 unsigned char WindowsConsole::getKeyState() {
 	if (GetAsyncKeyState(VK_UP)) {
 		return KC_UP;
-	} else if (GetAsyncKeyState(VK_DOWN)) {
+	}
+	if (GetAsyncKeyState(VK_DOWN)) {
 		return KC_DOWN;
-	} else if (GetAsyncKeyState(VK_LEFT)) {
+	}
+	if (GetAsyncKeyState(VK_LEFT)) {
 		return KC_LEFT;
-	} else if (GetAsyncKeyState(VK_RIGHT)) {
+	}
+	if (GetAsyncKeyState(VK_RIGHT)) {
 		return KC_RIGHT;
-	} else if (GetAsyncKeyState(VK_SPACE)) {
+	}
+	if (GetAsyncKeyState(VK_SPACE)) {
 		return KC_SPACE;
-	} else if (GetAsyncKeyState(VK_ESCAPE)) {
+	}
+	if (GetAsyncKeyState(VK_ESCAPE)) {
 		return KC_ESCAPE;
 	}
+	
+	for (char cc = 'A'; cc <= 'Z'; cc++) {
+		if (GetAsyncKeyState(cc)) {
+			return cc; // Windows Keycodes == KC Keycodes
+		}
+	}
+
 	return 0;
 }
 

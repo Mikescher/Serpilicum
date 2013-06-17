@@ -38,9 +38,6 @@
     <ClInclude Include="src\Highscore.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\IntroMenu.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\Keycodes.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -110,6 +107,15 @@
     <ClInclude Include="src\PowerUpSpawnEffect.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\MainMenu.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IntroMenu.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Edit.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AutoSnake.cpp">
@@ -131,9 +137,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Highscore.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IntroMenu.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Label.cpp">
@@ -188,6 +191,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\PowerUpSpawnEffect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainMenu.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IntroMenu.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Edit.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
