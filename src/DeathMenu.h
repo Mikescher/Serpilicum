@@ -5,14 +5,15 @@
 #include "Button.h"
 #include "ListenerCollection.h"
 #include "Highscore.h"
+#include "Game.h"
 
 class DeathMenu :
 	public Menu
 {
 private:
-	virtual void createMenu(ActionListener * restartListener,Highscore* pHighscore);
+	virtual void createMenu(ActionListener * restartListener,Highscore* pHighscore, int pscore);
 public:
-	DeathMenu(ActionListener * restartListener, int pscore);
+	DeathMenu(ActionListener * restartListener, int pscore, Game* game);
 	virtual ~DeathMenu(void);
 };
 

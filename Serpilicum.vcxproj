@@ -83,6 +83,8 @@
     <ClInclude Include="src\AutoPowerUp.h" />
     <ClInclude Include="src\BiteEffect.h" />
     <ClInclude Include="src\Dynamic2DArray.h" />
+    <ClInclude Include="src\Edit.h" />
+    <ClInclude Include="src\IntroMenu.h" />
     <ClInclude Include="src\SnakeAutoModifier.h" />
     <ClInclude Include="src\SnakeModifier.h" />
     <ClInclude Include="src\ListenerCollection.h" />
@@ -94,7 +96,7 @@
     <ClInclude Include="src\HealthPowerUp.h" />
     <ClInclude Include="src\Highscore.h" />
     <ClInclude Include="src\PowerUpSpawnEffect.h" />
-    <ClInclude Include="src\IntroMenu.h" />
+    <ClInclude Include="src\MainMenu.h" />
     <ClInclude Include="src\Keycodes.h" />
     <ClInclude Include="src\Label.h" />
     <ClInclude Include="src\Level.h" />
@@ -118,11 +120,13 @@
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\DBConsole.cpp" />
     <ClCompile Include="src\DeathMenu.cpp" />
+    <ClCompile Include="src\Edit.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HealthPowerUp.cpp" />
     <ClCompile Include="src\Highscore.cpp" />
-    <ClCompile Include="src\PowerUpSpawnEffect.cpp" />
     <ClCompile Include="src\IntroMenu.cpp" />
+    <ClCompile Include="src\PowerUpSpawnEffect.cpp" />
+    <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\Label.cpp" />
     <ClCompile Include="src\Level.cpp" />
     <ClCompile Include="src\LevelEffect.cpp" />

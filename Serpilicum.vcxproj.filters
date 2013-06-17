@@ -38,9 +38,6 @@
     <ClInclude Include="src\Highscore.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\IntroMenu.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\Keycodes.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -140,9 +137,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Highscore.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IntroMenu.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Label.cpp">

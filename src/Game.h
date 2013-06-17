@@ -13,6 +13,7 @@ private:
 	MenuDisplay *menu;
 
 	bool active;
+	std::string playerName;
 
 	virtual void render();
 public:
@@ -24,5 +25,6 @@ public:
 	virtual void actionPerformed(int id);
 
 	virtual void run(AbstractConsole *pConsole);
+	virtual std::string getPlayerName(void);
 };
 
