@@ -60,6 +60,9 @@ unsigned char WindowsConsole::getKeyState() {
 	if (GetAsyncKeyState(VK_ESCAPE)) {
 		return KC_ESCAPE;
 	}
+	if (GetAsyncKeyState(VK_BACK)) {
+		return KC_BACKSPACE;
+	}
 	
 	for (char cc = 'A'; cc <= 'Z'; cc++) {
 		if (GetAsyncKeyState(cc)) {

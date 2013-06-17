@@ -2,8 +2,10 @@
 #define KC_DOWN 0x28
 #define KC_LEFT 0x25
 #define KC_RIGHT 0x27
+
 #define KC_SPACE 0x20
 #define KC_ESCAPE 0x1B
+#define KC_BACKSPACE 0x08
 
 #define KC_A 0x41
 #define KC_B 0x42

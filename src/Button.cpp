@@ -32,16 +32,16 @@ void Button::render(AbstractConsole* pConsole)
 	int right = getX() + width;
 
 	for(int i = getX(); i < right; i++) {
-		pConsole->write(isFocused() ? ('#') : ('-'), i, getY() - 1);
-		pConsole->write(isFocused() ? ('#') : ('-'), i, getY() + 1);
+		pConsole->write(isFocused() ? (223) : (196), i, getY() - 1);
+		pConsole->write(isFocused() ? (220) : (196), i, getY() + 1);
 	}
-	pConsole->write('/', getX() - 1, getY() - 1);
-	pConsole->write('|', getX() - 1, getY());
-	pConsole->write('\\', getX() - 1, getY() + 1);
+	pConsole->write(isFocused() ? (219) : (218), getX() - 1, getY() - 1);
+	pConsole->write(isFocused() ? (219) : (179), getX() - 1, getY());
+	pConsole->write(isFocused() ? (219) : (192), getX() - 1, getY() + 1);
 
-	pConsole->write('\\', right, getY() - 1);
-	pConsole->write('|', right, getY());
-	pConsole->write('/', right, getY() + 1);
+	pConsole->write(isFocused() ? (219) : (191), right, getY() - 1);
+	pConsole->write(isFocused() ? (219) : (179), right, getY());
+	pConsole->write(isFocused() ? (219) : (217), right, getY() + 1);
 
 	pConsole->write(getText(), getX(), getY());
 }

@@ -189,6 +189,9 @@ void onMainLoopKeyCallbackASCII(unsigned char key, int x, int y) {
 	} else if (key == 27) {
 		ogl_global_keylistener->keyEventPerformed(KC_ESCAPE);
 		return;
+	} else if (key == 8) {
+		ogl_global_keylistener->keyEventPerformed(KC_BACKSPACE);
+		return;
 	} else if(key >= 'A' && key <= 'Z') {
 		ogl_global_keylistener->keyEventPerformed(key);
 	} else if(key >= 'a' && key <= 'z'){

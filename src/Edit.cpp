@@ -18,16 +18,16 @@ void Edit::render(AbstractConsole* pConsole)
 	int right = getX() + width;
 
 	for(int i = getX(); i < right; i++) {
-		pConsole->write(isFocused() ? ('#') : ('-'), i, getY() - 1);
-		pConsole->write(isFocused() ? ('#') : ('-'), i, getY() + 1);
+		pConsole->write(isFocused() ? (205) : (196), i, getY() - 1);
+		pConsole->write(isFocused() ? (205) : (196), i, getY() + 1);
 	}
-	pConsole->write('/', getX() - 1, getY() - 1);
-	pConsole->write('|', getX() - 1, getY());
-	pConsole->write('\\', getX() - 1, getY() + 1);
+	pConsole->write(isFocused() ? (201) : (218), getX() - 1, getY() - 1);
+	pConsole->write(isFocused() ? (186) : (179), getX() - 1, getY());
+	pConsole->write(isFocused() ? (200) : (192), getX() - 1, getY() + 1);
 
-	pConsole->write('\\', right, getY() - 1);
-	pConsole->write('|', right, getY());
-	pConsole->write('/', right, getY() + 1);
+	pConsole->write(isFocused() ? (187) : (191), right, getY() - 1);
+	pConsole->write(isFocused() ? (186) : (179), right, getY());
+	pConsole->write(isFocused() ? (188) : (217), right, getY() + 1);
 
 	pConsole->write(getText(), getX(), getY());
 }
@@ -43,5 +43,11 @@ bool Edit::isFocusable() {
 
 
 void Edit::onKeyDown(int keycode) {
-	if (keycode >= 'A' && keycode <= 'Z') text += (char)keycode;
+	if (keycode >= 'A' && keycode <= 'Z') {
+		text += (char)keycode;
+	}
+
+	if (keycode == KC_BACKSPACE && ! text.empty()) {
+		text = text.substr(0, text.length() - 1);
+	}
 }

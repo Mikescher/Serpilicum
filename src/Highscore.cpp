@@ -17,8 +17,6 @@ void Highscore::writeScore(std::string pname, int pscoreValue)
 	datei.open(FILENAME, std::ios::out | std::ios::app);
 	datei << pname << "," << pscoreValue <<";";
 	datei.close();
-
-	std::cout << readScoreFile() << std::endl;
 }
 
 std::string Highscore::readScoreFile()
