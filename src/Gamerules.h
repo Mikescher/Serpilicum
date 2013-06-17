@@ -1,7 +1,11 @@
 #pragma once
 
+enum DisplayMethod {WINDOWS_CONSOLE, OGL_CONSOLE};
+
+const DisplayMethod DISPLAYMETHOD = WINDOWS_CONSOLE;
+
 const int INITIAL_SPEED_SNAKE = 30;
-const int INITIAL_SNAKE_LENGTH = 5;
+const int INITIAL_SNAKE_LENGTH = 45;
 
 //#########################################
 

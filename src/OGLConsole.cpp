@@ -31,7 +31,7 @@ OGLConsole::~OGLConsole(void)
 {
 }
 
-void OGLConsole::writeToConsole(char c, int x, int y)
+void OGLConsole::writeToConsole(int c, int x, int y)
 {
 	// Do nothing
 }

@@ -81,11 +81,11 @@
     <ClInclude Include="src\AbstractConsole.h" />
     <ClInclude Include="src\AutoModifierStartEffect.h" />
     <ClInclude Include="src\AutoPowerUp.h" />
+    <ClInclude Include="src\BiteEffect.h" />
     <ClInclude Include="src\Dynamic2DArray.h" />
     <ClInclude Include="src\SnakeAutoModifier.h" />
     <ClInclude Include="src\SnakeModifier.h" />
     <ClInclude Include="src\ListenerCollection.h" />
-    <ClInclude Include="src\AutoSnake.h" />
     <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\DBConsole.h" />
     <ClInclude Include="src\DeathMenu.h" />
@@ -114,7 +114,7 @@
   <ItemGroup>
     <ClCompile Include="src\AutoModifierStartEffect.cpp" />
     <ClCompile Include="src\AutoPowerUp.cpp" />
-    <ClCompile Include="src\AutoSnake.cpp" />
+    <ClCompile Include="src\BiteEffect.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\DBConsole.cpp" />
     <ClCompile Include="src\DeathMenu.cpp" />

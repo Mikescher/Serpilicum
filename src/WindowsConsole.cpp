@@ -12,7 +12,9 @@ WindowsConsole::~WindowsConsole(void)
 {
 }
 
-void WindowsConsole::writeToConsole(char c, int x, int y) {
+void WindowsConsole::writeToConsole(int c, int x, int y) {
+	if (x == BUFFER_W-1 && y == BUFFER_H-1) return; // Prevent scrolling
+
 	if ( INVALID_HANDLE_VALUE != hConsole )
 	{
 		COORD pos = {x, y};

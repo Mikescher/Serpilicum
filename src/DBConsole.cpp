@@ -36,7 +36,7 @@ void DBConsole::init() {
 	setDimensions(BUFFER_W, BUFFER_H);
 }
 
-void DBConsole::write(char c, int x, int y) {
+void DBConsole::write(int c, int x, int y) {
 	if (x >= 0 && y >= 0 && x < BUFFER_W && y < BUFFER_H) {
 		buffer[x][y] = c;
 	}

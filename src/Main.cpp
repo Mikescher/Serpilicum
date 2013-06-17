@@ -10,7 +10,15 @@ int main() {
 //#############################################
 
 void Main::start() {
-	dbc = new OGLConsole();
+	switch(DISPLAYMETHOD) {
+	case WINDOWS_CONSOLE:
+		dbc = new WindowsConsole();
+		break;
+	case OGL_CONSOLE:
+		dbc = new OGLConsole();
+		break;
+	}
+
 	game = new Game(dbc);
 
 	dbc->init();
@@ -43,6 +51,6 @@ Explosion when Bite/kill -> Effect -> StarDelay bigger when more behind -> chain
 Message displaying -> Message in  Black'n'White bmp -> first 1x1 px big -> extend (math) to actual size -> fast flying aout of monitor
 (GAME OVER,  N Lives Left,  CRAZY Mode)
 Zoom In PowerUp (1x1->3x3->5x5->3x3->1x1->3x3...) Half Speed but 2x Zoom (everything 4x4)
-
+FPS Limiter
 
 */

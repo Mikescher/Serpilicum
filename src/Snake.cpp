@@ -395,3 +395,143 @@ void Snake::autoExtendForward() {
 
 	extendForward();
 }
+
+SnakeIntersecton Snake::getIntersectionOrientation(int position) {
+	int width = getLength();
+
+	if (position < 0 || position >= width) {
+		return SIS_NULL;
+	}
+
+	int cux = getElementAt(position)->getX();
+	int cuy = getElementAt(position)->getY();
+
+	if (position == 0 && width == 1) { // FIRST AND ONLY
+		return (SnakeIntersecton)getDirection();
+	} else if (position == (width - 1)) { // LAST
+		return (SnakeIntersecton)getDirectionBetween(getElementAt(position - 1)->getX(), getElementAt(position - 1)->getY(), cux, cuy);
+	} else {
+		Direction da;
+		if (position > 0) {
+			da = getDirectionBetween(cux, cuy, getElementAt(position - 1)->getX(), getElementAt(position - 1)->getY());
+		} else {
+			da = getDirection();
+		}
+		Direction db = getDirectionBetween(cux, cuy, getElementAt(position + 1)->getX(), getElementAt(position + 1)->getY());
+
+		switch(da) {
+		case NORTH:
+			switch(db) {
+			case NORTH:
+				return SIS_N;
+			case EAST:
+				return SIS_NE;
+			case SOUTH:
+				return SIS_S;
+			case WEST:
+				return SIS_NW;
+			}
+			break;
+		case EAST:
+			switch(db) {
+			case NORTH:
+				return SIS_NE;
+			case EAST:
+				return SIS_E;
+			case SOUTH:
+				return SIS_ES;
+			case WEST:
+				return SIS_W;
+			}
+			break;
+		case SOUTH:
+			switch(db) {
+			case NORTH:
+				return SIS_N;
+			case EAST:
+				return SIS_ES;
+			case SOUTH:
+				return SIS_S;
+			case WEST:
+				return SIS_SW;
+			}
+			break;
+		case WEST:
+			switch(db) {
+			case NORTH:
+				return SIS_NW;
+			case EAST:
+				return SIS_E;
+			case SOUTH:
+				return SIS_SW;
+			case WEST:
+				return SIS_W;
+			}
+			break;
+		}
+	}
+
+	return SIS_NULL;
+}
+
+Direction Snake::getDirectionBetween(int x1, int y1, int x2, int y2) { //TODO OverBorderDirection
+	int dx = x2 - x1;
+	int dy = y2 - y1;
+
+	if (abs(dx) > 1) {
+		if (x1 < x2) {
+			x1 += BUFFER_W;
+		} else {
+			x2 += BUFFER_W;
+		}
+	}
+
+	if (abs(dy) > 1) {
+		if (y1 < y2) {
+			y1 += BUFFER_H;
+		} else {
+			y2 += BUFFER_H;
+		}
+	}
+
+	dx = x2 - x1;
+	dy = y2 - y1;
+
+	if (dx == 0) {
+		return (dy < 0) ? NORTH : SOUTH;
+	} else {
+		return (dx < 0) ? WEST : EAST;
+	}
+}
+
+SnakeElement* Snake::getElementAt(int pos) {
+	SnakeElement* curr = getHead();
+
+	for (int i = 0; i < pos; i++)
+	{
+		if (! curr->hasNextElement()) {
+			return 0;
+		}
+
+		curr = curr->getNextElement();
+	}
+
+	return curr;
+}
+
+int Snake::findElement(SnakeElement* el) {
+	SnakeElement* curr = getHead();
+
+	int pos = 0;
+	while (curr != 0)
+	{
+		if (curr == el) {
+			return pos;
+		}
+
+		curr = curr->getNextElement();
+		pos++;
+	}
+
+	return -1;
+}

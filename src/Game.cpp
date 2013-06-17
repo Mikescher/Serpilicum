@@ -2,10 +2,11 @@
 
 #include "AbstractConsole.h"
 #include "Level.h"
-#include "IntroMenu.h"
+#include "MainMenu.h"
 #include "DeathMenu.h"
 #include "Keycodes.h"
 #include "ListenerCollection.h"
+#include "IntroMenu.h"
 
 Game::Game(AbstractConsole *pconsole)
 {
@@ -30,7 +31,7 @@ void Game::run(AbstractConsole* pConsole){
 		if (level->isRunning()) {
 			level->run(pConsole);
 		} else if (level->isDead()) {
-			menu->setMenu(new DeathMenu(this, level->getSnake()->getLength()));
+			menu->setMenu(new DeathMenu(this, level->getSnake()->getLength(), (this)));
 						
 		}
 	} else {
@@ -75,5 +76,17 @@ void Game::actionPerformed(int id) {
 		menu->removeMenu();
 		level = new Level();
 		level->start();
-	}
+	} else if (id == 301) { // INTROMENU -> MAINMENU
+		playerName = ((IntroMenu *)(menu->getMenu()))->getEditText();
+		menu->removeMenu();
+		MainMenu* main = new MainMenu(this);
+		menu->setMenu(new MainMenu(this));
+		
+	} 
+
+}
+
+std::string Game::getPlayerName(void)
+{
+	return playerName;
 }

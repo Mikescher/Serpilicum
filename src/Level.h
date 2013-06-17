@@ -1,6 +1,5 @@
 #pragma once
-
-#include "AutoSnake.h"
+#include "Snake.h"
 #include "PowerUpList.h"
 #include "AbstractConsole.h"
 #include <vector>
@@ -32,6 +31,8 @@ private:
 
 	virtual void runEffects(AbstractConsole *console);
 	virtual void runModifier(AbstractConsole *console);
+
+	virtual void removeSnakePieceWithEffect(AbstractConsole* pConsole, SnakeElement* prevelement, int depth);
 public:
 	Level(void);
 	virtual ~Level(void);
@@ -48,7 +49,7 @@ public:
 	virtual void addEffect(AbstractConsole *console, LevelEffect * effect);
 
 	virtual PowerUpType testForPowerUpCollision();
-	virtual void testForDeath();
+	virtual void testForDeath(AbstractConsole* pConsole);
 
 	virtual bool isPositionPowerUp(int xx, int yy);
 	virtual bool isPositionSnake(int xx, int yy);

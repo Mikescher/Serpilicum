@@ -12,7 +12,7 @@ class WindowsConsole :
 private:
 	HANDLE hConsole;
 protected:
-	virtual void writeToConsole(char c, int x, int y);
+	virtual void writeToConsole(int c, int x, int y);
 	virtual void showConsoleCursor(bool bShow);
 	virtual unsigned char getKeyState();
 	virtual long getSystemCurrTimeMillis();

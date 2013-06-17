@@ -1,10 +1,12 @@
 #include "Level.h"
+#include "Snake.h"
 #include <iostream>
 #include "HealthPowerUp.h"
 #include "AutoPowerUp.h"
 #include "Keycodes.h"
 #include "SnakeAutoModifier.h"
 #include "AutoModifierStartEffect.h"
+#include "BiteEffect.h"
 
 Level::Level(void)
 {
@@ -98,7 +100,7 @@ void Level::run(AbstractConsole* pConsole) {
 			addMissingSpecialPowerUps(pConsole);
 		}
 
-		testForDeath();
+		testForDeath(pConsole);
 
 		lastRenderTime = curr;
 	}
@@ -142,17 +144,20 @@ bool Level::isRunning(){
 void Level::render(AbstractConsole* pConsole)
 {
 	renderPowerups(pConsole);
-	renderSnake(pConsole);
+	
 	renderEffects(pConsole);
+
+	renderSnake(pConsole);
 }
 
 void Level::renderSnake(AbstractConsole *console) {
 	SnakeElement * snakeelement = getSnake()->getHead();
-
+	int pos = 0;
 	while(snakeelement != 0) {
-		console->write('#', snakeelement->getX(), snakeelement->getY());
+		console->write(SNAKEPARTCHARS[getSnake()->getIntersectionOrientation(pos)], snakeelement->getX(), snakeelement->getY());
 
 		snakeelement = snakeelement->getNextElement();
+		pos++;
 	}
 }
 
@@ -278,7 +283,7 @@ bool Level::isPositionUsed(int xx, int yy) {
 	return isPositionPowerUp(xx, yy) || isPositionSnake(xx, yy);
 }
 
-void Level::testForDeath() {
+void Level::testForDeath(AbstractConsole* pConsole) {
 	//##############################
 	// COLLSION WITH SNAKE PIECE
 	//#############################
@@ -293,8 +298,7 @@ void Level::testForDeath() {
 				if (GAMERULE_DieOnSelfContact) {
 					onDie();
 				} else if (GAMERULE_BiteOnSelfContact && prevelem != 0){
-					std::cout << "BITE DA SNAKE" << std::endl;
-					prevelem->removeNextElement();
+					removeSnakePieceWithEffect(pConsole, prevelem, 0);
 				}
 				return;
 			}
@@ -317,6 +321,16 @@ void Level::testForDeath() {
 
 		snakeelement3 = snakeelement3->getNextElement();
 	}
+}
+
+void Level::removeSnakePieceWithEffect(AbstractConsole* pConsole, SnakeElement* prevelement, int depth) {
+	if (!prevelement->hasNextElement()) return;
+
+	int cr = SNAKEPARTCHARS[getSnake()->getIntersectionOrientation(getSnake()->findElement(prevelement->getNextElement()))];
+	addEffect(pConsole, new BiteEffect(prevelement->getNextElement()->getX(), prevelement->getNextElement()->getY(), depth, cr));
+	removeSnakePieceWithEffect(pConsole, prevelement->getNextElement(), depth + 1);
+	
+	prevelement->removeNextElement();
 }
 
 void Level::onDie() {

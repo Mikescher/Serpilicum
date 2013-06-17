@@ -13,7 +13,7 @@ public:
 
 	virtual void redraw() = 0;
 
-	virtual void write(char c, int x, int y) = 0;
+	virtual void write(int c, int x, int y) = 0;
 	virtual void write(std::string s, int x, int y) = 0;
 
 	virtual void clearBuffer() = 0;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "Gamerules.h"
 #include "OGLConsole.h"
 #include "WindowsConsole.h"
 #include "AbstractConsole.h"
