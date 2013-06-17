@@ -19,6 +19,8 @@ public:
 	virtual void clearBuffer() = 0;
 	virtual void swap() = 0;
 
+	virtual void zoomIn(int centerX, int centerY) = 0;
+
 	virtual unsigned char getCurrentKeyState() = 0;
 	virtual void setDimensions(short w, short h) = 0;
 	virtual long getCurrentTimeMillis() = 0;

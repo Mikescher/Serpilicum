@@ -6,7 +6,9 @@
 #include "Keycodes.h"
 #include "SnakeAutoModifier.h"
 #include "AutoModifierStartEffect.h"
+#include "SnakeZoomModifier.h"
 #include "BiteEffect.h"
+#include "ZoomPowerUp.h"
 
 Level::Level(void)
 {
@@ -69,6 +71,8 @@ void Level::run(AbstractConsole* pConsole) {
 		l_s_speed /= 4;
 	} else if (getModifierType() == SNAKEMODTYPE_PREAUTO) {
 		l_s_speed = INT_MAX;
+	} else if (getModifierType() == SNAKEMODTYPE_ZOOM) {
+		l_s_speed *= 2;
 	}
 
 	if ((curr - lastRenderTime) > l_s_speed) {
@@ -93,6 +97,8 @@ void Level::run(AbstractConsole* pConsole) {
 		if (collectedPowerUp == POWERUP_AUTO) {
 			setModifier(new SnakeAutoModifier(this, pConsole));
 			addEffect(pConsole, new AutoModifierStartEffect(getSnake()->getHead()->getX(), getSnake()->getHead()->getY()));
+		} else if (collectedPowerUp == POWERUP_ZOOM) {
+			setModifier(new SnakeZoomModifier(this, pConsole));
 		}
 
 		if (getModifierType() != SNAKEMODTYPE_AUTO) {
@@ -148,6 +154,10 @@ void Level::render(AbstractConsole* pConsole)
 	renderEffects(pConsole);
 
 	renderSnake(pConsole);
+
+	if (getModifierType() == SNAKEMODTYPE_ZOOM) {
+		pConsole->zoomIn(getSnake()->getHead()->getX(), getSnake()->getHead()->getY());
+	}
 }
 
 void Level::renderSnake(AbstractConsole *console) {
@@ -224,8 +234,12 @@ void Level::addMissingSpecialPowerUps(AbstractConsole * pConsole) {
 		if (rand() % 5 == 0) { // 1:5
 			int pux = rand() % BUFFER_W;
 			int puy = rand() % BUFFER_H;
-			if (! (isPositionUsed(pux, puy) || isSpecialPowerUpOnField())) {
-				getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy));
+			if (! (isPositionUsed(pux, puy) || isSpecialPowerUpOnField() || getModifierType() != SNAKEMODTYPE_NULL)) {
+				switch(rand()%2) {
+				case 0: getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy)); break;
+				case 1: getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy)); break;
+				}
+				
 				addEffect(pConsole, new PowerUpSpawnEffect(pux, puy));
 
 				lastSpecPowerupAdd = curr;

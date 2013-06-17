@@ -1,5 +1,6 @@
 #include "DBConsole.h"
 #include <iostream>
+#include "Gamerules.h"
 
 DBConsole::DBConsole(void) : AbstractConsole()
 {
@@ -94,7 +95,7 @@ void DBConsole::clearBuffer() {
 	}
 
 	//SHOW FPS
-	write("FPS: " + std::to_string((int)getFPS()), 0, 0);
+	write("FPS: " + std::to_string((int)getFPS()), BUFFER_W - 10, 0);
 }
 
 unsigned char DBConsole::getCurrentKeyState() {
@@ -125,4 +126,40 @@ long DBConsole::getCurrentTimeMillis() {
 
 double DBConsole::getFPS() {
 	return fps;
+}
+
+void DBConsole::zoomIn(int centerX, int centerY) {
+	int newbuffer[BUFFER_W][BUFFER_H];
+
+	for (int x = 0; x < BUFFER_W; x++) {
+		for (int y = 0; y < BUFFER_H; y++) {
+			int nbx = x;
+			int nby = y;
+
+			nbx /= 2;
+			nby /= 2;
+
+			nbx -= BUFFER_W/4;
+			nby -= BUFFER_H/4;
+
+			nbx += centerX;
+			nby += centerY;
+
+						if (GAMERULE_InfiniteField) {
+				nbx = (nbx + BUFFER_W) % BUFFER_W;
+				nby = (nby + BUFFER_H) % BUFFER_H;
+			}
+
+			if (nbx >= 0 && nby >= 0 && nbx < BUFFER_W && nby < BUFFER_H)
+				newbuffer[x][y] = buffer[nbx][nby];
+			else
+				newbuffer[x][y] = 178;
+		}
+	}
+
+	for (int x = 0; x < BUFFER_W; x++) {
+		for (int y = 0; y < BUFFER_H; y++) {
+			buffer[x][y] = newbuffer[x][y];
+		}
+	}
 }

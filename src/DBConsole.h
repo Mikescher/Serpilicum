@@ -37,6 +37,8 @@ public:
 	virtual void clearBuffer();
 	virtual void swap();
 
+	virtual void zoomIn(int centerX, int centerY);
+
 	virtual unsigned char getCurrentKeyState();
 	virtual long getCurrentTimeMillis();
 	virtual double getFPS();

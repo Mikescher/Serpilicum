@@ -111,7 +111,9 @@
     <ClInclude Include="src\PowerUpList.h" />
     <ClInclude Include="src\Snake.h" />
     <ClInclude Include="src\SnakeElement.h" />
+    <ClInclude Include="src\SnakeZoomModifier.h" />
     <ClInclude Include="src\WindowsConsole.h" />
+    <ClInclude Include="src\ZoomPowerUp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AutoModifierStartEffect.cpp" />
@@ -141,7 +143,9 @@
     <ClCompile Include="src\Snake.cpp" />
     <ClCompile Include="src\SnakeAutoModifier.cpp" />
     <ClCompile Include="src\SnakeElement.cpp" />
+    <ClCompile Include="src\SnakeZoomModifier.cpp" />
     <ClCompile Include="src\WindowsConsole.cpp" />
+    <ClCompile Include="src\ZoomPowerUp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Serpilicum.rc" />

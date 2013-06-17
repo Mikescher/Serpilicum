@@ -34,7 +34,7 @@ private:
 
 	virtual void removeSnakePieceWithEffect(AbstractConsole* pConsole, SnakeElement* prevelement, int depth);
 public:
-	Level(void);
+	Level();
 	virtual ~Level(void);
 
 	virtual void render(AbstractConsole* pConsole);

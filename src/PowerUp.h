@@ -1,6 +1,6 @@
 #pragma once
 
-enum PowerUpType {POWERUP_NULL, POWERUP_HEALTH, POWERUP_AUTO};
+enum PowerUpType {POWERUP_NULL, POWERUP_HEALTH, POWERUP_AUTO, POWERUP_ZOOM};
 
 class PowerUp
 {

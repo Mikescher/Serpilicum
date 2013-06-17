@@ -52,5 +52,5 @@ Message displaying -> Message in  Black'n'White bmp -> first 1x1 px big -> exten
 (GAME OVER,  N Lives Left,  CRAZY Mode)
 Zoom In PowerUp (1x1->3x3->5x5->3x3->1x1->3x3...) Half Speed but 2x Zoom (everything 4x4)
 FPS Limiter
-
+Where do we loose FPS with looooooooong snake (20 FPS with BUFFER_H*4 Length)
 */

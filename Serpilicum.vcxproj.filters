@@ -14,9 +14,6 @@
     <ClInclude Include="src\AbstractConsole.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\AutoSnake.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\Button.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -116,11 +113,17 @@
     <ClInclude Include="src\Edit.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\BiteEffect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ZoomPowerUp.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SnakeZoomModifier.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\AutoSnake.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="src\Button.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -200,6 +203,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Edit.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BiteEffect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ZoomPowerUp.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SnakeZoomModifier.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
