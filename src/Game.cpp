@@ -92,7 +92,6 @@ void Game::actionPerformed(int id, int param) {
 		DeathMenu* dmenu = new DeathMenu(this, param, this);
 		menu->setMenu(dmenu);
 	}
-
 }
 
 std::string Game::getPlayerName(void)

@@ -27,9 +27,9 @@ void MainMenu::createMenu(ActionListener * startGamelistener) {
 	addElement(highBtn);
 	highBtn->setListener(startGamelistener);
 	
-
-	addElement(new Button(105, "Credits", 8, 18));
-	addElement(new Button(104, "Exit", 8, 22));
+	addElement(new Button(106, "Options", 8, 18));
+	addElement(new Button(105, "Credits", 8, 22));
+	addElement(new Button(104, "Exit", 8, 26));
 
 
 	focusElement(2);
