@@ -91,6 +91,10 @@ void Game::actionPerformed(int id, int param) {
 		menu->removeMenu();
 		DeathMenu* dmenu = new DeathMenu(this, param, this);
 		menu->setMenu(dmenu);
+	}	else if (id == 501) { // HIGHSCOREMENU -> MAINMENU
+		menu->removeMenu();
+		MainMenu* main = new MainMenu(this);
+		menu->setMenu(main);
 	}
 }
 

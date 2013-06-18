@@ -26,7 +26,8 @@ void HighscoreMenu::createMenu(ActionListener * highMenuListener, Highscore* pHi
 		addElement(highLbn);
 	}
 
-	Button* mainBtn = new Button(401, "Back to Menu", 30, 6);
+	Button* mainBtn = new Button(501, "Back to Menu", 30, 6);
 	addElement(mainBtn);
 	mainBtn->setListener(highMenuListener);
+	focusElement(1);
 }
