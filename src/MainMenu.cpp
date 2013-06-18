@@ -22,7 +22,12 @@ void MainMenu::createMenu(ActionListener * startGamelistener) {
 	startBtn->setListener(startGamelistener);
 
 	addElement(new Button(102, "Multiplayer", 8, 10));
-	addElement(new Button(103, "Highscore", 8, 14));
+
+	Button *highBtn = new Button(103, "Highscore", 8, 14);
+	addElement(highBtn);
+	highBtn->setListener(startGamelistener);
+	
+
 	addElement(new Button(105, "Credits", 8, 18));
 	addElement(new Button(104, "Exit", 8, 22));
 

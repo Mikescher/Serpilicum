@@ -122,6 +122,9 @@
     <ClInclude Include="src\SnakeZoomModifier.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\HighscoreMenu.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Button.cpp">
@@ -212,6 +215,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\SnakeZoomModifier.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighscoreMenu.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

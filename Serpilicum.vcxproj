@@ -84,6 +84,7 @@
     <ClInclude Include="src\BiteEffect.h" />
     <ClInclude Include="src\Dynamic2DArray.h" />
     <ClInclude Include="src\Edit.h" />
+    <ClInclude Include="src\HighscoreMenu.h" />
     <ClInclude Include="src\IntroMenu.h" />
     <ClInclude Include="src\SnakeAutoModifier.h" />
     <ClInclude Include="src\SnakeModifier.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HealthPowerUp.cpp" />
     <ClCompile Include="src\Highscore.cpp" />
+    <ClCompile Include="src\HighscoreMenu.cpp" />
     <ClCompile Include="src\IntroMenu.cpp" />
     <ClCompile Include="src\PowerUpSpawnEffect.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
