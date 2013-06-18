@@ -254,14 +254,18 @@ void Level::addMissingHealthPowerUps(AbstractConsole * pConsole) {
 void Level::addMissingSpecialPowerUps(AbstractConsole * pConsole) {
 	long curr = pConsole->getCurrentTimeMillis();
 
-	if ((curr - lastSpecPowerupAddTest) > 2000 && (curr - lastSpecPowerupAdd) > 15000) {
+	if ((curr - lastSpecPowerupAddTest) > 2000 && (curr - lastSpecPowerupAdd) > 20000) {
 		if (rand() % 5 == 0) { // 1:5
 			int pux = rand() % BUFFER_W;
 			int puy = rand() % BUFFER_H;
 			if (! (isPositionUsed(pux, puy) || isSpecialPowerUpOnField() || getModifierType() != SNAKEMODTYPE_NULL)) {
 				switch(rand()%2) {
-				case 0: getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy)); break;
-				case 1: getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy)); break;
+				case 0: 
+					getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy)); 
+					break;
+				case 1: 
+					getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy)); 
+					break;
 				}
 				
 				addEffect(pConsole, new PowerUpSpawnEffect(pux, puy));
