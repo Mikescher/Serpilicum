@@ -88,6 +88,7 @@
     <ClInclude Include="src\GameOverDisplayMenu.h" />
     <ClInclude Include="src\HighscoreMenu.h" />
     <ClInclude Include="src\IntroMenu.h" />
+    <ClInclude Include="src\OptionMenu.h" />
     <ClInclude Include="src\SnakeAutoModifier.h" />
     <ClInclude Include="src\SnakeModifier.h" />
     <ClInclude Include="src\ListenerCollection.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="src\Highscore.cpp" />
     <ClCompile Include="src\HighscoreMenu.cpp" />
     <ClCompile Include="src\IntroMenu.cpp" />
+    <ClCompile Include="src\OptionMenu.cpp" />
     <ClCompile Include="src\PowerUpSpawnEffect.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\Label.cpp" />

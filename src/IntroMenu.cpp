@@ -25,7 +25,7 @@ void IntroMenu::createMenu(ActionListener* mainMenuListener)
 
 	focusElement(3);
 }
-
+ 
 std::string IntroMenu::getEditText(void)
 {
 	return nameEdt->getText();

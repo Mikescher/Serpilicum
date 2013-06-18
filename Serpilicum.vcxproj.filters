@@ -151,6 +151,9 @@
       <Filter>Menu\DisplayMenu</Filter>
     </ClInclude>
     <ClInclude Include="src\SplashMenu.h" />
+    <ClInclude Include="src\OptionMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IntroMenu.cpp">
@@ -253,6 +256,9 @@
       <Filter>Menu\DisplayMenu</Filter>
     </ClCompile>
     <ClCompile Include="src\SplashMenu.cpp" />
+    <ClCompile Include="src\OptionMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Serpilicum.rc" />

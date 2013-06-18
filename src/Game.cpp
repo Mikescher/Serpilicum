@@ -10,6 +10,7 @@
 #include "HighscoreMenu.h"
 #include "GameOverDisplayMenu.h"
 #include "SplashMenu.h"
+#include "OptionMenu.h"
 
 Game::Game(AbstractConsole *pconsole)
 {
@@ -101,6 +102,15 @@ void Game::actionPerformed(int id, int param) {
 		IntroMenu* main = new IntroMenu(this);
 		menu->setMenu(main);
 	}	else if (id == 202) { // DEATHMENU -> MAINMENU
+		menu->removeMenu();
+		MainMenu* main = new MainMenu(this);
+		menu->setMenu(main);
+	}	else if (id == 106) { // MAINMENU -> DEATMENU
+		menu->removeMenu();
+		OptionMenu* omenu = new OptionMenu(this);
+		menu->setMenu(omenu);
+	}	else if (id == 701 || id == 702) { // INTROMENU -> MAINMENU
+		playerName = ((OptionMenu *)(menu->getMenu()))->getEditText();
 		menu->removeMenu();
 		MainMenu* main = new MainMenu(this);
 		menu->setMenu(main);

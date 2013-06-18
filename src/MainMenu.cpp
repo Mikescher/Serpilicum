@@ -26,8 +26,11 @@ void MainMenu::createMenu(ActionListener * startGamelistener) {
 	Button *highBtn = new Button(103, "Highscore", 8, 14);
 	addElement(highBtn);
 	highBtn->setListener(startGamelistener);
+
+	Button *optBtn = new Button(106, "Optionen", 8, 18);
+	addElement(optBtn);
+	optBtn->setListener(startGamelistener);
 	
-	addElement(new Button(106, "Options", 8, 18));
 	addElement(new Button(105, "Credits", 8, 22));
 	addElement(new Button(104, "Exit", 8, 26));
 
