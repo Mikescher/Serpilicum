@@ -1,224 +1,240 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Effects">
+      <UniqueIdentifier>{4f1e11a9-8b15-4262-9030-cbb043ca8b86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{85583699-4d02-4b12-b57c-a9f3fadef778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modifier">
+      <UniqueIdentifier>{5e0a04b1-085c-42b9-aaae-efa69aef1329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Powerup">
+      <UniqueIdentifier>{9d33fb14-5083-4219-9273-f9f36d51ee25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Display">
+      <UniqueIdentifier>{3a6509d3-e030-4e2a-9c3c-27a1098c0327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Snake">
+      <UniqueIdentifier>{59bf3209-d44e-4044-8d77-936f0b920924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{f82a1a73-a628-447a-ae6e-78c34518b768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{cf87db02-9246-48a6-82ed-f82c979f791c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\AbstractConsole.h">
-      <Filter>Headerdateien</Filter>
+    <ClInclude Include="src\DeathMenu.h">
+      <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="src\Button.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DBConsole.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DeathMenu.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Gamerules.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\HealthPowerUp.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Highscore.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Keycodes.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Label.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Level.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\LevelEffect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Menu.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MenuDisplay.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MenuElement.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\OGLConsole.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PowerUp.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PowerUpList.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Snake.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SnakeElement.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\WindowsConsole.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ListenerCollection.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Main.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PathFindingAlgorithm.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Dynamic2DArray.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SnakeModifier.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\AutoPowerUp.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SnakeAutoModifier.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\AutoModifierStartEffect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PowerUpSpawnEffect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MainMenu.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IntroMenu.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="src\Edit.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BiteEffect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ZoomPowerUp.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SnakeZoomModifier.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="src\HighscoreMenu.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IntroMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MainMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuDisplay.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Menu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuElement.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BiteEffect.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PowerUpSpawnEffect.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelEffect.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SnakeZoomModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ZoomPowerUp.h">
+      <Filter>Powerup</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SnakeModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SnakeAutoModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PowerUp.h">
+      <Filter>Powerup</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PowerUpList.h">
+      <Filter>Powerup</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AutoPowerUp.h">
+      <Filter>Powerup</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Label.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HealthPowerUp.h">
+      <Filter>Powerup</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AutoModifierStartEffect.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AbstractConsole.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DBConsole.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGLConsole.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowsConsole.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Snake.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SnakeElement.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dynamic2DArray.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PathFindingAlgorithm.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ListenerCollection.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Keycodes.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Gamerules.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Highscore.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Level.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Main.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Button.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DBConsole.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DeathMenu.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\HealthPowerUp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Highscore.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Label.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Level.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\LevelEffect.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Menu.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MenuDisplay.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MenuElement.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\OGLConsole.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PowerUp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PowerUpList.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Snake.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SnakeElement.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WindowsConsole.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PathFindingAlgorithm.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\AutoPowerUp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SnakeAutoModifier.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\AutoModifierStartEffect.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PowerUpSpawnEffect.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MainMenu.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IntroMenu.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Menu</Filter>
     </ClCompile>
     <ClCompile Include="src\Edit.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IntroMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Label.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Menu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuDisplay.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuElement.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelEffect.cpp">
+      <Filter>Effects</Filter>
     </ClCompile>
     <ClCompile Include="src\BiteEffect.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerUpSpawnEffect.cpp">
+      <Filter>Effects</Filter>
     </ClCompile>
     <ClCompile Include="src\ZoomPowerUp.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Powerup</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AutoPowerUp.cpp">
+      <Filter>Powerup</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AutoModifierStartEffect.cpp">
+      <Filter>Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HealthPowerUp.cpp">
+      <Filter>Powerup</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerUp.cpp">
+      <Filter>Powerup</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerUpList.cpp">
+      <Filter>Powerup</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SnakeAutoModifier.cpp">
+      <Filter>Modifier</Filter>
     </ClCompile>
     <ClCompile Include="src\SnakeZoomModifier.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Modifier</Filter>
     </ClCompile>
     <ClCompile Include="src\HighscoreMenu.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeathMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGLConsole.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DBConsole.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowsConsole.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SnakeElement.cpp">
+      <Filter>Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PathFindingAlgorithm.cpp">
+      <Filter>Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Snake.cpp">
+      <Filter>Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Highscore.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Level.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
