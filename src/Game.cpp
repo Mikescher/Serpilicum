@@ -63,7 +63,7 @@ void Game::onKeyDown (int keycode) {
 	} else if (menu->isMenuset()) {
 		menu->onKeyDown(console, keycode);;
 	} else {
-		level->onKeyDown(keycode);
+		level->onKeyDown(console, keycode);
 	}
 }
 
@@ -71,11 +71,11 @@ void Game::actionPerformed(int id) {
 	if (id == 101) { // MAINEMNU -> START LEVEL
 		menu->removeMenu();
 		level = new Level();
-		level->start();
+		level->start(console);
 	} else if (id == 201) { // DEATHMENU -> RESTART
 		menu->removeMenu();
 		level = new Level();
-		level->start();
+		level->start(console);
 	} else if (id == 301) { // INTROMENU -> MAINMENU
 		playerName = ((IntroMenu *)(menu->getMenu()))->getEditText();
 		menu->removeMenu();

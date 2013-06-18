@@ -70,6 +70,12 @@ unsigned char WindowsConsole::getKeyState() {
 		}
 	}
 
+	for (char cc = VK_F1; cc <= VK_F2; cc++) {
+		if (GetAsyncKeyState(cc)) {
+			return cc; // Windows Keycodes == KC Keycodes
+		}
+	}
+
 	return 0;
 }
 

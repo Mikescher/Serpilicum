@@ -57,6 +57,9 @@ void DBConsole::write(std::string s, int x, int y) {
 }
 
 void DBConsole::swap() {
+	//## SHOW FPS #####
+	write("FPS: " + std::to_string((int)getFPS()), BUFFER_W - 10, 0);
+
 	//## FPS #####
 
 	fpsSum += getCurrentTimeMillis() - lastRenderTime;
@@ -93,9 +96,6 @@ void DBConsole::clearBuffer() {
 			buffer[x][y] = ' ';
 		}
 	}
-
-	//SHOW FPS
-	write("FPS: " + std::to_string((int)getFPS()), BUFFER_W - 10, 0);
 }
 
 unsigned char DBConsole::getCurrentKeyState() {

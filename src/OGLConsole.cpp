@@ -179,6 +179,9 @@ void onMainLoopKeyCallback(int key, int x, int y) {
 	} else if (key == (GLUT_KEY_RIGHT)) {
 		ogl_global_keylistener->keyEventPerformed(KC_RIGHT);
 		return;
+	} else if (key >= GLUT_KEY_F1 && key <= GLUT_KEY_F12) {
+		ogl_global_keylistener->keyEventPerformed((key - GLUT_KEY_F1) + KC_F1);
+		return;
 	}
 }
 

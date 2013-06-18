@@ -16,6 +16,7 @@ Level::Level(void)
 	is_dead = false;
 	modifier = 0;
 
+	lifes = INITIAL_LIFE_SHARDS;
 	snake_speed = INITIAL_SPEED_SNAKE;
 
 	lastRenderTime = 0;
@@ -55,7 +56,9 @@ Level::~Level(void)
 	delete snake;
 }
 
-void Level::start(){
+void Level::start(AbstractConsole* pConsole){
+	lastHPPowerupAdd = pConsole->getCurrentTimeMillis();
+	lastSpecPowerupAdd = pConsole->getCurrentTimeMillis();
 	running = true;
 }
 
@@ -158,6 +161,8 @@ void Level::render(AbstractConsole* pConsole)
 	if (getModifierType() == SNAKEMODTYPE_ZOOM) {
 		pConsole->zoomIn(getSnake()->getHead()->getX(), getSnake()->getHead()->getY());
 	}
+
+	renderShards(pConsole);
 }
 
 void Level::renderSnake(AbstractConsole *console) {
@@ -187,7 +192,14 @@ void Level::renderEffects(AbstractConsole *console) {
 	}
 }
 
-void Level::onKeyDown(int keycode) {
+void Level::renderShards(AbstractConsole *console) {
+	for (int x = 0; x < getLifeShards(); x++)
+	{
+		console->write(3, x, 0);
+	}
+}
+
+void Level::onKeyDown(AbstractConsole* pConsole, int keycode) {
 	if (keycode == KC_UP) {
 		snake->setDirection(NORTH);
 	} else if (keycode == KC_DOWN) {
@@ -196,6 +208,16 @@ void Level::onKeyDown(int keycode) {
 		snake->setDirection(WEST);
 	} else if (keycode == KC_RIGHT) {
 		snake->setDirection(EAST);
+	} else if (keycode == KC_F1 && GAMERULE_EnableCheats) { // Spawn AutoPowerUp
+		int pux = rand() % BUFFER_W;
+		int puy = rand() % BUFFER_H;
+		if (! isPositionUsed(pux, puy))
+			getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy));
+	} else if (keycode == KC_F2 && GAMERULE_EnableCheats) { // Spawn ZoomPowerUp
+		int pux = rand() % BUFFER_W;
+		int puy = rand() % BUFFER_H;
+		if (! isPositionUsed(pux, puy))
+			getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy));
 	}
 }
 
@@ -311,8 +333,12 @@ void Level::testForDeath(AbstractConsole* pConsole) {
 			if (snakeelement->getX() == snakeelement2->getX() && snakeelement->getY() == snakeelement2->getY() && snakeelement != snakeelement2) {
 				if (GAMERULE_DieOnSelfContact) {
 					onDie();
-				} else if (GAMERULE_BiteOnSelfContact && prevelem != 0){
+				}
+				if (GAMERULE_BiteOnSelfContact && prevelem != 0){
 					removeSnakePieceWithEffect(pConsole, prevelem, 0);
+				}
+				if (GAMERULE_DecreaseShardsOnSelfContact){
+					decreaseLifeShardsBy(1);
 				}
 				return;
 			}
@@ -389,4 +415,16 @@ bool Level::isSpecialPowerUpOnField() {
 	}
 
 	return false;
+}
+
+int Level::getLifeShards() {
+	return lifes;
+}
+
+void Level::decreaseLifeShardsBy(int by) {
+	lifes -= by;
+
+	if (lifes <= 0) {
+		onDie();
+	}
 }

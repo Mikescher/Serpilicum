@@ -33,3 +33,16 @@
 #define KC_X 0x58
 #define KC_Y 0x59
 #define KC_Z 0x5A
+
+#define KC_F1 0x70
+#define KC_F2 0x71
+#define KC_F3 0x72
+#define KC_F4 0x73
+#define KC_F5 0x74
+#define KC_F6 0x75
+#define KC_F7 0x76
+#define KC_F8 0x77
+#define KC_F9 0x78
+#define KC_F10 0x79
+#define KC_F11 0x7A
+#define KC_F12 0x7B

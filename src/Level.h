@@ -14,6 +14,7 @@ private:
 	std::vector<LevelEffect*> effects;
 	SnakeModifier* modifier;
 
+	int lifes;
 	int snake_speed;
 
 	Snake * snake;
@@ -28,17 +29,20 @@ private:
 	virtual void renderPowerups(AbstractConsole *console);
 	virtual void renderSnake(AbstractConsole *console);
 	virtual void renderEffects(AbstractConsole *console);
+	virtual void renderShards(AbstractConsole *console);
 
 	virtual void runEffects(AbstractConsole *console);
 	virtual void runModifier(AbstractConsole *console);
 
 	virtual void removeSnakePieceWithEffect(AbstractConsole* pConsole, SnakeElement* prevelement, int depth);
+
+	virtual void decreaseLifeShardsBy(int by);
 public:
 	Level();
 	virtual ~Level(void);
 
 	virtual void render(AbstractConsole* pConsole);
-	virtual void onKeyDown(int keycode);
+	virtual void onKeyDown(AbstractConsole* pConsole, int keycode);
 
 	virtual void run(AbstractConsole* pConsole);
 	
@@ -60,10 +64,11 @@ public:
 	virtual PowerUpList * getPowerUpList();
 	virtual SnakeModifier* getModifier();
 	virtual SnakeModifierType getModifierType();
+	virtual int getLifeShards();
 
 	virtual void setModifier(SnakeModifier* mod);
 
-	virtual void start();
+	virtual void start(AbstractConsole* pConsole);
 	virtual void stop();
 	virtual void onDie();
 
