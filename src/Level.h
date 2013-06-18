@@ -31,6 +31,15 @@ private:
 	virtual void renderEffects(AbstractConsole *console);
 	virtual void renderShards(AbstractConsole *console);
 
+	virtual void addMissingHealthPowerUps(AbstractConsole * pConsole);
+	virtual void addMissingSpecialPowerUps(AbstractConsole * pConsole);
+	virtual void addHealthPowerUps(AbstractConsole *pconsole, int count);
+	virtual void addHealthPowerUps(AbstractConsole *pconsole, int hpux, int hpuy);
+	virtual void addEffect(AbstractConsole *console, LevelEffect * effect);
+	
+	virtual PowerUpType testForPowerUpCollision();
+	virtual void testForDeath(AbstractConsole* pConsole);
+
 	virtual void runEffects(AbstractConsole *console);
 	virtual void runModifier(AbstractConsole *console);
 
@@ -45,15 +54,6 @@ public:
 	virtual void onKeyDown(AbstractConsole* pConsole, int keycode);
 
 	virtual void run(AbstractConsole* pConsole);
-	
-	virtual void addMissingHealthPowerUps(AbstractConsole * pConsole);
-	virtual void addMissingSpecialPowerUps(AbstractConsole * pConsole);
-	virtual void addHealthPowerUps(AbstractConsole *pconsole, int count);
-	virtual void addHealthPowerUps(AbstractConsole *pconsole, int hpux, int hpuy);
-	virtual void addEffect(AbstractConsole *console, LevelEffect * effect);
-
-	virtual PowerUpType testForPowerUpCollision();
-	virtual void testForDeath(AbstractConsole* pConsole);
 
 	virtual bool isPositionPowerUp(int xx, int yy);
 	virtual bool isPositionSnake(int xx, int yy);

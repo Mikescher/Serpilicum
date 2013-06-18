@@ -29,7 +29,7 @@ void Main::start() {
 	delete dbc;
 }
 
-void Main::actionPerformed(int id) {
+void Main::actionPerformed(int id, int param) {
 
 	game->run(dbc);
 }

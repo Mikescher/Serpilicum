@@ -4,6 +4,7 @@
 
 Edit::Edit(int pid, std::string initval, int nx, int ny) : MenuElement(nx, ny, 10, 3)
 {
+	id = pid;
 	text = initval;
 }
 
@@ -41,6 +42,17 @@ bool Edit::isFocusable() {
 	return true;
 }
 
+void Edit::setListener(ActionListener * lst) {
+	listener = lst;
+}
+
+ActionListener *Edit::removeListener() {
+	ActionListener* tmp = listener;
+
+	listener = 0;
+
+	return tmp;
+}
 
 void Edit::onKeyDown(int keycode) {
 	if (keycode >= 'A' && keycode <= 'Z') {
@@ -49,5 +61,15 @@ void Edit::onKeyDown(int keycode) {
 
 	if (keycode == KC_BACKSPACE && ! text.empty()) {
 		text = text.substr(0, text.length() - 1);
+	}
+
+	if (keycode == KC_SPACE || keycode == KC_ENTER) {
+		throwEvent();
+	}
+}
+
+void Edit::throwEvent() {
+	if (listener != 0) {
+		listener->actionPerformed(id, -1);
 	}
 }

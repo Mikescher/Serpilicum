@@ -1,7 +1,7 @@
 #pragma once
 class ActionListener {
 public:
-	virtual void actionPerformed(int id) = 0;
+	virtual void actionPerformed(int id, int param) = 0;
 };
 
 class KeyEventListener {

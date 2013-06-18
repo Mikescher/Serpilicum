@@ -8,11 +8,6 @@ DeathMenu::DeathMenu(ActionListener * restartListener, int pscore, Game* game)
 	highscore->writeScore(game->getPlayerName(), pscore);
 }
 
-
-DeathMenu::~DeathMenu(void)
-{
-}
-
 void DeathMenu::createMenu(ActionListener * restartListener, Highscore* phighscore, int pscore) {
 	addElement(new Label("You loose", 8, 3));
 	addElement(new Label("You have reached: " + to_string(pscore) + " Points", 8, 4));
@@ -34,5 +29,5 @@ void DeathMenu::createMenu(ActionListener * restartListener, Highscore* phighsco
 	}
 
 
-	focusElement(1);
+	focusElement(2);
 }

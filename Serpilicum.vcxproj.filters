@@ -25,15 +25,12 @@
     <Filter Include="Game">
       <UniqueIdentifier>{cf87db02-9246-48a6-82ed-f82c979f791c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Menu\DisplayMenu">
+      <UniqueIdentifier>{25b64224-5470-4b35-a888-176bec6c9817}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DeathMenu.h">
-      <Filter>Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Button.h">
-      <Filter>Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Edit.h">
       <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="src\HighscoreMenu.h">
@@ -43,15 +40,6 @@
       <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="src\MainMenu.h">
-      <Filter>Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MenuDisplay.h">
-      <Filter>Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Menu.h">
-      <Filter>Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MenuElement.h">
       <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="src\BiteEffect.h">
@@ -83,9 +71,6 @@
     </ClInclude>
     <ClInclude Include="src\AutoPowerUp.h">
       <Filter>Powerup</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Label.h">
-      <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="src\HealthPowerUp.h">
       <Filter>Powerup</Filter>
@@ -141,30 +126,36 @@
     <ClInclude Include="src\Main.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="src\DisplayImageTextMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameOverDisplayMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button.h">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Edit.h">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Label.h">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Menu.h">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuDisplay.h">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuElement.h">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Button.cpp">
-      <Filter>Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Edit.cpp">
-      <Filter>Menu</Filter>
-    </ClCompile>
     <ClCompile Include="src\IntroMenu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
-    <ClCompile Include="src\Label.cpp">
-      <Filter>Menu</Filter>
-    </ClCompile>
     <ClCompile Include="src\MainMenu.cpp">
-      <Filter>Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Menu.cpp">
-      <Filter>Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MenuDisplay.cpp">
-      <Filter>Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MenuElement.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
     <ClCompile Include="src\LevelEffect.cpp">
@@ -235,6 +226,30 @@
     </ClCompile>
     <ClCompile Include="src\Main.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DisplayImageTextMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameOverDisplayMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button.cpp">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Edit.cpp">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Label.cpp">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Menu.cpp">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuDisplay.cpp">
+      <Filter>Menu\DisplayMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuElement.cpp">
+      <Filter>Menu\DisplayMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

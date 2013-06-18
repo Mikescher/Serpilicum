@@ -63,6 +63,9 @@ unsigned char WindowsConsole::getKeyState() {
 	if (GetAsyncKeyState(VK_BACK)) {
 		return KC_BACKSPACE;
 	}
+	if (GetAsyncKeyState(VK_RETURN)) {
+		return KC_ENTER;
+	}
 	
 	for (char cc = 'A'; cc <= 'Z'; cc++) {
 		if (GetAsyncKeyState(cc)) {
@@ -107,11 +110,47 @@ void WindowsConsole::setDimensions(short w, short h) {
 
 void WindowsConsole::startLoop(ActionListener *looplistener, KeyEventListener *keyListener) {
 	while(true){
-		looplistener->actionPerformed(0);
+		looplistener->actionPerformed(0, -1);
 
 		int keycode = getCurrentKeyState();
 		if (keycode != 0) {
 			keyListener->keyEventPerformed(keycode);
 		}
 	}
+}
+
+bool* WindowsConsole::getBoolImageResource(int id) {
+	HMODULE hModule = GetModuleHandle(NULL);
+	HRSRC hResource = FindResource(hModule, MAKEINTRESOURCE(id), RT_RCDATA);
+	HGLOBAL hMemory = LoadResource(hModule, hResource);
+	DWORD dwSize = SizeofResource(hModule, hResource);
+	LPVOID lpAddress = LockResource(hMemory);
+
+	unsigned char *bytes = new unsigned char[dwSize];
+	memcpy(bytes, lpAddress, dwSize);
+
+	unsigned char header[54];
+	memcpy(header, bytes, 54);
+
+	int width      = *(int*)&(header[0x12]);
+	int height     = *(int*)&(header[0x16]);
+
+	unsigned int imageSize = width*height*3;
+	unsigned char * data;
+	const unsigned char *datastart = bytes + 54;
+	data = new byte[width*height*3];
+	memcpy(data, datastart, imageSize);
+
+	bool* result = (bool*)malloc(width*height);
+
+	for (int i = 0; i < width*height; i++)
+	{
+		result[i] = (data[i*3] == 0);
+	}
+
+	if ( header[0]!='B' || header[1]!='M' ){ printf("Not a correct BMP file\n"); return NULL;}
+	if ( *(int*)&(header[0x1E])!=0 ) {printf("Not a correct BMP file\n"); return NULL;}
+	if ( *(int*)&(header[0x1C])!=24 ) {printf("Not a correct BMP file\n"); return NULL;}
+
+	return result;
 }

@@ -57,7 +57,7 @@ std::string Button::getText()
 }
 
 void Button::onKeyDown(int keycode) {
-	if (keycode == KC_SPACE) {
+	if (keycode == KC_SPACE || keycode == KC_ENTER) {
 		throwEvent();
 	}
 }
@@ -76,7 +76,7 @@ ActionListener *Button::removeListener() {
 
 void Button::throwEvent() {
 	if (listener != 0) {
-		listener->actionPerformed(id);
+		listener->actionPerformed(id, -1);
 	}
 }
 

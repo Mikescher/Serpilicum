@@ -37,6 +37,8 @@ public:
 	virtual void clearBuffer();
 	virtual void swap();
 
+	virtual bool* getBoolImageResource(int id);
+
 	virtual void startLoop(ActionListener *looplistener, KeyEventListener *keyListener);
 };
 

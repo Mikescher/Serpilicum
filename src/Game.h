@@ -22,7 +22,7 @@ public:
 
 	virtual bool isActive();
 	virtual void onKeyDown (int keycode);
-	virtual void actionPerformed(int id);
+	virtual void actionPerformed(int id, int param);
 
 	virtual void run(AbstractConsole *pConsole);
 	virtual std::string getPlayerName(void);

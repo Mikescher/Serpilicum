@@ -163,7 +163,7 @@ ActionListener *ogl_global_looplistener;
 KeyEventListener *ogl_global_keylistener;
 
 void onMainLoopLoopCallback() {
-	ogl_global_looplistener->actionPerformed(0);
+	ogl_global_looplistener->actionPerformed(0, -1);
 }
 
 void onMainLoopKeyCallback(int key, int x, int y) {
@@ -199,6 +199,8 @@ void onMainLoopKeyCallbackASCII(unsigned char key, int x, int y) {
 		ogl_global_keylistener->keyEventPerformed(key);
 	} else if(key >= 'a' && key <= 'z'){
 		ogl_global_keylistener->keyEventPerformed(key - 'a' + 'A');
+	} else if(key == 13){
+		ogl_global_keylistener->keyEventPerformed(KC_ENTER);
 	}
 }
 
@@ -213,3 +215,38 @@ void OGLConsole::startLoop(ActionListener *looplistener, KeyEventListener *keyLi
 }
 
 
+bool* OGLConsole::getBoolImageResource(int id) {
+	HMODULE hModule = GetModuleHandle(NULL);
+	HRSRC hResource = FindResource(hModule, MAKEINTRESOURCE(id), RT_RCDATA);
+	HGLOBAL hMemory = LoadResource(hModule, hResource);
+	DWORD dwSize = SizeofResource(hModule, hResource);
+	LPVOID lpAddress = LockResource(hMemory);
+
+	unsigned char *bytes = new unsigned char[dwSize];
+	memcpy(bytes, lpAddress, dwSize);
+
+	unsigned char header[54];
+	memcpy(header, bytes, 54);
+
+	int width      = *(int*)&(header[0x12]);
+	int height     = *(int*)&(header[0x16]);
+
+	unsigned int imageSize = width*height*3;
+	unsigned char * data;
+	const unsigned char *datastart = bytes + 54;
+	data = new byte[width*height*3];
+	memcpy(data, datastart, imageSize);
+
+	bool* result = (bool*)malloc(width*height);
+
+	for (int i = 0; i < width*height; i++)
+	{
+		result[i] = (data[i*3] == 0);
+	}
+
+	if ( header[0]!='B' || header[1]!='M' ){ printf("Not a correct BMP file\n"); return NULL;}
+	if ( *(int*)&(header[0x1E])!=0 ) {printf("Not a correct BMP file\n"); return NULL;}
+	if ( *(int*)&(header[0x1C])!=24 ) {printf("Not a correct BMP file\n"); return NULL;}
+
+	return result;
+}

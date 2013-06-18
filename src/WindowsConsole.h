@@ -21,6 +21,8 @@ public:
 	WindowsConsole(void);
 	~WindowsConsole(void);
 
+	virtual bool* getBoolImageResource(int id);
+
 	virtual void startLoop(ActionListener *looplistener, KeyEventListener *keyListener);
 };
 

@@ -19,6 +19,6 @@ private:
 	Game *game;
 public:
 	virtual void start();
-	virtual void actionPerformed(int id);
+	virtual void actionPerformed(int id, int param);
 	virtual void keyEventPerformed(int key);
 };

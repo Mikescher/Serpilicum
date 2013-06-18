@@ -19,8 +19,10 @@ void IntroMenu::createMenu(ActionListener* mainMenuListener)
 	addElement(mainBtn);
 	mainBtn->setListener(mainMenuListener);
 
-	nameEdt = new Edit(302, "", 8, 6);
+	nameEdt = new Edit(302, "PLAYER", 8, 6);
 	addElement(nameEdt);
+	nameEdt->setListener(mainMenuListener);
+
 	focusElement(3);
 }
 

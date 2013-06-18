@@ -4,6 +4,7 @@
 #define KC_RIGHT 0x27
 
 #define KC_SPACE 0x20
+#define KC_ENTER 0x0D
 #define KC_ESCAPE 0x1B
 #define KC_BACKSPACE 0x08
 

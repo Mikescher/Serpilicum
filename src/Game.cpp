@@ -8,6 +8,7 @@
 #include "ListenerCollection.h"
 #include "IntroMenu.h"
 #include "HighscoreMenu.h"
+#include "GameOverDisplayMenu.h"
 
 Game::Game(AbstractConsole *pconsole)
 {
@@ -32,11 +33,11 @@ void Game::run(AbstractConsole* pConsole){
 		if (level->isRunning()) {
 			level->run(pConsole);
 		} else if (level->isDead()) {
-			menu->setMenu(new DeathMenu(this, level->getSnake()->getLength(), (this)));
-						
+			//menu->setMenu(new DeathMenu(this, level->getSnake()->getLength(), (this)));
+			menu->setMenu(new GameOverDisplayMenu(401, pConsole, this, 102, level->getSnake()->getLength()));		
 		}
 	} else {
-		// run menu;
+		menu->getMenu()->run(pConsole);
 	}
 
 	render();
@@ -68,7 +69,7 @@ void Game::onKeyDown (int keycode) {
 	}
 }
 
-void Game::actionPerformed(int id) {
+void Game::actionPerformed(int id, int param) {
 	if (id == 101) { // MAINEMNU -> START LEVEL
 		menu->removeMenu();
 		level = new Level();
@@ -77,15 +78,19 @@ void Game::actionPerformed(int id) {
 		menu->removeMenu();
 		level = new Level();
 		level->start(console);
-	} else if (id == 301) { // INTROMENU -> MAINMENU
+	} else if (id == 301 || id == 302) { // INTROMENU -> MAINMENU
 		playerName = ((IntroMenu *)(menu->getMenu()))->getEditText();
 		menu->removeMenu();
 		MainMenu* main = new MainMenu(this);
-		menu->setMenu(new MainMenu(this));
+		menu->setMenu(main);
 	}  else if (id == 103) { // MAINMENU -> HIGHSCOREMENU
 		menu->removeMenu();
 		HighscoreMenu* highmen = new HighscoreMenu(this);
-		menu->setMenu(new HighscoreMenu(this));
+		menu->setMenu(highmen);
+	}  else if (id == 401) { // DispayDeathMessage -> ACTIONPERFORMED
+		menu->removeMenu();
+		DeathMenu* dmenu = new DeathMenu(this, param, this);
+		menu->setMenu(dmenu);
 	}
 
 }

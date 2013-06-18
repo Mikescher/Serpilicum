@@ -14,6 +14,5 @@ private:
 	virtual void createMenu(ActionListener * restartListener,Highscore* pHighscore, int pscore);
 public:
 	DeathMenu(ActionListener * restartListener, int pscore, Game* game);
-	virtual ~DeathMenu(void);
 };
 

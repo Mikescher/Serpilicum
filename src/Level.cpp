@@ -218,6 +218,8 @@ void Level::onKeyDown(AbstractConsole* pConsole, int keycode) {
 		int puy = rand() % BUFFER_H;
 		if (! isPositionUsed(pux, puy))
 			getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy));
+	} else if (keycode == KC_F3 && GAMERULE_EnableCheats) { // InstaDeath
+		onDie();
 	}
 }
 

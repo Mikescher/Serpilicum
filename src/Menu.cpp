@@ -137,3 +137,7 @@ void Menu::updateFocus() {
 		elements[z]->setFocused(z == focusIndex);	
 	}
 }
+
+void Menu::run(AbstractConsole* pConsole) {
+	//--
+}

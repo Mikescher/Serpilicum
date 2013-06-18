@@ -14,14 +14,18 @@ public:
 	virtual ~Menu(void);
 
 	virtual void render(AbstractConsole* pConsole);
+	virtual void run(AbstractConsole* pConsole);
+
 	virtual void addElement(MenuElement* pElement);
 	virtual MenuElement* removeElement(MenuElement* pElement);
 
 	virtual MenuElement* getFocusedElement();
 	virtual bool isElementFocused();
+
 	virtual MenuElement* focusNextElement();
 	virtual MenuElement* focusPrevElement();
 	virtual bool focusElement(unsigned int el);
 	virtual void removeFocus();
+
 	virtual void onKeyDown(int keycode);
 };
