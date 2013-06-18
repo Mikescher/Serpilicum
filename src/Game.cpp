@@ -9,6 +9,7 @@
 #include "IntroMenu.h"
 #include "HighscoreMenu.h"
 #include "GameOverDisplayMenu.h"
+#include "SplashMenu.h"
 
 Game::Game(AbstractConsole *pconsole)
 {
@@ -19,7 +20,7 @@ Game::Game(AbstractConsole *pconsole)
 	level = 0;
 	menu = new MenuDisplay();
 
-	menu->setMenu(new IntroMenu(this));
+	menu->setMenu(new SplashMenu(601, pconsole, this, 103));
 }
 
 
@@ -94,6 +95,10 @@ void Game::actionPerformed(int id, int param) {
 	}	else if (id == 501) { // HIGHSCOREMENU -> MAINMENU
 		menu->removeMenu();
 		MainMenu* main = new MainMenu(this);
+		menu->setMenu(main);
+	}	else if (id == 601) { // SPLASHMENU -> ACTIONPERFORMED
+		menu->removeMenu();
+		IntroMenu* main = new IntroMenu(this);
 		menu->setMenu(main);
 	}
 }

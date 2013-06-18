@@ -13,6 +13,8 @@ private:
 	virtual void renderMode0(AbstractConsole *console);
 	virtual void renderMode1(AbstractConsole *console);
 	virtual void renderMode2(AbstractConsole *console);
+
+	virtual void write(AbstractConsole* console, int cr, int x, int y);
 public:
 	PowerUpSpawnEffect(int px, int py);
 	~PowerUpSpawnEffect(void);

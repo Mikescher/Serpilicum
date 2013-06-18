@@ -9,10 +9,11 @@ class DisplayImageTextMenu :
 protected:
 	int id;
 	ActionListener* listener;
+
+	bool* resourceArray;
 private:
 	long startTime;
 	int duration;
-	bool* resourceArray;
 
 	virtual void createMenu(ActionListener * quitListener);
 public:

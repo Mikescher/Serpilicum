@@ -115,6 +115,7 @@
     <ClInclude Include="src\Snake.h" />
     <ClInclude Include="src\SnakeElement.h" />
     <ClInclude Include="src\SnakeZoomModifier.h" />
+    <ClInclude Include="src\SplashMenu.h" />
     <ClInclude Include="src\WindowsConsole.h" />
     <ClInclude Include="src\ZoomPowerUp.h" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClCompile Include="src\SnakeAutoModifier.cpp" />
     <ClCompile Include="src\SnakeElement.cpp" />
     <ClCompile Include="src\SnakeZoomModifier.cpp" />
+    <ClCompile Include="src\SplashMenu.cpp" />
     <ClCompile Include="src\WindowsConsole.cpp" />
     <ClCompile Include="src\ZoomPowerUp.cpp" />
   </ItemGroup>

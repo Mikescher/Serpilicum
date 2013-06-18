@@ -1,5 +1,5 @@
 #include "PowerUpSpawnEffect.h"
-
+#include "Gamerules.h"
 
 PowerUpSpawnEffect::PowerUpSpawnEffect(int px, int py) : LevelEffect(px, py)
 {
@@ -37,62 +37,71 @@ void PowerUpSpawnEffect::render(AbstractConsole *console) {
 }
 
 void PowerUpSpawnEffect::renderMode0(AbstractConsole *console) {
-	console->write('/', x-1, y-3);
-	console->write('^', x, y-3);
-	console->write('\\', x+1, y-3);
+	write(console, '/', x-1, y-3);
+	write(console, '^', x, y-3);
+	write(console, '\\', x+1, y-3);
 
-	console->write('/', x-2, y-2);
-	console->write('\\', x+2, y-2);
+	write(console, '/', x-2, y-2);
+	write(console, '\\', x+2, y-2);
 
-	console->write('/', x-3, y-1);
-	console->write('\\', x+3, y-1);
+	write(console, '/', x-3, y-1);
+	write(console, '\\', x+3, y-1);
 
-	console->write('<', x-3, y);
-	console->write('>', x+3, y);
+	write(console, '<', x-3, y);
+	write(console, '>', x+3, y);
 
-	console->write('\\', x-3, y+1);
-	console->write('/', x+3, y+1);
+	write(console, '\\', x-3, y+1);
+	write(console, '/', x+3, y+1);
 
-	console->write('\\', x-2, y+2);
-	console->write('/', x+2, y+2);
+	write(console, '\\', x-2, y+2);
+	write(console, '/', x+2, y+2);
 
-	console->write('\\', x-1, y+3);
-	console->write('v', x, y+3);
-	console->write('/', x+1, y+3);
+	write(console, '\\', x-1, y+3);
+	write(console, 'v', x, y+3);
+	write(console, '/', x+1, y+3);
 }
 
 void PowerUpSpawnEffect::renderMode1(AbstractConsole *console) {
-	console->write('-', x-1, y-2);
-	console->write('^', x, y-2);
-	console->write('-', x+1, y-2);
+	write(console, '-', x-1, y-2);
+	write(console, '^', x, y-2);
+	write(console, '-', x+1, y-2);
 
-	console->write('|', x-2, y-1);
-	console->write('/', x-1, y-1);
-	console->write('\\', x+1, y-1);
-	console->write('|', x+2, y-1);
+	write(console, '|', x-2, y-1);
+	write(console, '/', x-1, y-1);
+	write(console, '\\', x+1, y-1);
+	write(console, '|', x+2, y-1);
 
-	console->write('<', x-2, y);
-	console->write('>', x+2, y);
+	write(console, '<', x-2, y);
+	write(console, '>', x+2, y);
 
-	console->write('|', x-2, y+1);
-	console->write('\\', x-1, y+1);
-	console->write('/', x+1, y+1);
-	console->write('|', x+2, y+1);
+	write(console, '|', x-2, y+1);
+	write(console, '\\', x-1, y+1);
+	write(console, '/', x+1, y+1);
+	write(console, '|', x+2, y+1);
 
-	console->write('-', x-1, y+2);
-	console->write('v', x, y+2);
-	console->write('-', x+1, y+2);
+	write(console, '-', x-1, y+2);
+	write(console, 'v', x, y+2);
+	write(console, '-', x+1, y+2);
 }
 
 void PowerUpSpawnEffect::renderMode2(AbstractConsole *console) {
-	console->write('/', x-1, y-1);
-	console->write('-', x, y-1);
-	console->write('\\', x+1, y-1);
+	write(console, '/', x-1, y-1);
+	write(console, '-', x, y-1);
+	write(console, '\\', x+1, y-1);
 
-	console->write('|', x-1, y);
-	console->write('|', x+1, y);
+	write(console, '|', x-1, y);
+	write(console, '|', x+1, y);
 
-	console->write('\\', x-1, y+1);
-	console->write('-', x, y+1);
-	console->write('/', x+1, y+1);
+	write(console, '\\', x-1, y+1);
+	write(console, '-', x, y+1);
+	write(console, '/', x+1, y+1);
+}
+
+void PowerUpSpawnEffect::write(AbstractConsole* console, int cr, int x, int y) {
+	if (GAMERULE_InfiniteField) {
+		x %= BUFFER_W;
+		y %= BUFFER_H;
+	}
+
+	console->write(cr, x, y);
 }
