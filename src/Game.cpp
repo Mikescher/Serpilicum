@@ -7,6 +7,7 @@
 #include "Keycodes.h"
 #include "ListenerCollection.h"
 #include "IntroMenu.h"
+#include "HighscoreMenu.h"
 
 Game::Game(AbstractConsole *pconsole)
 {
@@ -81,8 +82,11 @@ void Game::actionPerformed(int id) {
 		menu->removeMenu();
 		MainMenu* main = new MainMenu(this);
 		menu->setMenu(new MainMenu(this));
-		
-	} 
+	}  else if (id == 103) { // MAINMENU -> HIGHSCOREMENU
+		menu->removeMenu();
+		HighscoreMenu* highmen = new HighscoreMenu(this);
+		menu->setMenu(new HighscoreMenu(this));
+	}
 
 }
 
