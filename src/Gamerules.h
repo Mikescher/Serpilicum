@@ -6,7 +6,7 @@ const DisplayMethod DISPLAYMETHOD = OGL_CONSOLE;
 
 const int INITIAL_SPEED_SNAKE = 30;
 const int INITIAL_SNAKE_LENGTH = 5;
-const int INITIAL_LIFE_SHARDS = 5;
+const int INITIAL_LIFE_SHARDS = 3;
 
 //#########################################
 

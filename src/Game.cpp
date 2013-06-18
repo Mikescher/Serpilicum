@@ -100,6 +100,10 @@ void Game::actionPerformed(int id, int param) {
 		menu->removeMenu();
 		IntroMenu* main = new IntroMenu(this);
 		menu->setMenu(main);
+	}	else if (id == 202) { // DEATHMENU -> MAINMENU
+		menu->removeMenu();
+		MainMenu* main = new MainMenu(this);
+		menu->setMenu(main);
 	}
 }
 

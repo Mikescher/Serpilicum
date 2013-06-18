@@ -28,6 +28,10 @@ void DeathMenu::createMenu(ActionListener * restartListener, Highscore* phighsco
 		addElement(highLbn);
 	}
 
+	Button* mainBtn = new Button(202, "Back to Mainmenu", 18, 7);
+	addElement(mainBtn);
+	mainBtn->setListener(restartListener);
+
 
 	focusElement(2);
 }
