@@ -150,8 +150,13 @@
     <ClInclude Include="src\MenuElement.h">
       <Filter>Menu\DisplayMenu</Filter>
     </ClInclude>
-    <ClInclude Include="src\SplashMenu.h" />
     <ClInclude Include="src\OptionMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChooseGameModeMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SplashMenu.h">
       <Filter>Menu</Filter>
     </ClInclude>
   </ItemGroup>
@@ -255,8 +260,13 @@
     <ClCompile Include="src\MenuElement.cpp">
       <Filter>Menu\DisplayMenu</Filter>
     </ClCompile>
-    <ClCompile Include="src\SplashMenu.cpp" />
     <ClCompile Include="src\OptionMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChooseGameModeMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SplashMenu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
   </ItemGroup>

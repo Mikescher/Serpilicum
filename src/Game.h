@@ -16,6 +16,7 @@ private:
 	std::string playerName;
 
 	virtual void render();
+	virtual void startNewLevel();
 public:
 	Game(AbstractConsole *pconsole);
 	virtual ~Game(void);

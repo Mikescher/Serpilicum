@@ -99,6 +99,8 @@ void PowerUpSpawnEffect::renderMode2(AbstractConsole *console) {
 
 void PowerUpSpawnEffect::write(AbstractConsole* console, int cr, int x, int y) {
 	if (GAMERULE_InfiniteField) {
+		x += BUFFER_W;
+		y += BUFFER_H;
 		x %= BUFFER_W;
 		y %= BUFFER_H;
 	}

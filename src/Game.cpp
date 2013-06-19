@@ -11,6 +11,7 @@
 #include "GameOverDisplayMenu.h"
 #include "SplashMenu.h"
 #include "OptionMenu.h"
+#include "ChooseGameModeMenu.h"
 
 Game::Game(AbstractConsole *pconsole)
 {
@@ -35,8 +36,6 @@ void Game::run(AbstractConsole* pConsole){
 		if (level->isRunning()) {
 			level->run(pConsole);
 		} else if (level->isDead()) {
-			//menu->setMenu(new DeathMenu(this, level->getSnake()->getLength(), (this)));
-
 			menu->setMenu(new GameOverDisplayMenu(401, pConsole, this, 102, level->getScore()));		
 		}
 	} else {
@@ -74,13 +73,9 @@ void Game::onKeyDown (int keycode) {
 
 void Game::actionPerformed(int id, int param) {
 	if (id == 101) { // MAINEMNU -> START LEVEL
-		menu->removeMenu();
-		level = new Level();
-		level->start(console);
+		startNewLevel();
 	} else if (id == 201) { // DEATHMENU -> RESTART
-		menu->removeMenu();
-		level = new Level();
-		level->start(console);
+		startNewLevel();
 	} else if (id == 301 || id == 302) { // INTROMENU -> MAINMENU
 		playerName = ((IntroMenu *)(menu->getMenu()))->getEditText();
 		menu->removeMenu();
@@ -115,10 +110,20 @@ void Game::actionPerformed(int id, int param) {
 		menu->removeMenu();
 		MainMenu* main = new MainMenu(this);
 		menu->setMenu(main);
+	}	else if (id == 801) { // CHOOSEGAMEMODEMENU -> CHOOSEN
+		menu->removeMenu();
+		level = new Level();
+		level->start(console);
 	}
 }
 
 std::string Game::getPlayerName(void)
 {
 	return playerName;
+}
+
+void Game::startNewLevel() {
+	menu->removeMenu();
+	ChooseGameModeMenu* cgmm = new ChooseGameModeMenu(801, console, this);
+	menu->setMenu(cgmm);
 }
