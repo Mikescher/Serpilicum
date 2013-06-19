@@ -16,6 +16,8 @@ Level::Level(void)
 	is_dead = false;
 	modifier = 0;
 
+	score = 0;
+
 	lifes = INITIAL_LIFE_SHARDS;
 	snake_speed = INITIAL_SPEED_SNAKE;
 
@@ -83,13 +85,15 @@ void Level::run(AbstractConsole* pConsole) {
 
 		snake->onBeforeMove(this, pConsole);
 		if (getModifierType() == SNAKEMODTYPE_AUTO) {
-			if (collectedPowerUp == POWERUP_HEALTH) {
+			if (collectedPowerUp == POWERUP_HEALTH && GAMERULE_expandOnHPCollection) {
+				addPoints();
 				snake->autoExtendForward();
 			} else {
 				snake->autoMoveForward();
 			}
 		} else {
-			if (collectedPowerUp == POWERUP_HEALTH) {
+			if (collectedPowerUp == POWERUP_HEALTH && GAMERULE_expandOnHPCollection) {
+				addPoints();
 				snake->extendForward();
 			} else {
 				snake->moveForward();
@@ -261,11 +265,15 @@ void Level::addMissingSpecialPowerUps(AbstractConsole * pConsole) {
 			if (! (isPositionUsed(pux, puy) || isSpecialPowerUpOnField() || getModifierType() != SNAKEMODTYPE_NULL)) {
 				switch(rand()%2) {
 				case 0: 
-					getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy)); 
-					break;
+					if (GAMERULE_EnableAutoPowerUp) {
+						getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy)); 
+						break;
+					}
 				case 1: 
-					getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy)); 
-					break;
+					if (GAMERULE_EnableZoomPowerUp) {
+						getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy)); 
+						break;
+					}
 				}
 				
 				addEffect(pConsole, new PowerUpSpawnEffect(pux, puy));
@@ -433,4 +441,14 @@ void Level::decreaseLifeShardsBy(int by) {
 	if (lifes <= 0) {
 		onDie();
 	}
+}
+
+int Level::getScore()
+{
+	return score;
+}
+
+void Level::addPoints()
+{
+	score += getSnake()->getLength();
 }
