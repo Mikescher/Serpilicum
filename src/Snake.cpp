@@ -36,6 +36,7 @@ int Snake::getLength() {
 	return l;
 }
 
+
 SnakeElement * Snake::getHead() {
 	return head;
 }

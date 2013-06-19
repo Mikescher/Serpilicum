@@ -36,7 +36,8 @@ void Game::run(AbstractConsole* pConsole){
 			level->run(pConsole);
 		} else if (level->isDead()) {
 			//menu->setMenu(new DeathMenu(this, level->getSnake()->getLength(), (this)));
-			menu->setMenu(new GameOverDisplayMenu(401, pConsole, this, 102, level->getSnake()->getLength()));		
+
+			menu->setMenu(new GameOverDisplayMenu(401, pConsole, this, 102, level->getScore()));		
 		}
 	} else {
 		menu->getMenu()->run(pConsole);

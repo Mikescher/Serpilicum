@@ -16,6 +16,7 @@ private:
 
 	int lifes;
 	int snake_speed;
+	int score;
 
 	Snake * snake;
 	PowerUpList * powerupList;
@@ -46,6 +47,8 @@ private:
 	virtual void removeSnakePieceWithEffect(AbstractConsole* pConsole, SnakeElement* prevelement, int depth);
 
 	virtual void decreaseLifeShardsBy(int by);
+
+	virtual void addPoints();
 public:
 	Level();
 	virtual ~Level(void);
@@ -74,5 +77,8 @@ public:
 
 	virtual bool isRunning();
 	virtual bool isDead();
+
+	virtual int getScore();
+
 };
 
