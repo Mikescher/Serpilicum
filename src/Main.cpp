@@ -1,4 +1,4 @@
-#include "Main.h"
+#include "xoxoMain.h"
 
 int main() {
 	Main *main = new Main();
