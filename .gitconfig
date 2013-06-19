@@ -1,9 +1,0 @@
-[merge]
-        tool = kdiff3
-[mergetool "kdiff3"]
-        path = c:/Program Files (x86)/KDiff3/kdiff3.exe
-[diff]
-        tool = kdiff3
-        guitool = kdiff3
-[difftool "kdiff3"]
-        path = c:/Program Files (x86)/KDiff3/kdiff3.exe
