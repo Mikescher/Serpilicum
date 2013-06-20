@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\AbstractConsole.h" />
+    <ClInclude Include="src\AspirinObstacle.h" />
     <ClInclude Include="src\AutoModifierStartEffect.h" />
     <ClInclude Include="src\AutoPowerUp.h" />
     <ClInclude Include="src\BiteEffect.h" />
@@ -89,6 +90,7 @@
     <ClInclude Include="src\GameOverDisplayMenu.h" />
     <ClInclude Include="src\HighscoreMenu.h" />
     <ClInclude Include="src\IntroMenu.h" />
+    <ClInclude Include="src\LevelObstacle.h" />
     <ClInclude Include="src\OptionMenu.h" />
     <ClInclude Include="src\SnakeAutoModifier.h" />
     <ClInclude Include="src\SnakeModifier.h" />
@@ -122,6 +124,7 @@
     <ClInclude Include="src\ZoomPowerUp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AspirinObstacle.cpp" />
     <ClCompile Include="src\AutoModifierStartEffect.cpp" />
     <ClCompile Include="src\AutoPowerUp.cpp" />
     <ClCompile Include="src\BiteEffect.cpp" />
@@ -137,6 +140,7 @@
     <ClCompile Include="src\Highscore.cpp" />
     <ClCompile Include="src\HighscoreMenu.cpp" />
     <ClCompile Include="src\IntroMenu.cpp" />
+    <ClCompile Include="src\LevelObstacle.cpp" />
     <ClCompile Include="src\OptionMenu.cpp" />
     <ClCompile Include="src\PowerUpSpawnEffect.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />

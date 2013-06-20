@@ -70,7 +70,7 @@ void SnakeElement::moveRecursively(int tox, int toy) {
 	int oldx = x;
 	int oldy = y;
 
-	if (GAMERULE_InfiniteField) {
+	if (GAMERULES::i().InfiniteField) {
 		tox = (BUFFER_W + tox) % BUFFER_W;
 		toy = (BUFFER_H + toy) % BUFFER_H;
 	}
@@ -86,7 +86,7 @@ void SnakeElement::extendRecursively(int tox, int toy) {
 	int oldx = x;
 	int oldy = y;
 
-	if (GAMERULE_InfiniteField) {
+	if (GAMERULES::i().InfiniteField) {
 		tox = (BUFFER_W + tox) % BUFFER_W;
 		toy = (BUFFER_H + toy) % BUFFER_H;
 	}

@@ -9,6 +9,7 @@
 #include "SnakeZoomModifier.h"
 #include "BiteEffect.h"
 #include "ZoomPowerUp.h"
+#include "AspirinObstacle.h"
 
 Level::Level(void)
 {
@@ -18,8 +19,8 @@ Level::Level(void)
 
 	score = 0;
 
-	lifes = INITIAL_LIFE_SHARDS;
-	snake_speed = INITIAL_SPEED_SNAKE;
+	lifes = GAMERULES::i().INITIAL_LIFE_SHARDS;
+	snake_speed = GAMERULES::i().INITIAL_SPEED_SNAKE;
 
 	lastRenderTime = 0;
 	lastHPPowerupAdd = 0;
@@ -29,7 +30,7 @@ Level::Level(void)
 	snake = new Snake(this, BUFFER_W / 2, BUFFER_H / 2, EAST);
 	powerupList = new PowerUpList();
 	
-	snake->extendForward(INITIAL_SNAKE_LENGTH);
+	snake->extendForward(GAMERULES::i().INITIAL_SNAKE_LENGTH);
 
 	//snake->extendForward(BUFFER_W - 2 - 5);
 	//snake->setDirection(NORTH);
@@ -69,6 +70,10 @@ void Level::stop(){
 }
 
 void Level::run(AbstractConsole* pConsole) {
+	if (GAMERULES::i().InstantDeath) {
+		onDie();
+	}
+
 	long curr = pConsole->getCurrentTimeMillis();
 
 	int l_s_speed = snake_speed;
@@ -84,17 +89,15 @@ void Level::run(AbstractConsole* pConsole) {
 		PowerUpType collectedPowerUp = testForPowerUpCollision();
 
 		snake->onBeforeMove(this, pConsole);
-		if (getModifierType() == SNAKEMODTYPE_AUTO) {
-			if (collectedPowerUp == POWERUP_HEALTH && GAMERULE_expandOnHPCollection) {
-				addPoints();
-				snake->autoExtendForward();
+		if (getModifierType() == SNAKEMODTYPE_AUTO || GAMERULES::i().AlwaysUseAutoSnake) {
+			if (collectedPowerUp == POWERUP_HEALTH) {
+				onHPCollect(pConsole);
 			} else {
 				snake->autoMoveForward();
 			}
 		} else {
-			if (collectedPowerUp == POWERUP_HEALTH && GAMERULE_expandOnHPCollection) {
-				addPoints();
-				snake->extendForward();
+			if (collectedPowerUp == POWERUP_HEALTH) {
+				onHPCollect(pConsole);
 			} else {
 				snake->moveForward();
 			}
@@ -114,12 +117,14 @@ void Level::run(AbstractConsole* pConsole) {
 		}
 
 		testForDeath(pConsole);
+		testForObstacleCollision(pConsole);
 
 		lastRenderTime = curr;
 	}
 
 	runModifier(pConsole);
 	runEffects(pConsole);
+	runObstacles(pConsole);
 }
 
 void Level::runModifier(AbstractConsole *console) {
@@ -142,6 +147,12 @@ void Level::runEffects(AbstractConsole *console) {
 	}
 }
 
+void Level::runObstacles(AbstractConsole *console) {
+	for(int i = obstacles.size()-1; i >= 0; i--) {
+		obstacles.at(i)->run(console);
+	}
+}
+
 Snake * Level::getSnake() {
 	return snake;
 }
@@ -161,6 +172,8 @@ void Level::render(AbstractConsole* pConsole)
 	renderEffects(pConsole);
 
 	renderSnake(pConsole);
+
+	renderObstacles(pConsole);
 
 	if (getModifierType() == SNAKEMODTYPE_ZOOM) {
 		pConsole->zoomIn(getSnake()->getHead()->getX(), getSnake()->getHead()->getY());
@@ -196,6 +209,12 @@ void Level::renderEffects(AbstractConsole *console) {
 	}
 }
 
+void Level::renderObstacles(AbstractConsole *console) {
+	for(unsigned int i = 0; i < obstacles.size(); i++) {
+		obstacles.at(i)->render(console);
+	}
+}
+
 void Level::renderShards(AbstractConsole *console) {
 	for (int x = 0; x < getLifeShards(); x++)
 	{
@@ -212,17 +231,19 @@ void Level::onKeyDown(AbstractConsole* pConsole, int keycode) {
 		snake->setDirection(WEST);
 	} else if (keycode == KC_RIGHT) {
 		snake->setDirection(EAST);
-	} else if (keycode == KC_F1 && GAMERULE_EnableCheats) { // Spawn AutoPowerUp
+	} else if (keycode == KC_ESCAPE) {
+		onDie();
+	} else if (keycode == KC_F1 && GR_EnableCheats) { // Spawn AutoPowerUp
 		int pux = rand() % BUFFER_W;
 		int puy = rand() % BUFFER_H;
 		if (! isPositionUsed(pux, puy))
 			getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy));
-	} else if (keycode == KC_F2 && GAMERULE_EnableCheats) { // Spawn ZoomPowerUp
+	} else if (keycode == KC_F2 && GR_EnableCheats) { // Spawn ZoomPowerUp
 		int pux = rand() % BUFFER_W;
 		int puy = rand() % BUFFER_H;
 		if (! isPositionUsed(pux, puy))
 			getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy));
-	} else if (keycode == KC_F3 && GAMERULE_EnableCheats) { // InstaDeath
+	} else if (keycode == KC_F3 && GR_EnableCheats) { // InstaDeath
 		onDie();
 	}
 }
@@ -247,7 +268,7 @@ void Level::addMissingHealthPowerUps(AbstractConsole * pConsole) {
 
 	if ((curr - lastHPPowerupAdd) > 500) {
 
-		if (getPowerUpList()->getLength() < 32) {
+		if (getPowerUpList()->getLength() < GAMERULES::i().MAXIMAL_HP_PU_COUNT) {
 			addHealthPowerUps(pConsole, 1);
 		}
 
@@ -265,12 +286,12 @@ void Level::addMissingSpecialPowerUps(AbstractConsole * pConsole) {
 			if (! (isPositionUsed(pux, puy) || isSpecialPowerUpOnField() || getModifierType() != SNAKEMODTYPE_NULL)) {
 				switch(rand()%2) {
 				case 0: 
-					if (GAMERULE_EnableAutoPowerUp) {
+					if (GAMERULES::i().EnableAutoPowerUp) {
 						getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy)); 
 						break;
 					}
 				case 1: 
-					if (GAMERULE_EnableZoomPowerUp) {
+					if (GAMERULES::i().EnableZoomPowerUp) {
 						getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy)); 
 						break;
 					}
@@ -345,13 +366,13 @@ void Level::testForDeath(AbstractConsole* pConsole) {
 		SnakeElement * snakeelement2 = getSnake()->getHead();
 		while(snakeelement2 != 0) {
 			if (snakeelement->getX() == snakeelement2->getX() && snakeelement->getY() == snakeelement2->getY() && snakeelement != snakeelement2) {
-				if (GAMERULE_DieOnSelfContact) {
+				if (GAMERULES::i().DieOnSelfContact) {
 					onDie();
 				}
-				if (GAMERULE_BiteOnSelfContact && prevelem != 0){
+				if (GAMERULES::i().BiteOnSelfContact && prevelem != 0){
 					removeSnakePieceWithEffect(pConsole, prevelem, 0);
 				}
-				if (GAMERULE_DecreaseShardsOnSelfContact){
+				if (GAMERULES::i().DecreaseShardsOnSelfContact){
 					decreaseLifeShardsBy(1);
 				}
 				return;
@@ -374,6 +395,20 @@ void Level::testForDeath(AbstractConsole* pConsole) {
 		}
 
 		snakeelement3 = snakeelement3->getNextElement();
+	}
+}
+
+void Level::testForObstacleCollision(AbstractConsole* pConsole) {
+	for (unsigned int i = 0; i < obstacles.size(); i++)
+	{
+		SnakeElement * snakeelement = getSnake()->getHead();
+		while(snakeelement != 0) {
+			if (snakeelement->getX() == obstacles.at(i)->getX() && snakeelement->getY() == obstacles.at(i)->getY()) {
+				obstacles.at(i)->onSnakeHit(this);
+			}
+
+			snakeelement = snakeelement->getNextElement();
+		}
 	}
 }
 
@@ -450,5 +485,84 @@ int Level::getScore()
 
 void Level::addPoints()
 {
-	score += getSnake()->getLength();
+	if (GAMERULES::i().FactorialPointCalculation) {
+		score += getSnake()->getLength();
+	} else {
+		score++;
+	}
+}
+
+void Level::addObstacle(AbstractConsole *console, LevelObstacle * obs) {
+	obs->init(console);
+	obstacles.push_back(obs);
+}
+
+void Level::onHPCollect(AbstractConsole* pConsole) {
+	if (GAMERULES::i().AddPointsOnHPCollect) {
+		addPoints();
+	}
+
+	if (GAMERULES::i().expandOnHPCollection) {
+		if (getModifierType() == SNAKEMODTYPE_AUTO || GAMERULES::i().AlwaysUseAutoSnake) {
+			snake->autoExtendForward();
+		} else {
+			snake->extendForward();
+		}
+	} else {
+		if (getModifierType() == SNAKEMODTYPE_AUTO || GAMERULES::i().AlwaysUseAutoSnake) {
+			snake->autoMoveForward();
+		} else {
+			snake->moveForward();
+		}
+	}
+	
+	if (GAMERULES::i().SpawnAspirinObstaclesOnHPCollect) {
+		spawnNewAspirinObstacle(pConsole);
+	}
+}
+
+void Level::spawnNewAspirinObstacle(AbstractConsole* pConsole) {
+	bool horz = rand() % 2 == 0;
+	int direction = (rand() % 2)*2 - 1;
+
+	int dx = horz ? direction : 0;
+	int dy = horz ? 0 : direction;
+
+	for (int i = 0; i < 24; i++) // 24 Try's
+	{
+		int px = rand() % (BUFFER_W - 6) + 3;
+		int py = rand() % (BUFFER_H - 6) + 3;
+
+		bool acc = true;
+		for (int i = 0; i < 3; i++)
+		{
+			if (isPositionSnake(px + dx*i, py + dy*i)) {
+				acc = false;
+				break;
+			}
+		}
+
+		if (getMinimalSnakeDistance(px, py) < 16) {
+			acc = false;
+		}
+
+		if (acc) {
+			addObstacle(pConsole, new AspirinObstacle(px, py, dx, dy));
+			return;
+		}
+	}
+}
+double Level::getMinimalSnakeDistance(int px, int py) {
+	double d = INT_MAX;
+
+	SnakeElement * snakeelement = getSnake()->getHead();
+	while(snakeelement != 0) {
+		int dx = snakeelement->getX() - px;
+		int dy = snakeelement->getY() - py;
+		d = std::min(d, std::sqrt(dx*dx + dy*dy));
+
+		snakeelement = snakeelement->getNextElement();
+	}
+
+	return d;
 }

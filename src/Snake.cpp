@@ -10,7 +10,7 @@ Snake::Snake(Level* lvl, int sx, int sy, Direction dir)
 
 	head = new SnakeElement(sx, sy);
 	
-	if (GAMERULE_InfiniteField) {
+	if (GAMERULES::i().InfiniteField) {
 		algo = new PathFindingAlgorithm(BUFFER_W * 3, BUFFER_H * 3);
 	} else {
 		algo = new PathFindingAlgorithm(BUFFER_W, BUFFER_H);
@@ -159,7 +159,7 @@ Direction Snake::calcDirection() {
 		prevhead_y = head_y;
 	}
 
-	if (GAMERULE_InfiniteField) {
+	if (GAMERULES::i().InfiniteField) {
 		head_x += BUFFER_W;
 		head_y += BUFFER_H;
 		prevhead_x += BUFFER_W;
@@ -180,13 +180,13 @@ Direction Snake::calcDirection() {
 		SnakeElement * snakeelement = getHead();
 
 		while(snakeelement != 0) {
-			algo->map[snakeelement->getX()][snakeelement->getY()] = (GAMERULE_DieOnSelfContact || GAMERULE_BiteOnSelfContact) ? 1 : 0;
+			algo->map[snakeelement->getX()][snakeelement->getY()] = (GAMERULES::i().DieOnSelfContact || GAMERULES::i().BiteOnSelfContact) ? 1 : 0;
 
 			snakeelement = snakeelement->getNextElement();
 		}
 
 
-		if (GAMERULE_InfiniteField) {
+		if (GAMERULES::i().InfiniteField) {
 			for (int x = 0; x < BUFFER_W; x++)
 			{
 				for (int y = 0; y < BUFFER_H; y++)
@@ -264,7 +264,7 @@ int Snake::getFieldIdent(int px, int py) {
 	if (level->isPositionPowerUp(px, py)) {
 		return 0;
 	} else if (level->isPositionSnake(px, py)) {
-		return (GAMERULE_DieOnSelfContact || GAMERULE_BiteOnSelfContact) ? 1 : 0;
+		return (GAMERULES::i().DieOnSelfContact || GAMERULES::i().BiteOnSelfContact) ? 1 : 0;
 	} else {
 		return 0;
 	}
@@ -280,7 +280,7 @@ void Snake::getNearestPowerUp(int& px, int& py) {
 	int max_ax = 2;
 	int max_ay = 2;
 
-	if (GAMERULE_InfiniteField) {
+	if (GAMERULES::i().InfiniteField) {
 		min_ax = 0;
 		min_ay = 0;
 		max_ax = 3;
@@ -330,7 +330,7 @@ void Snake::getRandomPowerUp(int& px, int& py) {
 	while(pelem != 0) {
 		int normx = pelem->getX();
 		int normy = pelem->getY();
-		if (GAMERULE_InfiniteField) {
+		if (GAMERULES::i().InfiniteField) {
 			for (int ax= -1; ax < 2; ax++)
 			{
 				for (int ay= -1; ay < 2; ay++)
@@ -378,11 +378,11 @@ bool Snake::isDirectionFree(Direction d) {
 		break;
 	}
 
-	if (! GAMERULE_InfiniteField) {
+	if (! GAMERULES::i().InfiniteField) {
 		if (cx < 0 || cy < 0 || cx >= BUFFER_W ||cy >= BUFFER_H) return false;
 	}
 
-	return (!GAMERULE_BiteOnSelfContact && !GAMERULE_DieOnSelfContact && std::abs(getDirection() - d) != 2) || !level->isPositionSnake(cx, cy);
+	return (!GAMERULES::i().BiteOnSelfContact && !GAMERULES::i().DieOnSelfContact && std::abs(getDirection() - d) != 2) || !level->isPositionSnake(cx, cy);
 }
 
 void Snake::autoMoveForward() {

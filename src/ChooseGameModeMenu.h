@@ -7,6 +7,8 @@
 class ChooseGameModeMenu :
 	public DisplayImageTextMenu
 {
+protected:
+	virtual void throwAction();
 private:
 	int currmode;
 	AbstractConsole* console;

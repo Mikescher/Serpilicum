@@ -41,12 +41,16 @@ void DisplayImageTextMenu::render(AbstractConsole* pConsole) {
 
 void DisplayImageTextMenu::onKeyDown(int keycode) {
 	if (keycode == KC_SPACE || keycode == KC_ENTER) {
-		if (listener != 0) {
-			listener->actionPerformed(id, -1);
-		}
+		throwAction();
 	}
 }
 
 void DisplayImageTextMenu::run(AbstractConsole* pConsole) {
 	//--
+}
+
+void DisplayImageTextMenu::throwAction() {
+	if (listener != 0) {
+			listener->actionPerformed(id, -1);
+	}
 }

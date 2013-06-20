@@ -145,7 +145,7 @@ void DBConsole::zoomIn(int centerX, int centerY) {
 			nbx += centerX;
 			nby += centerY;
 
-			if (GAMERULE_InfiniteField) {
+			if (GAMERULES::i().InfiniteField) {
 				nbx = (nbx + BUFFER_W) % BUFFER_W;
 				nby = (nby + BUFFER_H) % BUFFER_H;
 			}

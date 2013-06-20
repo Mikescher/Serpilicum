@@ -11,6 +11,8 @@ protected:
 	ActionListener* listener;
 
 	bool* resourceArray;
+
+	virtual void throwAction();
 private:
 	long startTime;
 	int duration;

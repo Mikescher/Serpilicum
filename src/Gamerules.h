@@ -6,17 +6,35 @@ const DisplayMethod DISPLAYMETHOD = OGL_CONSOLE;
 
 //#########################################
 
-const int INITIAL_SPEED_SNAKE = 30;
-const int INITIAL_SNAKE_LENGTH = 5;
-const int INITIAL_LIFE_SHARDS = 3;
+const bool GR_EnableCheats = false;
 
-const bool GAMERULE_EnableCheats = true;
+//########################################
 
-const bool GAMERULE_InfiniteField = true;
-const bool GAMERULE_DieOnSelfContact = false;
-const bool GAMERULE_DecreaseShardsOnSelfContact = true;
-const bool GAMERULE_BiteOnSelfContact = true;
-const bool GAMERULE_expandOnHPCollection = true;
 
-const bool GAMERULE_EnableAutoPowerUp = true;
-const bool GAMERULE_EnableZoomPowerUp = true;
+class GAMERULES {
+public:
+	int INITIAL_SPEED_SNAKE;
+	int INITIAL_SNAKE_LENGTH;
+	int INITIAL_LIFE_SHARDS;
+
+	int MAXIMAL_HP_PU_COUNT;
+
+	bool InfiniteField;
+	bool DieOnSelfContact;
+	bool DecreaseShardsOnSelfContact;
+	bool BiteOnSelfContact;
+	bool expandOnHPCollection;
+	bool AddPointsOnHPCollect;
+	bool FactorialPointCalculation;
+	bool SpawnAspirinObstaclesOnHPCollect;
+	bool AlwaysUseAutoSnake;
+	bool InstantDeath;
+
+	bool EnableAutoPowerUp;
+	bool EnableZoomPowerUp;
+
+public:
+	static GAMERULES &i() {static GAMERULES i; return i;}
+private:
+	GAMERULES(){};
+};

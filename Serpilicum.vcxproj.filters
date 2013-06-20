@@ -28,6 +28,9 @@
     <Filter Include="Menu\DisplayMenu">
       <UniqueIdentifier>{25b64224-5470-4b35-a888-176bec6c9817}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Obstacles">
+      <UniqueIdentifier>{f29880f1-47b3-49df-8ef6-161d516a9dac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DeathMenu.h">
@@ -159,6 +162,12 @@
     <ClInclude Include="src\SplashMenu.h">
       <Filter>Menu</Filter>
     </ClInclude>
+    <ClInclude Include="src\LevelObstacle.h">
+      <Filter>Obstacles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AspirinObstacle.h">
+      <Filter>Obstacles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IntroMenu.cpp">
@@ -268,6 +277,12 @@
     </ClCompile>
     <ClCompile Include="src\SplashMenu.cpp">
       <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelObstacle.cpp">
+      <Filter>Obstacles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AspirinObstacle.cpp">
+      <Filter>Obstacles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

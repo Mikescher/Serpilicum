@@ -62,9 +62,7 @@ bool Game::isActive() {
 }
 
 void Game::onKeyDown (int keycode) {
-	if (keycode == KC_ESCAPE) {
-		active = false;
-	} else if (menu->isMenuset()) {
+	if (menu->isMenuset()) {
 		menu->onKeyDown(console, keycode);;
 	} else {
 		level->onKeyDown(console, keycode);

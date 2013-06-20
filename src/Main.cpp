@@ -1,4 +1,5 @@
 #include "Main.h"
+#include "Gamerules.h"
 
 int main() {
 	Main *main = new Main();
@@ -38,7 +39,22 @@ void Main::keyEventPerformed(int keycode) {
 	game->onKeyDown(keycode);
 }
 
-
+//int INITIAL_SPEED_SNAKE = 30;
+//int INITIAL_SNAKE_LENGTH = 5;
+//int INITIAL_LIFE_SHARDS = 3;
+//
+//bool GAMERULES::i().InfiniteField = true;
+//bool GAMERULES::i().DieOnSelfContact = false;
+//bool GAMERULES::i().DecreaseShardsOnSelfContact = true;
+//bool GAMERULES::i().BiteOnSelfContact = true;
+//bool GAMERULES::i().expandOnHPCollection = true;
+//bool GAMERULES::i().AddPointsOnHPCollect = true;
+//bool GAMERULES::i().FactorialPointCalculation = true;
+//bool GAMERULES::i().SpawnAspirinObstaclesOnHPCollect = false;
+//bool GAMERULES::i().AlwaysUseAutoSnake = false;
+//
+//bool GAMERULES::i().EnableAutoPowerUp = true;
+//bool GAMERULES::i().EnableZoomPowerUp = true;
 
 //#############################################
 /*
@@ -48,10 +64,5 @@ Crazy Mode (Shader Transformations Color, in COnsole implementated) (What to do 
 FPS Limiter
 Where do we loose FPS with looooooooong snake (20 FPS with BUFFER_H*4 Length)
 
-::GM::
-EASY
-RETRO
-NORMAL
-HARDCORE
-ASPIRIN
+GM Menu -> Chhsoe Transistion
 */
