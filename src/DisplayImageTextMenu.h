@@ -12,11 +12,10 @@ protected:
 
 	bool* resourceArray;
 
-	virtual void throwAction();
-private:
 	long startTime;
 	int duration;
 
+	virtual void throwAction();
 	virtual void createMenu(ActionListener * quitListener);
 public:
 	DisplayImageTextMenu(int pid, AbstractConsole* console, ActionListener * quitListener, int resourceID, int pduration);

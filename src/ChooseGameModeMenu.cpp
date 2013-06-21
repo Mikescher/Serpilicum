@@ -4,43 +4,38 @@
 
 ChooseGameModeMenu::ChooseGameModeMenu(int pid, AbstractConsole* pConsole, ActionListener * quitListener) : DisplayImageTextMenu(pid, pConsole, quitListener, 106, 0)
 {
+	transistion = 0;
+	transistionDirection = 0;
 	currmode = 2;
 	console = pConsole;
+	lastRun = pConsole->getCurrentTimeMillis();
+	
+	update();
 }
 
 void ChooseGameModeMenu::onKeyDown(int keycode) {
 	DisplayImageTextMenu::onKeyDown(keycode);
 
 	if (keycode == KC_LEFT) {
-		currmode = (currmode + (GAMEMODECOUNT-1)) % GAMEMODECOUNT;
+		/*currmode = (currmode + GAMEMODECOUNT - 1) % GAMEMODECOUNT;*/
+		transistionDirection = 1;
 		update();
 	} else if (keycode == KC_RIGHT) {
-		currmode = (currmode + 1) % GAMEMODECOUNT;
+		//currmode = (currmode + 1) % GAMEMODECOUNT;
+		transistionDirection = -1;
 		update();
 	}
 }
 
 void ChooseGameModeMenu::update() {
-	switch(currmode) {
-	case 0: 
-		resourceArray = console->getBoolImageResource(104); 
-		break;
-	case 1: 
-		resourceArray = console->getBoolImageResource(105); 
-		break;
-	case 2: 
-		resourceArray = console->getBoolImageResource(106); 
-		break;
-	case 3: 
-		resourceArray = console->getBoolImageResource(107); 
-		break;
-	case 4: 
-		resourceArray = console->getBoolImageResource(108); 
-		break;
-	case 5: 
-		resourceArray = console->getBoolImageResource(109); 
-		break;
-	}
+	int currID = 104 + currmode;
+
+	int nextID = 104 + (currmode - 1 + 6) % 6;
+	int prevID = 104 + (currmode + 1 + 6) % 6;
+
+	resourceArray = console->getBoolImageResource(currID);
+	traNext = console->getBoolImageResource(nextID);
+	traPrev = console->getBoolImageResource(prevID);
 }
 
 void ChooseGameModeMenu::throwAction() {
@@ -158,4 +153,53 @@ void ChooseGameModeMenu::throwAction() {
 
 
 	DisplayImageTextMenu::throwAction();
+}
+
+void ChooseGameModeMenu::run(AbstractConsole* pConsole) {
+	long delta = std::min(500l, pConsole->getCurrentTimeMillis() - lastRun);
+
+	double transBefore = transistion;
+	transistion += transistionDirection * delta/600.0;
+
+	if (transistion > 1) {
+		transistionDirection = 0;
+		transistion = 0;
+		currmode = (currmode + GAMEMODECOUNT - 1) % GAMEMODECOUNT;
+
+		update();
+	} else if (transistion < -1) {
+		transistionDirection = 0;
+		transistion = 0;
+		currmode = (currmode + GAMEMODECOUNT + 1) % GAMEMODECOUNT;
+
+		update();
+	} else if ((transBefore < 0 && 0 < transistion) || (transBefore > 0 && 0 > transistion)) {
+		transistionDirection = 0;
+		transistion = 0;
+
+		update();
+	}
+
+	lastRun = pConsole->getCurrentTimeMillis();
+}
+
+void ChooseGameModeMenu::render(AbstractConsole* pConsole) {
+	bool inTrans = transistionDirection != 0;
+
+	int offset1 = (int)(BUFFER_W * transistion);
+	int offsetN = offset1 + -1 * BUFFER_W;
+	int offsetP = offset1 +  1 * BUFFER_W;
+
+	for (int xx = (inTrans ? 5 : 0); xx < (inTrans ? BUFFER_W - 5 : BUFFER_W); xx++)
+	{
+		for (int yy = 0; yy < BUFFER_H; yy++)
+		{
+			double px = xx;
+			double py = (BUFFER_H - yy - 1);
+
+			pConsole->write((resourceArray[yy * BUFFER_W + xx]) ? ('#') : (' '), offset1 + (int)std::floor(px + 0.5), (int)std::floor(py + 0.5));
+			pConsole->write((traNext[yy * BUFFER_W + xx]) ? ('#') : (' '), offsetN + (int)std::floor(px + 0.5), (int)std::floor(py + 0.5));
+			pConsole->write((traPrev[yy * BUFFER_W + xx]) ? ('#') : (' '), offsetP + (int)std::floor(px + 0.5), (int)std::floor(py + 0.5));
+		}
+	}
 }

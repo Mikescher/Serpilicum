@@ -4,6 +4,8 @@
 #include "Label.h"
 #include "Button.h"
 #include "Edit.h"
+#include "Game.h"
+
 class OptionMenu :
 	public Menu
 {
