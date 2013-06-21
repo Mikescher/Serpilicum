@@ -11,9 +11,9 @@ class OptionMenu :
 {
 private:
 	Edit* nameEdt;
-	virtual void createMenu(ActionListener * optiontListener);
+	virtual void createMenu(ActionListener * optiontListener, std::string playername);
 public:
-	OptionMenu(ActionListener * optiontListener);
+	OptionMenu(ActionListener * optiontListener, std::string playername);
 	~OptionMenu(void);
 
 	virtual std::string getEditText(void);

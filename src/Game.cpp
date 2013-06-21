@@ -101,7 +101,7 @@ void Game::actionPerformed(int id, int param) {
 		menu->setMenu(main);
 	}	else if (id == 106) { // MAINMENU -> DEATMENU
 		menu->removeMenu();
-		OptionMenu* omenu = new OptionMenu(this);
+		OptionMenu* omenu = new OptionMenu(this, getPlayerName());
 		menu->setMenu(omenu);
 	}	else if (id == 701 || id == 702) { // INTROMENU -> MAINMENU
 		playerName = ((OptionMenu *)(menu->getMenu()))->getEditText();
