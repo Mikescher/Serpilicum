@@ -3,7 +3,7 @@
 
 OptionMenu::OptionMenu(ActionListener * optionListener, std::string playername)
 {
-	createMenu(optionListener, game);
+	createMenu(optionListener, playername);
 }
 
 

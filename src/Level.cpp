@@ -168,11 +168,8 @@ bool Level::isRunning(){
 void Level::render(AbstractConsole* pConsole)
 {
 	renderPowerups(pConsole);
-	
 	renderEffects(pConsole);
-
 	renderSnake(pConsole);
-
 	renderObstacles(pConsole);
 
 	if (getModifierType() == SNAKEMODTYPE_ZOOM) {
@@ -180,6 +177,7 @@ void Level::render(AbstractConsole* pConsole)
 	}
 
 	renderShards(pConsole);
+	renderPoints(pConsole);
 }
 
 void Level::renderSnake(AbstractConsole *console) {
@@ -220,6 +218,10 @@ void Level::renderShards(AbstractConsole *console) {
 	{
 		console->write(3, x, 0);
 	}
+}
+
+void Level::renderPoints(AbstractConsole *console) {
+	console->write(std::to_string(score), 0, BUFFER_H - 1);
 }
 
 void Level::onKeyDown(AbstractConsole* pConsole, int keycode) {
@@ -287,17 +289,17 @@ void Level::addMissingSpecialPowerUps(AbstractConsole * pConsole) {
 				switch(rand()%2) {
 				case 0: 
 					if (GAMERULES::i().EnableAutoPowerUp) {
-						getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy)); 
+						getPowerUpList()->add(new AutoPowerUp(pConsole, pux, puy));
+						addEffect(pConsole, new PowerUpSpawnEffect(pux, puy));
 						break;
 					}
 				case 1: 
 					if (GAMERULES::i().EnableZoomPowerUp) {
-						getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy)); 
+						getPowerUpList()->add(new ZoomPowerUp(pConsole, pux, puy));
+						addEffect(pConsole, new PowerUpSpawnEffect(pux, puy));
 						break;
 					}
 				}
-				
-				addEffect(pConsole, new PowerUpSpawnEffect(pux, puy));
 
 				lastSpecPowerupAdd = curr;
 			}

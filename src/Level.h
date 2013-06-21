@@ -34,6 +34,7 @@ private:
 	virtual void renderEffects(AbstractConsole *console);
 	virtual void renderObstacles(AbstractConsole *console);
 	virtual void renderShards(AbstractConsole *console);
+	virtual void renderPoints(AbstractConsole *console);
 
 	virtual void addMissingHealthPowerUps(AbstractConsole * pConsole);
 	virtual void addMissingSpecialPowerUps(AbstractConsole * pConsole);
