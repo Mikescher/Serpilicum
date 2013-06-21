@@ -17,11 +17,9 @@ void ChooseGameModeMenu::onKeyDown(int keycode) {
 	DisplayImageTextMenu::onKeyDown(keycode);
 
 	if (keycode == KC_LEFT) {
-		/*currmode = (currmode + GAMEMODECOUNT - 1) % GAMEMODECOUNT;*/
 		transistionDirection = 1;
 		update();
 	} else if (keycode == KC_RIGHT) {
-		//currmode = (currmode + 1) % GAMEMODECOUNT;
 		transistionDirection = -1;
 		update();
 	}
@@ -30,8 +28,8 @@ void ChooseGameModeMenu::onKeyDown(int keycode) {
 void ChooseGameModeMenu::update() {
 	int currID = 104 + currmode;
 
-	int nextID = 104 + (currmode - 1 + 6) % 6;
-	int prevID = 104 + (currmode + 1 + 6) % 6;
+	int nextID = 104 + (currmode - 1 + GAMEMODECOUNT) % GAMEMODECOUNT;
+	int prevID = 104 + (currmode + 1 + GAMEMODECOUNT) % GAMEMODECOUNT;
 
 	resourceArray = console->getBoolImageResource(currID);
 	traNext = console->getBoolImageResource(nextID);
@@ -39,7 +37,15 @@ void ChooseGameModeMenu::update() {
 }
 
 void ChooseGameModeMenu::throwAction() {
-	switch(currmode) {
+	int choosen = currmode;
+
+	if (transistion < -0.5) {
+		choosen = (choosen + GAMEMODECOUNT + 1) % GAMEMODECOUNT;
+	} else if (transistion > 0.5) {
+		choosen = (choosen + GAMEMODECOUNT - 1) % GAMEMODECOUNT;
+	}
+
+	switch(choosen) {
 	case 0: // EASY
 		GAMERULES::i().INITIAL_SPEED_SNAKE = 100;
 		GAMERULES::i().INITIAL_SNAKE_LENGTH = 5;
@@ -149,8 +155,6 @@ void ChooseGameModeMenu::throwAction() {
 		GAMERULES::i().InstantDeath = false;
 		break;
 	}
-
-
 
 	DisplayImageTextMenu::throwAction();
 }

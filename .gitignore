@@ -54,6 +54,7 @@ Thumbs.db
 *.opensdf
 /Highscore.txt
 *.*buildstate
+*.*build
 *.idb
 *.ilk
 *.cd
