@@ -61,3 +61,10 @@ Thumbs.db
 *.aps
 Release\*.res
 Debug\*.res
+/Aspirin.txt
+/Easy.txt
+/Hardcore.txt
+/Harcore.txt
+/Normal.txt
+/Retro.txt
+/Highscore.txt

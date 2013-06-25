@@ -104,7 +104,7 @@ std::string Highscore::gameName(int choose)
 		FILENAME = "Normal.txt";
 		break;
 	case 3:
-		FILENAME = "Harcore.txt";
+		FILENAME = "Hardcore.txt";
 		break;
 	case 4:
 		FILENAME = "Aspirin.txt";
