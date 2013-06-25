@@ -18,10 +18,10 @@ class OGLConsole :
 private:
 	GLuint chartextures;
 
-	virtual void loadTextures();
-
 	virtual unsigned char* loadBMPRaw(const unsigned char * image, unsigned int outWidth, unsigned int outHeight, bool flipY);
 	virtual GLuint LoadTextureRAW(int id, int w, int h);
+protected:
+	virtual void loadTextures();
 protected:
 	virtual void writeToConsole(int c, int x, int y);
 	virtual void showConsoleCursor(bool bShow);
@@ -29,10 +29,14 @@ protected:
 	virtual long getSystemCurrTimeMillis();
 	virtual void setDimensions(short w, short h);
 
+	virtual void startRenderOGL();
 	virtual void renderOGL();
+	virtual void renderOGLPos(int x, int y, int chr);
 public:
 	OGLConsole(void);
 	~OGLConsole(void);
+
+	virtual void initOGL();
 
 	virtual void clearBuffer();
 	virtual void swap();

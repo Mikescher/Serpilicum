@@ -4,6 +4,7 @@
 #include "Gamerules.h"
 #include "OGLConsole.h"
 #include "WindowsConsole.h"
+#include "CrazyConsole.h"
 #include "AbstractConsole.h"
 #include "Game.h"
 #include <windows.h>

@@ -17,6 +17,11 @@ void Main::start() {
 		break;
 	case OGL_CONSOLE:
 		dbc = new OGLConsole();
+		((OGLConsole*)dbc)->initOGL();
+		break;
+	case CRAZY_CONSOLE:
+		dbc = new CrazyConsole();
+		((CrazyConsole*)dbc)->initOGL();
 		break;
 	}
 
