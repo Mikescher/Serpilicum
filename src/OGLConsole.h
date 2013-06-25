@@ -16,11 +16,11 @@ class OGLConsole :
 	public DBConsole
 {
 private:
-	GLuint chartextures;
-
 	virtual unsigned char* loadBMPRaw(const unsigned char * image, unsigned int outWidth, unsigned int outHeight, bool flipY);
 	virtual GLuint LoadTextureRAW(int id, int w, int h);
 protected:
+	GLuint chartextures;
+
 	virtual void loadTextures();
 protected:
 	virtual void writeToConsole(int c, int x, int y);
