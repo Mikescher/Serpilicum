@@ -16,7 +16,7 @@ void HighscoreMenuHard::createMenu(ActionListener * highMenuListener, Highscore*
 	addElement(new Label("The Highscore of best the 30 players in the Gamemode \"Hardcore\"", 8, 3));
 
 
-	std::vector<HighscoreElement> highscore = pHighscore->readScore(0);
+	std::vector<HighscoreElement> highscore = pHighscore->readScore(3);
 	int position = 1;
 	for (unsigned int z = 0; z < highscore.size() && z < 31; z++)
 	{
