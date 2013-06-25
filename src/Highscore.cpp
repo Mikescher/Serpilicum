@@ -14,15 +14,15 @@ Highscore::~Highscore(void)
 void Highscore::writeScore(std::string pname, int pscoreValue)
 {
 	std::fstream datei;
-	datei.open(FILENAME, std::ios::out | std::ios::app);
+	datei.open(gameName(GAMERULES::i().GAMEMODE_ID), std::ios::out | std::ios::app);
 	datei << pname << "," << pscoreValue <<";";
 	datei.close();
 }
 
-std::string Highscore::readScoreFile()
+std::string Highscore::readScoreFile(int choose)
 {
 	std::fstream datei;
-	datei.open(FILENAME, std::ios::in);
+	datei.open(gameName(choose), std::ios::in);
 	std::string line;
 	while (getline(datei,line,'\0'));
 	datei.close();
@@ -30,10 +30,10 @@ std::string Highscore::readScoreFile()
 
 	return line;
 }
-std::vector<HighscoreElement> Highscore::readScore()
+std::vector<HighscoreElement> Highscore::readScore(int choose)
 {
 	std::string line;
-	line = readScoreFile();
+	line = readScoreFile(choose);
 	std::vector<std::string> elements;
 	elements = explode(line, ';');
 	std::vector<HighscoreElement> result;
@@ -87,4 +87,32 @@ void Highscore::sortHighscoreList(std::vector<HighscoreElement>& elements)
 			} 
 		} 
 	} 
+}
+
+std::string Highscore::gameName(int choose)
+{
+	std::string FILENAME;
+
+	switch(choose){
+	case 0: 
+		FILENAME = "Easy.txt";
+		break;
+	case 1:
+		FILENAME = "Retro.txt";
+		break;
+	case 2:
+		FILENAME = "Normal.txt";
+		break;
+	case 3:
+		FILENAME = "Harcore.txt";
+		break;
+	case 4:
+		FILENAME = "Aspirin.txt";
+		break;
+	case 5:
+		FILENAME = "Auto.txt";
+		break;
+	}
+
+		return FILENAME;
 }

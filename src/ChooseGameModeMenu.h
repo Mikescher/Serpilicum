@@ -18,6 +18,7 @@ private:
 	AbstractConsole* console;
 	double transistion;
 	int transistionDirection;
+	std::string gamemode;
 
 	void update();
 public:

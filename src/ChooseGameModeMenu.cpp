@@ -63,6 +63,8 @@ void ChooseGameModeMenu::throwAction() {
 		GAMERULES::i().EnableAutoPowerUp = true;
 		GAMERULES::i().EnableZoomPowerUp = true;
 		GAMERULES::i().InstantDeath = false;
+
+		GAMERULES::i().GAMEMODE_ID = 0;
 		break;
 	case 1: // RETRO
 		GAMERULES::i().INITIAL_SPEED_SNAKE = 200;
@@ -81,6 +83,8 @@ void ChooseGameModeMenu::throwAction() {
 		GAMERULES::i().EnableAutoPowerUp = false;
 		GAMERULES::i().EnableZoomPowerUp = false;
 		GAMERULES::i().InstantDeath = false;
+
+		GAMERULES::i().GAMEMODE_ID = 1;
 		break;
 	case 2: //NORMAL
 		GAMERULES::i().INITIAL_SPEED_SNAKE = 30;
@@ -99,6 +103,8 @@ void ChooseGameModeMenu::throwAction() {
 		GAMERULES::i().EnableAutoPowerUp = true;
 		GAMERULES::i().EnableZoomPowerUp = true;
 		GAMERULES::i().InstantDeath = false;
+
+		GAMERULES::i().GAMEMODE_ID = 2;
 		break;
 	case 3: // HARDCORE
 		GAMERULES::i().INITIAL_SPEED_SNAKE = 20;
@@ -117,6 +123,8 @@ void ChooseGameModeMenu::throwAction() {
 		GAMERULES::i().EnableAutoPowerUp = false;
 		GAMERULES::i().EnableZoomPowerUp = false;
 		GAMERULES::i().InstantDeath = false;
+
+		GAMERULES::i().GAMEMODE_ID = 3;
 		break;
 	case 4: // ASPIRIN
 		GAMERULES::i().INITIAL_SPEED_SNAKE = 60;
@@ -135,6 +143,8 @@ void ChooseGameModeMenu::throwAction() {
 		GAMERULES::i().EnableAutoPowerUp = false;
 		GAMERULES::i().EnableZoomPowerUp = false;
 		GAMERULES::i().InstantDeath = false;
+
+		GAMERULES::i().GAMEMODE_ID = 4;
 		break;
 	case 5: // AUTO
 		GAMERULES::i().INITIAL_SPEED_SNAKE = 30;
@@ -153,11 +163,14 @@ void ChooseGameModeMenu::throwAction() {
 		GAMERULES::i().EnableAutoPowerUp = false;
 		GAMERULES::i().EnableZoomPowerUp = true;
 		GAMERULES::i().InstantDeath = false;
+
+		GAMERULES::i().GAMEMODE_ID = 5;
 		break;
 	}
 
 	DisplayImageTextMenu::throwAction();
 }
+
 
 void ChooseGameModeMenu::run(AbstractConsole* pConsole) {
 	long delta = std::min(500l, pConsole->getCurrentTimeMillis() - lastRun);

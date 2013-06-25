@@ -12,6 +12,8 @@
 #include "SplashMenu.h"
 #include "OptionMenu.h"
 #include "ChooseGameModeMenu.h"
+#include "HighscoreMenuEasy.h"
+#include "HighscoreMenuHard.h"
 
 Game::Game(AbstractConsole *pconsole)
 {
@@ -112,6 +114,18 @@ void Game::actionPerformed(int id, int param) {
 		menu->removeMenu();
 		level = new Level();
 		level->start(console);
+	}	else if (id == 901) { // -> HIGHSCOREEASY
+		menu->removeMenu();
+		HighscoreMenuEasy* highmeneasy = new HighscoreMenuEasy(this);
+		menu->setMenu(highmeneasy);
+	}	else if(id == 902) { //	 -> HIGHSCORENORMAL
+		menu->removeMenu();
+		HighscoreMenu* highmen = new HighscoreMenu(this);
+		menu->setMenu(highmen);
+	}	else if(id == 903) { //  ->HIGHSCOREHARD
+		menu->removeMenu();
+		HighscoreMenuHard* highmenhard = new HighscoreMenuHard(this);
+		menu->setMenu(highmenhard);
 	}
 }
 

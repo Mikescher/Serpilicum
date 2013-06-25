@@ -6,6 +6,7 @@
 #include "ListenerCollection.h"
 #include "Highscore.h"
 #include "Game.h"
+#include "Gamerules.h"
 
 class DeathMenu :
 	public Menu

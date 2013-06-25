@@ -13,10 +13,10 @@ HighscoreMenu::~HighscoreMenu(void)
 }
 
 void HighscoreMenu::createMenu(ActionListener * highMenuListener, Highscore* pHighscore){
-	addElement(new Label("The Highscore of best the 30 players", 8, 3));
+	addElement(new Label("The Highscore of best the 30 players in the Gamemode \"Normal\"", 8, 3));
 
 
-	std::vector<HighscoreElement> highscore = pHighscore->readScore();
+	std::vector<HighscoreElement> highscore = pHighscore->readScore(2);
 	int position = 1;
 	for (unsigned int z = 0; z < highscore.size() && z < 31; z++)
 	{
@@ -30,5 +30,15 @@ void HighscoreMenu::createMenu(ActionListener * highMenuListener, Highscore* pHi
 	addElement(mainBtn);
 	mainBtn->setListener(highMenuListener);
 
-	focusElement(2);
+	Button* highscoreEasy = new Button(901, "Easy", 30, 10);
+	addElement(highscoreEasy);
+	highscoreEasy->setListener(highMenuListener);
+
+	addElement(new Button(902, "Normal", 30, 13));
+
+	Button* highscoreHard = new Button(903, "Hardcore", 30, 16);
+	addElement(highscoreHard);
+	highscoreHard->setListener(highMenuListener);
+
+	focusElement(5);
 }

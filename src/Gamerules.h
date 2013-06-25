@@ -19,6 +19,8 @@ public:
 
 	int MAXIMAL_HP_PU_COUNT;
 
+	int GAMEMODE_ID;
+
 	bool InfiniteField;
 	bool DieOnSelfContact;
 	bool DecreaseShardsOnSelfContact;
@@ -32,6 +34,7 @@ public:
 
 	bool EnableAutoPowerUp;
 	bool EnableZoomPowerUp;
+
 
 public:
 	static GAMERULES &i() {static GAMERULES i; return i;}

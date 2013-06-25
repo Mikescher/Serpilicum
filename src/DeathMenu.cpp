@@ -18,7 +18,7 @@ void DeathMenu::createMenu(ActionListener * restartListener, Highscore* phighsco
 
 	addElement(new Label("Top 20 players", 8, 12));
 
-	std::vector<HighscoreElement> highscore = phighscore->readScore();
+	std::vector<HighscoreElement> highscore = phighscore->readScore(GAMERULES::i().GAMEMODE_ID);
 	int position = 1;
 	for (unsigned int z = 0; z < highscore.size() && z < 21; z++)
 	{
