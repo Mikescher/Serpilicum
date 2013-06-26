@@ -16,6 +16,8 @@ private:
 	std::vector<LevelObstacle*> obstacles;
 	SnakeModifier* modifier;
 
+	AbstractConsole* console;
+
 	int lifes;
 	int snake_speed;
 	int score;

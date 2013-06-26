@@ -33,6 +33,8 @@
     </Filter>
     <Filter Include="Menu\HighscoreMenus">
       <UniqueIdentifier>{02754208-b9d4-4efe-8a63-e9250c7bfa4a}</UniqueIdentifier>
+    <Filter Include="Display\CrazyVariables">
+      <UniqueIdentifier>{27f3db9c-c177-40c6-9af2-fccdb349ceb9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +191,12 @@
     <ClInclude Include="src\HighscoreMenuRetro.h">
       <Filter>Menu\HighscoreMenus</Filter>
     </ClInclude>
+    <ClInclude Include="src\CrazyConsole.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CrazyDouble.h">
+      <Filter>Display\CrazyVariables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IntroMenu.cpp">
@@ -322,6 +330,12 @@
     </ClCompile>
     <ClCompile Include="src\HighscoreMenuRetro.cpp">
       <Filter>Menu\HighscoreMenus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CrazyConsole.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CrazyDouble.cpp">
+      <Filter>Display\CrazyVariables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

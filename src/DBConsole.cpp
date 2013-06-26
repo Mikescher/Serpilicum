@@ -17,6 +17,9 @@ DBConsole::~DBConsole(void) {
 }
 
 void DBConsole::init() {
+	//Init Vars
+	firstTimeMillis = getSystemCurrTimeMillis();
+
 	//Init KeyStates
 	for(int p = 0; p < (sizeof(currKeyStates)/sizeof(bool)); p++) {
 		currKeyStates[p] = false;
@@ -35,6 +38,11 @@ void DBConsole::init() {
 
 	// Set Size
 	setDimensions(BUFFER_W, BUFFER_H);
+
+	//Show Console
+	if (! SHOWCONSOLE) {
+		hideConsole();
+	}
 }
 
 void DBConsole::write(int c, int x, int y) {
@@ -121,7 +129,7 @@ unsigned char DBConsole::getCurrentKeyState() {
 }
 
 long DBConsole::getCurrentTimeMillis() {
-	return getSystemCurrTimeMillis();
+	return getSystemCurrTimeMillis() - firstTimeMillis;
 }
 
 double DBConsole::getFPS() {
@@ -162,4 +170,12 @@ void DBConsole::zoomIn(int centerX, int centerY) {
 			buffer[x][y] = newbuffer[x][y];
 		}
 	}
+}
+
+void DBConsole::onLevelStart() {
+	// Do nothing
+}
+
+void DBConsole::onLevelStop() {
+	// Do nothing
 }

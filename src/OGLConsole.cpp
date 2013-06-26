@@ -9,6 +9,15 @@ OGLConsole::OGLConsole(void) : DBConsole()
 
 	//##########  OPENGL  ######################
 
+	//--
+}
+
+
+OGLConsole::~OGLConsole(void)
+{
+}
+
+void OGLConsole::initOGL() {
 	int argc = 0;
 	char *pc = 0;
 
@@ -23,12 +32,8 @@ OGLConsole::OGLConsole(void) : DBConsole()
 
 	glOrtho(0, 8 * BUFFER_W, 12 * BUFFER_H, 0, 0, -100);
 	glEnable(GL_TEXTURE_2D);
+
 	loadTextures();
-}
-
-
-OGLConsole::~OGLConsole(void)
-{
 }
 
 void OGLConsole::writeToConsole(int c, int x, int y)
@@ -70,8 +75,7 @@ void OGLConsole::clearBuffer() {
 void OGLConsole::swap() {
 	DBConsole::swap();
 
-	glClearColor(0, 0, 0, 1);
-	glClear (GL_COLOR_BUFFER_BIT);
+	startRenderOGL();
 
 	//<RENDER OGL>
 	renderOGL();
@@ -80,39 +84,48 @@ void OGLConsole::swap() {
 	glutSwapBuffers();
 }
 
+void OGLConsole::startRenderOGL() {
+	glClearColor(0, 0, 0, 1);
+	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
 void OGLConsole::renderOGL() {
 	for (int x = 0; x < BUFFER_W; x++) {
 		for (int y = 0; y < BUFFER_H; y++) {
 			if (display[x][y] != ' ') {
-				int dchar = display[x][y] % 255;
-
-				GLdouble tx = dchar % 80;
-				GLdouble ty = dchar / 80;
-
-				GLdouble x1 = (x+0) * 8;
-				GLdouble x2 = (x+1) * 8;
-
-				GLdouble y1 = (y+0) * 12;
-				GLdouble y2 = (y+1) * 12;
-
-				GLdouble tx1 = (tx+0) / 128.0;
-				GLdouble tx2 = (tx+1) / 128.0;
-
-				GLdouble ty1 = 64 - (ty+0) / (16/3.0);
-				GLdouble ty2 = 64 - (ty+1) / (16/3.0);
-
-				glColor3f(1, 1, 1);
-				glBindTexture(GL_TEXTURE_2D, chartextures);
-
-				glBegin(GL_QUADS);
-					glTexCoord2d(tx1, ty1); glVertex3d(x1, y1, 0);
-					glTexCoord2d(tx1, ty2); glVertex3d(x1, y2, 0);
-					glTexCoord2d(tx2, ty2); glVertex3d(x2, y2, 0);
-					glTexCoord2d(tx2, ty1); glVertex3d(x2, y1, 0);
-				glEnd();
+				renderOGLPos(x, y, display[x][y]);
 			}
 		}
 	}
+}
+
+void OGLConsole::renderOGLPos(int x, int y, int chr) {
+	int dchar = chr % 255;
+
+	GLdouble tx = dchar % 80;
+	GLdouble ty = dchar / 80;
+
+	GLdouble x1 = (x+0) * 8;
+	GLdouble x2 = (x+1) * 8;
+
+	GLdouble y1 = (y+0) * 12;
+	GLdouble y2 = (y+1) * 12;
+
+	GLdouble tx1 = (tx+0) / 128.0;
+	GLdouble tx2 = (tx+1) / 128.0;
+
+	GLdouble ty1 = 64 - (ty+0) / (16/3.0);
+	GLdouble ty2 = 64 - (ty+1) / (16/3.0);
+
+	glColor3f(1, 1, 1);
+	glBindTexture(GL_TEXTURE_2D, chartextures);
+
+	glBegin(GL_QUADS);
+	glTexCoord2d(tx1, ty1); glVertex3d(x1, y1, 0);
+	glTexCoord2d(tx1, ty2); glVertex3d(x1, y2, 0);
+	glTexCoord2d(tx2, ty2); glVertex3d(x2, y2, 0);
+	glTexCoord2d(tx2, ty1); glVertex3d(x2, y1, 0);
+	glEnd();
 }
 
 unsigned char* OGLConsole::loadBMPRaw(const unsigned char * rawdata, unsigned int outWidth, unsigned int outHeight, bool flipY){
@@ -249,4 +262,9 @@ bool* OGLConsole::getBoolImageResource(int id) {
 	if ( *(int*)&(header[0x1C])!=24 ) {printf("Not a correct BMP file\n"); return NULL;}
 
 	return result;
+}
+
+void OGLConsole::hideConsole() {
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow( hWnd, SW_HIDE );
 }

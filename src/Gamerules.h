@@ -1,8 +1,9 @@
 #pragma once
 
-enum DisplayMethod {WINDOWS_CONSOLE, OGL_CONSOLE};
+enum DisplayMethod {WINDOWS_CONSOLE, OGL_CONSOLE, CRAZY_CONSOLE};
 
-const DisplayMethod DISPLAYMETHOD = OGL_CONSOLE;
+const DisplayMethod DISPLAYMETHOD = CRAZY_CONSOLE;
+const bool SHOWCONSOLE = false;
 
 //#########################################
 
