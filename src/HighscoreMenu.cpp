@@ -3,8 +3,7 @@
 
 HighscoreMenu::HighscoreMenu(ActionListener* highMenuListener)
 {
-	Highscore* pHighscore = new Highscore();
-	createMenu(highMenuListener, pHighscore);
+	listener = highMenuListener;
 }
 
 
@@ -12,11 +11,47 @@ HighscoreMenu::~HighscoreMenu(void)
 {
 }
 
+void HighscoreMenu::onStart() {
+	Highscore* pHighscore = new Highscore();
+	createMenu(listener, pHighscore);
+}
+
 void HighscoreMenu::createMenu(ActionListener * highMenuListener, Highscore* pHighscore){
-	addElement(new Label("The Highscore of best the 30 players in the Gamemode \"Normal\"", 8, 3));
+	addElement(new Label("The Highscore of best the 30 players in the Gamemode \"" + getName() + "\"", 8, 3));
 
+	Button* mainBtn = new Button(501, "Back to Menu", 30, 6);
+	addElement(mainBtn);
+	mainBtn->setListener(highMenuListener);
 
-	std::vector<HighscoreElement> highscore = pHighscore->readScore(2);
+	//########################################
+
+	Button* hs0 = new Button(901, "Easy", 30, 10);
+	addElement(hs0);
+	hs0->setListener(highMenuListener);
+
+	Button* hs1 = new Button(902, "Retro", 30, 13);
+	addElement(hs1);
+	hs1->setListener(highMenuListener);
+
+	Button* hs2 = new Button(903, "Normal", 30, 16);
+	addElement(hs2);
+	hs2->setListener(highMenuListener);
+
+	Button* hs3 = new Button(904, "Hardcore", 30, 19);
+	addElement(hs3);
+	hs3->setListener(highMenuListener);
+
+	Button* hs4 = new Button(905, "Aspirin", 30, 22);
+	addElement(hs4);
+	hs4->setListener(highMenuListener);
+
+	Button* hs5 = new Button(906, "Auto", 30, 25);
+	addElement(hs5);
+	hs5->setListener(highMenuListener);
+
+	//#########################
+
+	std::vector<HighscoreElement> highscore = pHighscore->readScore(getHSID());
 	int position = 1;
 	for (unsigned int z = 0; z < highscore.size() && z < 31; z++)
 	{
@@ -26,19 +61,5 @@ void HighscoreMenu::createMenu(ActionListener * highMenuListener, Highscore* pHi
 		addElement(highLbn);
 	}
 
-	Button* mainBtn = new Button(501, "Back to Menu", 30, 6);
-	addElement(mainBtn);
-	mainBtn->setListener(highMenuListener);
-
-	Button* highscoreEasy = new Button(901, "Easy", 30, 10);
-	addElement(highscoreEasy);
-	highscoreEasy->setListener(highMenuListener);
-
-	addElement(new Button(902, "Normal", 30, 13));
-
-	Button* highscoreHard = new Button(903, "Hardcore", 30, 16);
-	addElement(highscoreHard);
-	highscoreHard->setListener(highMenuListener);
-
-	focusElement(5);
+	focusElement(2 + getHSID());
 }

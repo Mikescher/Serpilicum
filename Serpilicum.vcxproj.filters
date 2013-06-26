@@ -31,6 +31,9 @@
     <Filter Include="Obstacles">
       <UniqueIdentifier>{f29880f1-47b3-49df-8ef6-161d516a9dac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Menu\HighscoreMenus">
+      <UniqueIdentifier>{02754208-b9d4-4efe-8a63-e9250c7bfa4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DeathMenu.h">
@@ -168,11 +171,23 @@
     <ClInclude Include="src\AspirinObstacle.h">
       <Filter>Obstacles</Filter>
     </ClInclude>
+    <ClInclude Include="src\HighscoreMenuAspirin.h">
+      <Filter>Menu\HighscoreMenus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighscoreMenuAuto.h">
+      <Filter>Menu\HighscoreMenus</Filter>
+    </ClInclude>
     <ClInclude Include="src\HighscoreMenuEasy.h">
-      <Filter>Menu</Filter>
+      <Filter>Menu\HighscoreMenus</Filter>
     </ClInclude>
     <ClInclude Include="src\HighscoreMenuHard.h">
-      <Filter>Menu</Filter>
+      <Filter>Menu\HighscoreMenus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighscoreMenuNormal.h">
+      <Filter>Menu\HighscoreMenus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighscoreMenuRetro.h">
+      <Filter>Menu\HighscoreMenus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,11 +305,23 @@
     <ClCompile Include="src\AspirinObstacle.cpp">
       <Filter>Obstacles</Filter>
     </ClCompile>
+    <ClCompile Include="src\HighscoreMenuAspirin.cpp">
+      <Filter>Menu\HighscoreMenus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighscoreMenuAuto.cpp">
+      <Filter>Menu\HighscoreMenus</Filter>
+    </ClCompile>
     <ClCompile Include="src\HighscoreMenuEasy.cpp">
-      <Filter>Menu</Filter>
+      <Filter>Menu\HighscoreMenus</Filter>
     </ClCompile>
     <ClCompile Include="src\HighscoreMenuHard.cpp">
-      <Filter>Menu</Filter>
+      <Filter>Menu\HighscoreMenus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighscoreMenuNormal.cpp">
+      <Filter>Menu\HighscoreMenus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighscoreMenuRetro.cpp">
+      <Filter>Menu\HighscoreMenus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

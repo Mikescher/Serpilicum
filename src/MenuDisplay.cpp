@@ -14,8 +14,12 @@ MenuDisplay::~MenuDisplay(void)
 
 Menu* MenuDisplay::setMenu(Menu* pMenu)
 {
+	removeMenu();
+
 	Menu *tmp = menu;
 	menu = pMenu;
+
+	menu->onStart();
 
 	return tmp;
 }

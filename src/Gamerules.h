@@ -19,7 +19,7 @@ public:
 
 	int MAXIMAL_HP_PU_COUNT;
 
-	int GAMEMODE_ID;
+	int choosen_gamemode;
 
 	bool InfiniteField;
 	bool DieOnSelfContact;

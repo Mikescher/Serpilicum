@@ -12,8 +12,13 @@
 #include "SplashMenu.h"
 #include "OptionMenu.h"
 #include "ChooseGameModeMenu.h"
+
 #include "HighscoreMenuEasy.h"
+#include "HighscoreMenuRetro.h"
+#include "HighscoreMenuNormal.h"
 #include "HighscoreMenuHard.h"
+#include "HighscoreMenuAspirin.h"
+#include "HighscoreMenuAuto.h"
 
 Game::Game(AbstractConsole *pconsole)
 {
@@ -83,7 +88,7 @@ void Game::actionPerformed(int id, int param) {
 		menu->setMenu(main);
 	}  else if (id == 103) { // MAINMENU -> HIGHSCOREMENU
 		menu->removeMenu();
-		HighscoreMenu* highmen = new HighscoreMenu(this);
+		HighscoreMenu* highmen = new HighscoreMenuNormal(this);
 		menu->setMenu(highmen);
 	}  else if (id == 401) { // DispayDeathMessage -> ACTIONPERFORMED
 		menu->removeMenu();
@@ -114,18 +119,18 @@ void Game::actionPerformed(int id, int param) {
 		menu->removeMenu();
 		level = new Level();
 		level->start(console);
-	}	else if (id == 901) { // -> HIGHSCOREEASY
-		menu->removeMenu();
-		HighscoreMenuEasy* highmeneasy = new HighscoreMenuEasy(this);
-		menu->setMenu(highmeneasy);
-	}	else if(id == 902) { //	 -> HIGHSCORENORMAL
-		menu->removeMenu();
-		HighscoreMenu* highmen = new HighscoreMenu(this);
-		menu->setMenu(highmen);
-	}	else if(id == 903) { //  ->HIGHSCOREHARD
-		menu->removeMenu();
-		HighscoreMenuHard* highmenhard = new HighscoreMenuHard(this);
-		menu->setMenu(highmenhard);
+	}	else if (id == 901) { // -> HIGHSCORE EASY
+		menu->setMenu(new HighscoreMenuEasy(this));
+	}	else if(id == 902) { //	 -> HIGHSCORE RETRO
+		menu->setMenu(new HighscoreMenuRetro(this));
+	}	else if(id == 903) { //  ->HIGHSCORE NORMAL
+		menu->setMenu(new HighscoreMenuNormal(this));
+	}	else if(id == 904) { //  ->HIGHSCORE HARD
+		menu->setMenu(new HighscoreMenuHard(this));
+	}	else if(id == 905) { //  ->HIGHSCORE Aspirin
+		menu->setMenu(new HighscoreMenuAspirin(this));
+	}	else if(id == 905) { //  ->HIGHSCORE Auto
+		menu->setMenu(new HighscoreMenuAuto(this));
 	}
 }
 

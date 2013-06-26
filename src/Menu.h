@@ -13,6 +13,8 @@ public:
 	Menu(void);
 	virtual ~Menu(void);
 
+	virtual void onStart() {};
+
 	virtual void render(AbstractConsole* pConsole);
 	virtual void run(AbstractConsole* pConsole);
 

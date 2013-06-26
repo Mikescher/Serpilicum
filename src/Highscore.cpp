@@ -14,7 +14,7 @@ Highscore::~Highscore(void)
 void Highscore::writeScore(std::string pname, int pscoreValue)
 {
 	std::fstream datei;
-	datei.open(gameName(GAMERULES::i().GAMEMODE_ID), std::ios::out | std::ios::app);
+	datei.open(gameName(GAMERULES::i().choosen_gamemode), std::ios::out | std::ios::app);
 	datei << pname << "," << pscoreValue <<";";
 	datei.close();
 }

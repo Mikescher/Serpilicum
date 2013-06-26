@@ -1,12 +1,12 @@
 #pragma once
 #include "highscoremenu.h"
-class HighscoreMenuEasy :
+class HighscoreMenuAuto :
 	public HighscoreMenu
 {
 protected:
 	virtual std::string getName();
 	virtual int getHSID();
 public:
-	HighscoreMenuEasy(ActionListener* listener) : HighscoreMenu(listener){}
+	HighscoreMenuAuto(ActionListener* listener) : HighscoreMenu(listener){}
 };
 

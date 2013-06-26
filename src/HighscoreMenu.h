@@ -12,9 +12,16 @@ class HighscoreMenu :
 	public Menu
 {
 private:
+	ActionListener* listener;
+
 	virtual void createMenu(ActionListener* highMenuListener, Highscore* pHighscore);
+protected:
+	virtual std::string getName() = 0;
+	virtual int getHSID() = 0;
 public:
 	HighscoreMenu(ActionListener * highMenuListener);
 	~HighscoreMenu(void);
+
+	virtual void onStart();
 };
 

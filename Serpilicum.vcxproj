@@ -93,8 +93,12 @@
     <ClInclude Include="src\Edit.h" />
     <ClInclude Include="src\GameOverDisplayMenu.h" />
     <ClInclude Include="src\HighscoreMenu.h" />
+    <ClInclude Include="src\HighscoreMenuAspirin.h" />
+    <ClInclude Include="src\HighscoreMenuAuto.h" />
     <ClInclude Include="src\HighscoreMenuEasy.h" />
     <ClInclude Include="src\HighscoreMenuHard.h" />
+    <ClInclude Include="src\HighscoreMenuNormal.h" />
+    <ClInclude Include="src\HighscoreMenuRetro.h" />
     <ClInclude Include="src\IntroMenu.h" />
     <ClInclude Include="src\LevelObstacle.h" />
     <ClInclude Include="src\OptionMenu.h" />
@@ -145,8 +149,12 @@
     <ClCompile Include="src\HealthPowerUp.cpp" />
     <ClCompile Include="src\Highscore.cpp" />
     <ClCompile Include="src\HighscoreMenu.cpp" />
+    <ClCompile Include="src\HighscoreMenuAspirin.cpp" />
+    <ClCompile Include="src\HighscoreMenuAuto.cpp" />
     <ClCompile Include="src\HighscoreMenuEasy.cpp" />
     <ClCompile Include="src\HighscoreMenuHard.cpp" />
+    <ClCompile Include="src\HighscoreMenuNormal.cpp" />
+    <ClCompile Include="src\HighscoreMenuRetro.cpp" />
     <ClCompile Include="src\IntroMenu.cpp" />
     <ClCompile Include="src\LevelObstacle.cpp" />
     <ClCompile Include="src\OptionMenu.cpp" />
