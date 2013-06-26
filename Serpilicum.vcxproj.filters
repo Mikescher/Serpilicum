@@ -33,6 +33,7 @@
     </Filter>
     <Filter Include="Menu\HighscoreMenus">
       <UniqueIdentifier>{02754208-b9d4-4efe-8a63-e9250c7bfa4a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Display\CrazyVariables">
       <UniqueIdentifier>{27f3db9c-c177-40c6-9af2-fccdb349ceb9}</UniqueIdentifier>
     </Filter>
@@ -343,9 +344,5 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Font_raster.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>
