@@ -48,7 +48,7 @@ void CrazyConsole::stopCrazy() {
 }
 
 void CrazyConsole::initOGL() {
-	depth = - (6.0*BUFFER_H) / tan(M_PI * 22.5 / 180.0);
+	depth = - GLfloat(6.0*BUFFER_H) / tan(M_PI * 22.5 / 180.0);
 
 	int argc = 0;
 	char *pc = 0;

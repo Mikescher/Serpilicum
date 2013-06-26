@@ -1,6 +1,8 @@
 #pragma once
 
+#pragma warning(disable: 4244)
 #define _USE_MATH_DEFINES
+
 #include "oglconsole.h"
 #include <vector>
 #include "CrazyDouble.h"

@@ -25,7 +25,7 @@ private:
 public:
 	CrazyDouble(AbstractConsole* pConsole, double initial, double speedmax, double acc, double min, double max);
 
-	virtual GLfloat get() {return value;}
+	virtual GLfloat get() {return GLfloat(value);}
 
 	virtual void run(AbstractConsole* pConsole);
 
