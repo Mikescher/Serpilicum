@@ -28,5 +28,8 @@ public:
 	virtual bool* getBoolImageResource(int id) = 0;
 
 	virtual void startLoop(ActionListener *looplistener, KeyEventListener *keyListener) = 0;
+
+	virtual void onLevelStart() = 0;
+	virtual void onLevelStop() = 0;
 };
 

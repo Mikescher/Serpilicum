@@ -31,6 +31,9 @@
     <Filter Include="Obstacles">
       <UniqueIdentifier>{f29880f1-47b3-49df-8ef6-161d516a9dac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Display\CrazyVariables">
+      <UniqueIdentifier>{27f3db9c-c177-40c6-9af2-fccdb349ceb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DeathMenu.h">
@@ -174,7 +177,12 @@
     <ClInclude Include="src\HighscoreMenuHard.h">
       <Filter>Menu</Filter>
     </ClInclude>
-    <ClInclude Include="src\CrazyConsole.h" />
+    <ClInclude Include="src\CrazyConsole.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CrazyDouble.h">
+      <Filter>Display\CrazyVariables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IntroMenu.cpp">
@@ -297,7 +305,12 @@
     <ClCompile Include="src\HighscoreMenuHard.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
-    <ClCompile Include="src\CrazyConsole.cpp" />
+    <ClCompile Include="src\CrazyConsole.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CrazyDouble.cpp">
+      <Filter>Display\CrazyVariables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Serpilicum.rc" />

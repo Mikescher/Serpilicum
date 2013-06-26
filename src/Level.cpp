@@ -60,12 +60,16 @@ Level::~Level(void)
 }
 
 void Level::start(AbstractConsole* pConsole){
+	console = pConsole;
+
 	lastHPPowerupAdd = pConsole->getCurrentTimeMillis();
 	lastSpecPowerupAdd = pConsole->getCurrentTimeMillis();
 	running = true;
+	pConsole->onLevelStart();
 }
 
 void Level::stop(){
+	console->onLevelStop();
 	running = false;
 }
 

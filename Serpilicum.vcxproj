@@ -89,6 +89,7 @@
     <ClInclude Include="src\BiteEffect.h" />
     <ClInclude Include="src\ChooseGameModeMenu.h" />
     <ClInclude Include="src\CrazyConsole.h" />
+    <ClInclude Include="src\CrazyDouble.h" />
     <ClInclude Include="src\DisplayImageTextMenu.h" />
     <ClInclude Include="src\Dynamic2DArray.h" />
     <ClInclude Include="src\Edit.h" />
@@ -138,6 +139,7 @@
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\ChooseGameModeMenu.cpp" />
     <ClCompile Include="src\CrazyConsole.cpp" />
+    <ClCompile Include="src\CrazyDouble.cpp" />
     <ClCompile Include="src\DBConsole.cpp" />
     <ClCompile Include="src\DeathMenu.cpp" />
     <ClCompile Include="src\DisplayImageTextMenu.cpp" />

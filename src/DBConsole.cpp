@@ -163,3 +163,11 @@ void DBConsole::zoomIn(int centerX, int centerY) {
 		}
 	}
 }
+
+void DBConsole::onLevelStart() {
+	// Do nothing
+}
+
+void DBConsole::onLevelStop() {
+	// Do nothing
+}

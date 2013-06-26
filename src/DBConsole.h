@@ -42,5 +42,8 @@ public:
 	virtual unsigned char getCurrentKeyState();
 	virtual long getCurrentTimeMillis();
 	virtual double getFPS();
+
+	virtual void onLevelStart();
+	virtual void onLevelStop();
 };
 
