@@ -17,6 +17,9 @@ DBConsole::~DBConsole(void) {
 }
 
 void DBConsole::init() {
+	//Init Vars
+	firstTimeMillis = getSystemCurrTimeMillis();
+
 	//Init KeyStates
 	for(int p = 0; p < (sizeof(currKeyStates)/sizeof(bool)); p++) {
 		currKeyStates[p] = false;
@@ -121,7 +124,7 @@ unsigned char DBConsole::getCurrentKeyState() {
 }
 
 long DBConsole::getCurrentTimeMillis() {
-	return getSystemCurrTimeMillis();
+	return getSystemCurrTimeMillis() - firstTimeMillis;
 }
 
 double DBConsole::getFPS() {

@@ -28,7 +28,6 @@ void CrazyDouble::newTarget() {
 	}
 
 	target = (rand() / (RAND_MAX * 1.0)) * abs(max_value - min_value) + min_value;
-	printf("New Target: %f\n", target);
 }
 
 void CrazyDouble::run(AbstractConsole* pConsole) {

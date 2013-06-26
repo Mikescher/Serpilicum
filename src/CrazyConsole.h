@@ -11,8 +11,10 @@ class CrazyConsole :
 private:
 	GLfloat depth;
 	CrazyDouble* heightshift;
-	CrazyDouble* zangleShift;
+
 	CrazyDouble* xangleShift;
+	CrazyDouble* yangleShift;
+	CrazyDouble* zangleShift;
 
 	CrazyDouble* rcolorShift;
 	CrazyDouble* gcolorShift;

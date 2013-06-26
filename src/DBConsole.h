@@ -7,6 +7,8 @@ class DBConsole :
 	public AbstractConsole
 {
 private:
+	long firstTimeMillis;
+
 	long lastRenderTime;
 	int fpsCount;
 	long fpsSum;
