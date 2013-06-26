@@ -92,6 +92,10 @@ long WindowsConsole::getSystemCurrTimeMillis() {
 	return (long) millis.count(); 
 }
 
+void WindowsConsole::doSystemSleep(long duration) {
+	Sleep(duration);
+}
+
 void WindowsConsole::setDimensions(short w, short h) {
 	HANDLE hCon = GetStdHandle( STD_OUTPUT_HANDLE );
 	SMALL_RECT size;

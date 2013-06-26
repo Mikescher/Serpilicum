@@ -46,11 +46,5 @@ void Main::keyEventPerformed(int keycode) {
 
 //#############################################
 /*
-
-Crazy Powerup := RAndom char (speed fast), sometimes 1x3, sometimes 3x1, sometimes 1x1->3x3->5x5->3x3->1x1
-Crazy Mode (Shader Transformations Color, in COnsole implementated) (What to do with WinConsole ???)
-FPS Limiter
 Where do we loose FPS with looooooooong snake (20 FPS with BUFFER_H*4 Length)
-
-GM Menu -> Chhsoe Transistion
 */

@@ -63,6 +63,10 @@ long OGLConsole::getSystemCurrTimeMillis()
 	return (long) millis.count(); 
 }
 
+void OGLConsole::doSystemSleep(long duration) {
+	Sleep(duration);
+}
+
 void OGLConsole::setDimensions(short w, short h)
 {
 	// DO NOTHING ???

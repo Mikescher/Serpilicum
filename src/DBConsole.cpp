@@ -70,7 +70,16 @@ void DBConsole::swap() {
 
 	//## FPS #####
 
-	fpsSum += getCurrentTimeMillis() - lastRenderTime;
+	long delta = getCurrentTimeMillis() - lastRenderTime;
+
+	if (FPS_LIMITER > 0) {
+		while (delta < (1000.0 / (FPS_LIMITER + 3))) {
+			delta = getCurrentTimeMillis() - lastRenderTime;
+			doSystemSleep(0);
+		}
+	}
+
+	fpsSum += delta;
 	lastRenderTime = getCurrentTimeMillis();
 	fpsCount++;
 	if (fpsSum > 1000) {

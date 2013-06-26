@@ -2,6 +2,7 @@
 
 #include "DBConsole.h"
 #include <Windows.h>
+#include <WinBase.h>
 #include <chrono>
 #include "Keycodes.h"
 #include "ListenerCollection.h"
@@ -28,6 +29,7 @@ protected:
 	virtual unsigned char getKeyState();
 	virtual void hideConsole();
 	virtual long getSystemCurrTimeMillis();
+	virtual void doSystemSleep(long duration);
 	virtual void setDimensions(short w, short h);
 
 	virtual void startRenderOGL();
