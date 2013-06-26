@@ -154,3 +154,8 @@ bool* WindowsConsole::getBoolImageResource(int id) {
 
 	return result;
 }
+
+void WindowsConsole::hideConsole() {
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow( hWnd, SW_HIDE );
+}

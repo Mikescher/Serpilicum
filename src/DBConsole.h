@@ -22,6 +22,7 @@ protected:
 protected:
 	virtual void writeToConsole(int c, int x, int y) = 0;
 	virtual void showConsoleCursor(bool bShow) = 0;
+	virtual void hideConsole() = 0;
 	virtual unsigned char getKeyState() = 0;
 	virtual long getSystemCurrTimeMillis() = 0;
 	virtual void setDimensions(short w, short h) = 0;

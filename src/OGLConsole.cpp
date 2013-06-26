@@ -263,3 +263,8 @@ bool* OGLConsole::getBoolImageResource(int id) {
 
 	return result;
 }
+
+void OGLConsole::hideConsole() {
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow( hWnd, SW_HIDE );
+}

@@ -3,6 +3,7 @@
 enum DisplayMethod {WINDOWS_CONSOLE, OGL_CONSOLE, CRAZY_CONSOLE};
 
 const DisplayMethod DISPLAYMETHOD = CRAZY_CONSOLE;
+const bool SHOWCONSOLE = false;
 
 //#########################################
 

@@ -38,6 +38,11 @@ void DBConsole::init() {
 
 	// Set Size
 	setDimensions(BUFFER_W, BUFFER_H);
+
+	//Show Console
+	if (! SHOWCONSOLE) {
+		hideConsole();
+	}
 }
 
 void DBConsole::write(int c, int x, int y) {
