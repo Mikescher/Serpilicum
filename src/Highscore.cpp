@@ -14,15 +14,15 @@ Highscore::~Highscore(void)
 void Highscore::writeScore(std::string pname, int pscoreValue)
 {
 	std::fstream datei;
-	datei.open(gameName(GAMERULES::i().choosen_gamemode), std::ios::out | std::ios::app);
-	datei << pname << "," << pscoreValue <<";";
+	datei.open("Highscore.dat", std::ios::out | std::ios::app);
+	datei << pname << "," << pscoreValue << "," << GAMERULES::i().choosen_gamemode << ";";
 	datei.close();
 }
 
-std::string Highscore::readScoreFile(int choose)
+std::string Highscore::readScoreFile()
 {
 	std::fstream datei;
-	datei.open(gameName(choose), std::ios::in);
+	datei.open("Highscore.dat", std::ios::in);
 	std::string line;
 	while (getline(datei,line,'\0'));
 	datei.close();
@@ -30,10 +30,10 @@ std::string Highscore::readScoreFile(int choose)
 
 	return line;
 }
-std::vector<HighscoreElement> Highscore::readScore(int choose)
-{
+
+std::vector<HighscoreElement> Highscore::readScore(int choose) {
 	std::string line;
-	line = readScoreFile(choose);
+	line = readScoreFile();
 	std::vector<std::string> elements;
 	elements = explode(line, ';');
 	std::vector<HighscoreElement> result;
@@ -41,18 +41,23 @@ std::vector<HighscoreElement> Highscore::readScore(int choose)
 	for(unsigned int z = 0; z < elements.size(); z++){
 		std::string name;
 		int score;
+		int hsid;
+
 		std::vector<std::string> elements2;
 		elements2 = explode(elements.at(z), ',');
 
 		name = elements2.at(0);
 		std::stringstream sstr(elements2.at(1));
 		sstr >> score;
+		std::stringstream sstr2(elements2.at(2));
+		sstr2 >> hsid; 
 
 		HighscoreElement hse;
 		hse.name = name;
 		hse.point = score;
+		hse.gamemodeid = hsid;
 
-		result.push_back(hse);
+		if (hsid == choose) result.push_back(hse);
 	}
 
 	sortHighscoreList(result);
@@ -87,32 +92,4 @@ void Highscore::sortHighscoreList(std::vector<HighscoreElement>& elements)
 			} 
 		} 
 	} 
-}
-
-std::string Highscore::gameName(int choose)
-{
-	std::string FILENAME;
-
-	switch(choose){
-	case 0: 
-		FILENAME = "Easy.txt";
-		break;
-	case 1:
-		FILENAME = "Retro.txt";
-		break;
-	case 2:
-		FILENAME = "Normal.txt";
-		break;
-	case 3:
-		FILENAME = "Hardcore.txt";
-		break;
-	case 4:
-		FILENAME = "Aspirin.txt";
-		break;
-	case 5:
-		FILENAME = "Auto.txt";
-		break;
-	}
-
-		return FILENAME;
 }
