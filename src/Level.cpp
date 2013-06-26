@@ -185,11 +185,13 @@ void Level::render(AbstractConsole* pConsole)
 }
 
 void Level::renderSnake(AbstractConsole *console) {
-	SnakeElement * snakeelement = getSnake()->getHead();
+	SnakeElement* snakeelement = getSnake()->getHead();
+	SnakeElement* prev = 0;
 	int pos = 0;
 	while(snakeelement != 0) {
-		console->write(SNAKEPARTCHARS[getSnake()->getIntersectionOrientation(pos)], snakeelement->getX(), snakeelement->getY());
+		console->write(SNAKEPARTCHARS[getSnake()->getIntersectionOrientation(prev, snakeelement, snakeelement->getNextElement())], snakeelement->getX(), snakeelement->getY());
 
+		prev = snakeelement;
 		snakeelement = snakeelement->getNextElement();
 		pos++;
 	}
@@ -361,18 +363,18 @@ bool Level::isPositionUsed(int xx, int yy) {
 }
 
 void Level::testForDeath(AbstractConsole* pConsole) {
-	//##############################
-	// COLLSION WITH SNAKE PIECE
-	//#############################
-	
-	SnakeElement * snakeelement = getSnake()->getHead();
-	while(snakeelement != 0) {
-		SnakeElement * prevelem = 0;
+	for (int tcmx = 0; tcmx < BUFFER_W; tcmx++)
+		for (int tcmy = 0; tcmy < BUFFER_H; tcmy++)
+			tempcollsionmatrix[tcmx][tcmy] = false;
 
-		SnakeElement * snakeelement2 = getSnake()->getHead();
-		while(snakeelement2 != 0) {
-			if (snakeelement->getX() == snakeelement2->getX() && snakeelement->getY() == snakeelement2->getY() && snakeelement != snakeelement2) {
-				if (GAMERULES::i().DieOnSelfContact) {
+	SnakeElement * snakeelement = getSnake()->getHead();
+	SnakeElement * prevelem = 0;
+	while(snakeelement != 0) {
+		//##############################
+		// COLLSION WITH SNAKE PIECE
+		//#############################
+		if (tempcollsionmatrix[snakeelement->getX()][snakeelement->getY()]) {
+			if (GAMERULES::i().DieOnSelfContact) {
 					onDie();
 				}
 				if (GAMERULES::i().BiteOnSelfContact && prevelem != 0){
@@ -381,26 +383,22 @@ void Level::testForDeath(AbstractConsole* pConsole) {
 				if (GAMERULES::i().DecreaseShardsOnSelfContact){
 					decreaseLifeShardsBy(1);
 				}
+
 				return;
-			}
-
-			prevelem = snakeelement2;
-			snakeelement2 = snakeelement2->getNextElement();
 		}
-		snakeelement = snakeelement->getNextElement();
-	}
 
-	//##############################
-	// OUT OF BORDER
-	//#############################
-
-	SnakeElement * snakeelement3 = getSnake()->getHead();
-	while(snakeelement3 != 0) {
-		if (snakeelement3->getX() < 0 || snakeelement3->getY() < 0 || snakeelement3->getX() >= BUFFER_W || snakeelement3->getY() >= BUFFER_H) {
+		//##############################
+		// OUT OF BORDER
+		//#############################
+		if (snakeelement->getX() < 0 || snakeelement->getY() < 0 || snakeelement->getX() >= BUFFER_W || snakeelement->getY() >= BUFFER_H) {
 			onDie();
+			return;
 		}
 
-		snakeelement3 = snakeelement3->getNextElement();
+		tempcollsionmatrix[snakeelement->getX()][snakeelement->getY()] = true;
+		prevelem = snakeelement;
+
+		snakeelement = snakeelement->getNextElement();
 	}
 }
 

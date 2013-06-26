@@ -16,6 +16,8 @@ private:
 	std::vector<LevelObstacle*> obstacles;
 	SnakeModifier* modifier;
 
+	bool tempcollsionmatrix[BUFFER_W][BUFFER_H];
+
 	AbstractConsole* console;
 
 	int lifes;

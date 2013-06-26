@@ -43,8 +43,3 @@ void Main::actionPerformed(int id, int param) {
 void Main::keyEventPerformed(int keycode) {
 	game->onKeyDown(keycode);
 }
-
-//#############################################
-/*
-Where do we loose FPS with looooooooong snake (20 FPS with BUFFER_H*4 Length)
-*/

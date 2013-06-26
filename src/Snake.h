@@ -41,6 +41,7 @@ public:
 	virtual SnakeElement* getElementAt(int pos);
 	virtual Direction getDirection();
 	virtual SnakeIntersecton getIntersectionOrientation(int position);
+	virtual SnakeIntersecton getIntersectionOrientation(SnakeElement* prev, SnakeElement* cur, SnakeElement* next);
 	virtual int findElement(SnakeElement* el);
 
 	virtual void extendForward(int c);

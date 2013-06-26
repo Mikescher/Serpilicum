@@ -397,28 +397,26 @@ void Snake::autoExtendForward() {
 	extendForward();
 }
 
-SnakeIntersecton Snake::getIntersectionOrientation(int position) {
-	int width = getLength();
-
-	if (position < 0 || position >= width) {
+SnakeIntersecton Snake::getIntersectionOrientation(SnakeElement* prev, SnakeElement* cur, SnakeElement* next) {
+	if (cur == 0) {
 		return SIS_NULL;
 	}
 
-	int cux = getElementAt(position)->getX();
-	int cuy = getElementAt(position)->getY();
+	int cux = cur->getX();
+	int cuy = cur->getY();
 
-	if (position == 0 && width == 1) { // FIRST AND ONLY
+	if (prev == 0 && next == 0) { // FIRST AND ONLY
 		return (SnakeIntersecton)getDirection();
-	} else if (position == (width - 1)) { // LAST
-		return (SnakeIntersecton)getDirectionBetween(getElementAt(position - 1)->getX(), getElementAt(position - 1)->getY(), cux, cuy);
+	} else if (next == 0) { // LAST
+		return (SnakeIntersecton)getDirectionBetween(prev->getX(), prev->getY(), cux, cuy);
 	} else {
 		Direction da;
-		if (position > 0) {
-			da = getDirectionBetween(cux, cuy, getElementAt(position - 1)->getX(), getElementAt(position - 1)->getY());
+		if (prev != 0) {
+			da = getDirectionBetween(cux, cuy, prev->getX(), prev->getY());
 		} else {
 			da = getDirection();
 		}
-		Direction db = getDirectionBetween(cux, cuy, getElementAt(position + 1)->getX(), getElementAt(position + 1)->getY());
+		Direction db = getDirectionBetween(cux, cuy, next->getX(), next->getY());
 
 		switch(da) {
 		case NORTH:
@@ -475,7 +473,30 @@ SnakeIntersecton Snake::getIntersectionOrientation(int position) {
 	return SIS_NULL;
 }
 
-Direction Snake::getDirectionBetween(int x1, int y1, int x2, int y2) { //TODO OverBorderDirection
+SnakeIntersecton Snake::getIntersectionOrientation(int position) {
+	SnakeElement* prev = 0;
+	SnakeElement* curr = 0;
+	SnakeElement* next = 0;
+
+	SnakeElement* snakeelement = getHead();
+	int pos = 0;
+	while (snakeelement != 0) {
+		if (pos == position - 1) {
+			prev = snakeelement;
+		} else if (pos == position) {
+			curr = snakeelement;
+		} else if (pos == position + 1) {
+			next = snakeelement;
+		}
+
+		snakeelement = snakeelement->getNextElement();
+		pos++;
+	}
+
+	return getIntersectionOrientation(prev, curr, next);
+}
+
+Direction Snake::getDirectionBetween(int x1, int y1, int x2, int y2) {
 	int dx = x2 - x1;
 	int dy = y2 - y1;
 
