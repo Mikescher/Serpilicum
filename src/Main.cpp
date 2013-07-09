@@ -36,7 +36,6 @@ void Main::start() {
 }
 
 void Main::actionPerformed(int id, int param) {
-
 	game->run(dbc);
 }
 

@@ -70,3 +70,4 @@ Debug\*.res
 /Highscore.txt
 /*.dat
 /Normal.txt
+*Highscore.dat
